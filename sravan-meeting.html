@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>UNYKORN INFRASTRUCTURE // Sravan Executive Review & Monetization Hub</title>
+  <title>UNYKORN MIAMI VICE // Sravan Executive Review & Monetization Hub</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700;800&family=Teko:wght@500;600;700&display=swap" rel="stylesheet">
   <script>
     tailwind.config = {
       darkMode: 'class',
@@ -16,37 +16,31 @@
           fontFamily: {
             sans: ['"Outfit"', 'sans-serif'],
             mono: ['"JetBrains Mono"', 'monospace'],
+            teko: ['"Teko"', 'sans-serif'],
           },
           colors: {
+            neonPink: '#ff007f',
+            neonCyan: '#00f0ff',
+            sunsetPurple: '#8b5cf6',
+            miamiBlack: '#0a0612',
             gold: {
-              100: '#FFF6D1',
-              200: '#FFE57F',
               300: '#ffe547',
               400: '#ffd700',
               500: '#E6A100',
-              600: '#B8860B',
-              700: '#8b6508',
-            },
-            obsidian: {
-              950: '#070709',
-              900: '#0c0c0f',
-              800: '#121218',
-              700: '#1a1a24',
-              600: '#2A2A36',
             }
           },
           animation: {
-            'ticker': 'ticker 32s linear infinite',
-            'pulse-glow': 'pulseGlow 3s infinite ease-in-out',
+            'ticker': 'ticker 30s linear infinite',
+            'neon-pulse': 'neonPulse 2.5s infinite ease-in-out',
           },
           keyframes: {
             ticker: {
               '0%': { transform: 'translateX(0%)' },
               '100%': { transform: 'translateX(-50%)' }
             },
-            pulseGlow: {
-              '0%, 100%': { boxShadow: '0 0 15px rgba(255, 215, 0, 0.2)' },
-              '50%': { boxShadow: '0 0 35px rgba(255, 215, 0, 0.45)' }
+            neonPulse: {
+              '0%, 100%': { boxShadow: '0 0 15px rgba(255, 0, 127, 0.4), inset 0 0 10px rgba(0, 240, 255, 0.3)' },
+              '50%': { boxShadow: '0 0 35px rgba(255, 0, 127, 0.8), 0 0 20px rgba(0, 240, 255, 0.6)' }
             }
           }
         }
@@ -55,49 +49,52 @@
   </script>
   <style>
     body {
-      background-color: #070709;
+      background-color: #08040d;
+      background-image: radial-gradient(circle at 50% 0%, rgba(255, 0, 127, 0.15), transparent 70%),
+                        radial-gradient(circle at 100% 50%, rgba(0, 240, 255, 0.1), transparent 60%);
       color: #F3F4F6;
       font-family: 'Outfit', sans-serif;
       overflow-x: hidden;
     }
     
-    /* Exact GoldBit.unykorn.ai Design Tokens */
+    .miami-vice-text {
+      background: linear-gradient(135deg, #ff007f 0%, #ff77bc 35%, #00f0ff 70%, #ffd700 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .neon-cyan-text {
+      background: linear-gradient(135deg, #a5f3fc 0%, #00f0ff 50%, #0284c7 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
     .gold-text-gradient {
       background: linear-gradient(135deg, #FFF6D1 0%, #FFD700 40%, #E6A100 75%, #B8860B 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
-    .cyan-text-gradient {
-      background: linear-gradient(135deg, #e0f2fe 0%, #38bdf8 50%, #0284c7 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .gold-metallic-border {
+    .miami-border {
       border: 1px solid transparent;
-      background: linear-gradient(#0c0c0f, #0c0c0f) padding-box,
-                  linear-gradient(135deg, rgba(255, 215, 0, 0.7), rgba(184, 134, 11, 0.3), rgba(255, 245, 180, 0.8)) border-box;
+      background: linear-gradient(#0e0817, #0e0817) padding-box,
+                  linear-gradient(135deg, rgba(255, 0, 127, 0.8), rgba(0, 240, 255, 0.6), rgba(255, 215, 0, 0.8)) border-box;
     }
-    .gold-glow {
-      box-shadow: 0 0 25px rgba(255, 215, 0, 0.25), inset 0 0 15px rgba(255, 215, 0, 0.1);
-    }
-    .glass-panel {
-      background: rgba(18, 18, 24, 0.75);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 215, 0, 0.12);
+    .miami-glass {
+      background: rgba(14, 8, 23, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 0, 127, 0.2);
       transition: all 0.25s ease-in-out;
     }
-    .glass-panel:hover {
-      border-color: rgba(255, 215, 0, 0.4);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 215, 0, 0.15);
+    .miami-glass:hover {
+      border-color: rgba(0, 240, 255, 0.6);
+      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.6), 0 0 25px rgba(255, 0, 127, 0.3);
       transform: translateY(-2px);
     }
     ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: #070709; }
-    ::-webkit-scrollbar-thumb { background: #2A2A36; border-radius: 3px; }
+    ::-webkit-scrollbar-track { background: #08040d; }
+    ::-webkit-scrollbar-thumb { background: #ff007f; border-radius: 3px; }
   </style>
 </head>
-<body class="min-h-screen flex flex-col font-sans selection:bg-gold-500/30 selection:text-gold-200">
+<body class="min-h-screen flex flex-col font-sans selection:bg-pink-500/30 selection:text-pink-200">
 
   <!-- BACKGROUND AUDIO INTRO TRACK -->
   <audio id="bgAudio" loop preload="auto">
@@ -105,50 +102,69 @@
   </audio>
 
   <!-- TOP STADIUM TICKER MARQUEE (NO EMOJIS) -->
-  <div class="bg-obsidian-950 border-b border-gold-500/20 py-2 overflow-hidden font-mono text-[11px] uppercase tracking-widest text-gold-400">
+  <div class="bg-miamiBlack border-b border-pink-500/30 py-2 overflow-hidden font-mono text-[11px] uppercase tracking-widest text-pink-400">
     <div class="whitespace-nowrap flex animate-ticker">
+      <span class="mx-6 flex items-center gap-2"><strong class="text-cyan-400">[MIAMI VICE RAILS]</strong> TROPICAL SOUTH FLORIDA CAPITAL & ASSET TOKENIZATION</span>
       <span class="mx-6 flex items-center gap-2"><strong class="text-white">[FLASHROUTER]</strong> DOUBLE-CLOSE SETTLEMENT ($500-$1.5K HUD-1 TECH FEES)</span>
       <span class="mx-6 flex items-center gap-2"><strong class="text-white">[LEGACYCHAIN]</strong> $999/FIRM B2B ATTORNEY SEATS & $99-$299 B2C VAULTS</span>
       <span class="mx-6 flex items-center gap-2"><strong class="text-white">[GENESIS402]</strong> x402 PROGRAMMATIC AGENT MICROPAYMENTS ($49-$499/MO)</span>
-      <span class="mx-6 flex items-center gap-2"><strong class="text-white">[GOLDBIT & RWA]</strong> 25-75 BPS PRIVATE CREDIT ORIGINATION SPREADS</span>
-      <span class="mx-6 flex items-center gap-2"><strong class="text-white">[LUXURY VERTICALS]</strong> 1.5%-3.0% TOKENIZATION + $10K-$50K UPFRONT STRUCTURING</span>
-      <span class="mx-6 flex items-center gap-2"><strong class="text-white">[GITHUB REPO]</strong> FTHTRADING/SR LIVE AND CONNECTED</span>
-      <!-- Seamless Loop Duplicate -->
+      <span class="mx-6 flex items-center gap-2"><strong class="text-white">[SPORTS IP & MMA]</strong> MMA FIGHT PURSES & BASEBALL ATHLETIC REELS</span>
+      <!-- Loop duplicate -->
+      <span class="mx-6 flex items-center gap-2"><strong class="text-cyan-400">[MIAMI VICE RAILS]</strong> TROPICAL SOUTH FLORIDA CAPITAL & ASSET TOKENIZATION</span>
       <span class="mx-6 flex items-center gap-2"><strong class="text-white">[FLASHROUTER]</strong> DOUBLE-CLOSE SETTLEMENT ($500-$1.5K HUD-1 TECH FEES)</span>
       <span class="mx-6 flex items-center gap-2"><strong class="text-white">[LEGACYCHAIN]</strong> $999/FIRM B2B ATTORNEY SEATS & $99-$299 B2C VAULTS</span>
       <span class="mx-6 flex items-center gap-2"><strong class="text-white">[GENESIS402]</strong> x402 PROGRAMMATIC AGENT MICROPAYMENTS ($49-$499/MO)</span>
-      <span class="mx-6 flex items-center gap-2"><strong class="text-white">[GOLDBIT & RWA]</strong> 25-75 BPS PRIVATE CREDIT ORIGINATION SPREADS</span>
     </div>
   </div>
 
-  <!-- MAIN NAVIGATION HEADER (MATCHES GOLDBIT.UNYKORN.AI NAVBAR) -->
-  <header class="sticky top-0 z-50 bg-obsidian-950/90 backdrop-blur-xl border-b border-gold-500/20 shadow-2xl">
+  <!-- HERO TROPICAL BANNER HEADER -->
+  <div class="relative w-full h-44 sm:h-56 bg-cover bg-center border-b border-pink-500/40 overflow-hidden" style="background-image: url('./media/miami_vice_bg.jpg');">
+    <div class="absolute inset-0 bg-gradient-to-r from-miamiBlack/95 via-miamiBlack/70 to-transparent flex items-center">
+      <div class="max-w-7xl mx-auto px-6 sm:px-8 w-full flex items-center justify-between">
+        <div class="space-y-1">
+          <div class="flex items-center gap-3">
+            <span class="text-xs font-mono px-3 py-1 rounded-full bg-pink-500/20 text-pink-300 border border-pink-500/40 uppercase font-extrabold tracking-widest">
+              [FLAMINGO VAULT & MIAMI VICE EDITION]
+            </span>
+            <span class="text-xs font-mono text-cyan-400 font-bold">[SPORTS & ASSET REELS]</span>
+          </div>
+          <h1 class="text-4xl sm:text-5xl font-extrabold uppercase tracking-wider miami-vice-text font-teko">
+            UNYKORN MIAMI VICE <span class="text-white">// MONETIZATION HUB</span>
+          </h1>
+          <p class="text-xs text-zinc-300 font-mono">South Florida Capital Desks, Sports IP Purses & 23 Executive Portals</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN NAVIGATION HEADER -->
+  <header class="sticky top-0 z-50 bg-miamiBlack/95 backdrop-blur-xl border-b border-pink-500/30 shadow-2xl">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex flex-wrap items-center justify-between gap-4">
       
-      <!-- Brand Logo (GoldBit/Unykorn Design System) -->
-      <div class="flex items-center space-x-3.5">
-        <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-gold-300 via-gold-500 to-amber-700 p-0.5 shadow-lg shadow-gold-500/20">
-          <div class="w-full h-full bg-obsidian-950 rounded-[10px] flex items-center justify-center font-bold text-2xl text-gold-400 font-mono">
+      <!-- Brand Logo -->
+      <div class="flex items-center space-x-3">
+        <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-pink-500 via-purple-600 to-cyan-400 p-0.5 shadow-lg shadow-pink-500/30">
+          <div class="w-full h-full bg-miamiBlack rounded-[10px] flex items-center justify-center font-bold text-2xl text-pink-400 font-mono">
             U
           </div>
         </div>
         <div>
           <div class="flex items-center gap-2">
-            <span class="font-extrabold text-2xl tracking-wider text-white">
-              UNYKORN <span class="gold-text-gradient">NETWORK</span>
+            <span class="font-extrabold text-2xl tracking-wider text-white font-teko uppercase">
+              UNYKORN <span class="miami-vice-text">MIAMI VICE</span>
             </span>
-            <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-gold-500/15 text-gold-400 border border-gold-500/30 font-mono">
-              goldbit.unykorn.ai/#network
+            <span class="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-pink-950 text-pink-400 border border-pink-700/60 font-mono">
+              miami.unykorn.ai
             </span>
           </div>
-          <p class="text-[11px] text-zinc-400 font-mono">Executive Review Playbook • Wyoming LLC LEI: 2549008J7LUHSQ73SI26</p>
+          <p class="text-[11px] text-zinc-400 font-mono">Wyoming LLC LEI: 2549008J7LUHSQ73SI26 • Flamingo Vault Rails</p>
         </div>
       </div>
 
       <!-- Header Controls -->
       <div class="flex items-center gap-3">
         <!-- Audio Track Toggle -->
-        <button id="audioToggleBtn" onclick="toggleAudio()" class="px-3.5 py-2 rounded-xl bg-obsidian-800 hover:bg-obsidian-700 border border-gold-500/30 text-gold-400 text-xs font-mono font-bold transition">
+        <button id="audioToggleBtn" onclick="toggleAudio()" class="px-3.5 py-2 rounded-xl bg-obsidian-800 hover:bg-obsidian-700 border border-pink-500/40 text-pink-300 text-xs font-mono font-bold transition">
           <span id="audioStatusText">Play Audio Intro</span>
         </button>
 
@@ -159,7 +175,7 @@
         </a>
 
         <!-- Guided Tour -->
-        <button onclick="startVoiceTour()" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-gold-400 to-amber-500 text-black font-extrabold text-sm hover:brightness-110 transition shadow-lg shadow-gold-500/25 tracking-wider uppercase">
+        <button onclick="startVoiceTour()" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-pink-500 via-purple-600 to-cyan-400 text-white font-extrabold text-sm hover:brightness-110 transition shadow-lg shadow-pink-500/30 tracking-wider uppercase font-teko">
           START VOICE MEETING TOUR
         </button>
       </div>
@@ -167,7 +183,7 @@
 
     <!-- NAVIGATION TABS -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex items-center gap-2 overflow-x-auto text-xs font-mono border-t border-zinc-800/80">
-      <button onclick="showSection('sec-overview', this)" class="nav-tab px-4 py-2 rounded-lg bg-gold-400 text-black font-bold transition">
+      <button onclick="showSection('sec-overview', this)" class="nav-tab px-4 py-2 rounded-lg bg-pink-500 text-white font-bold transition">
         01. Executive Premise
       </button>
       <button onclick="showSection('sec-clients', this)" class="nav-tab px-4 py-2 rounded-lg text-zinc-400 hover:text-white hover:bg-obsidian-800 transition">
@@ -177,7 +193,7 @@
         03. What & Where We Are (23 Sites)
       </button>
       <button onclick="showSection('sec-jumbotron', this)" class="nav-tab px-4 py-2 rounded-lg text-zinc-400 hover:text-white hover:bg-obsidian-800 transition">
-        04. Video Arena (9 Reels)
+        04. Sports Video Arena (Baseball & MMA)
       </button>
       <button onclick="showSection('sec-studio', this)" class="nav-tab px-4 py-2 rounded-lg text-zinc-400 hover:text-white hover:bg-obsidian-800 transition">
         05. Alienware Hype Studio
@@ -197,11 +213,11 @@
     <div id="sec-overview" class="section-block space-y-8">
       
       <!-- HERO DECISIVE STATEMENT -->
-      <div class="glass-panel p-8 rounded-2xl gold-metallic-border flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+      <div class="miami-glass p-8 rounded-2xl miami-border flex flex-col lg:flex-row lg:items-center justify-between gap-6">
         <div class="space-y-4 max-w-4xl">
           <div class="flex items-center gap-3">
-            <span class="text-xs font-mono uppercase tracking-widest text-gold-400 font-extrabold">[DECISIVE PREMISE FOR SRAVAN]</span>
-            <button onclick="speakText(document.getElementById('execPitchText').innerText)" class="text-[11px] font-mono px-3 py-1 rounded bg-gold-500/20 text-gold-300 hover:bg-gold-500/30 transition border border-gold-500/40 uppercase font-bold">
+            <span class="text-xs font-mono uppercase tracking-widest text-pink-400 font-extrabold">[DECISIVE PREMISE FOR SRAVAN]</span>
+            <button onclick="speakText(document.getElementById('execPitchText').innerText)" class="text-[11px] font-mono px-3 py-1 rounded bg-pink-500/20 text-pink-300 hover:bg-pink-500/30 transition border border-pink-500/40 uppercase font-bold">
               Read Statement Aloud
             </button>
           </div>
@@ -213,14 +229,14 @@
             <span>•</span>
             <span>LEI: 2549008J7LUHSQ73SI26</span>
             <span>•</span>
-            <span>Bankruptcy-Remote Bailment (11 U.S.C. § 541)</span>
+            <span>Flamingo Vault Bailment (11 U.S.C. § 541)</span>
           </div>
         </div>
         <div class="flex flex-col gap-3 min-w-[220px]">
-          <div class="px-5 py-3 rounded-xl bg-obsidian-950 border border-gold-500/30 text-gold-400 font-mono text-xs font-extrabold text-center shadow-lg">
+          <div class="px-5 py-3 rounded-xl bg-miamiBlack border border-pink-500/40 text-pink-400 font-mono text-xs font-extrabold text-center shadow-lg">
             3 CASH ENGINES ACTIVE
           </div>
-          <div class="px-5 py-3 rounded-xl bg-obsidian-950 border border-emerald-500/30 text-emerald-400 font-mono text-xs font-extrabold text-center shadow-lg">
+          <div class="px-5 py-3 rounded-xl bg-miamiBlack border border-cyan-500/40 text-cyan-400 font-mono text-xs font-extrabold text-center shadow-lg">
             23 MONETIZED PORTALS
           </div>
         </div>
@@ -229,37 +245,37 @@
       <!-- 3 CASH ENGINES CARDS -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         
-        <div class="glass-panel p-7 rounded-2xl border-l-4 border-l-amber-400 space-y-4">
+        <div class="miami-glass p-7 rounded-2xl border-l-4 border-l-pink-500 space-y-4">
           <div class="flex items-center justify-between">
-            <span class="font-mono text-xs text-amber-400 font-bold">[ENGINE 1]</span>
-            <span class="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-amber-950 text-amber-300 border border-amber-800">24-72hr Velocity</span>
+            <span class="font-mono text-xs text-pink-400 font-bold">[ENGINE 1]</span>
+            <span class="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-pink-950 text-pink-300 border border-pink-800">24-72hr Velocity</span>
           </div>
-          <h3 class="text-2xl font-extrabold text-white uppercase tracking-wide">Fast Cash Settlement</h3>
-          <p class="text-xs font-mono text-emerald-400 font-bold">$500-$1,500/deal HUD-1 pass-through</p>
+          <h3 class="text-2xl font-extrabold text-white uppercase tracking-wide font-teko">Fast Cash Settlement</h3>
+          <p class="text-xs font-mono text-cyan-400 font-bold">$500-$1,500/deal HUD-1 pass-through</p>
           <p class="text-sm text-zinc-300 leading-relaxed">
             FlashRouter double-closes, LegacyChain digital estate vaults, and Genesis402 x402 machine-native micropayments.
           </p>
         </div>
 
-        <div class="glass-panel p-7 rounded-2xl border-l-4 border-l-emerald-400 space-y-4">
+        <div class="miami-glass p-7 rounded-2xl border-l-4 border-l-cyan-400 space-y-4">
           <div class="flex items-center justify-between">
-            <span class="font-mono text-xs text-emerald-400 font-bold">[ENGINE 2]</span>
-            <span class="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-emerald-950 text-emerald-300 border border-emerald-800">Daily SaaS Cash</span>
+            <span class="font-mono text-xs text-cyan-400 font-bold">[ENGINE 2]</span>
+            <span class="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-cyan-950 text-cyan-300 border border-cyan-800">Daily SaaS Cash</span>
           </div>
-          <h3 class="text-2xl font-extrabold text-white uppercase tracking-wide">Subscriptions & Tools</h3>
-          <p class="text-xs font-mono text-emerald-400 font-bold">$99-$999 MRR + $49-$99 POF Letters</p>
+          <h3 class="text-2xl font-extrabold text-white uppercase tracking-wide font-teko">Subscriptions & Tools</h3>
+          <p class="text-xs font-mono text-pink-400 font-bold">$99-$999 MRR + $49-$99 POF Letters</p>
           <p class="text-sm text-zinc-300 leading-relaxed">
             Automated Stripe checkouts, estate attorney seat licenses, instant Proof of Funds generation, and API developer tiers.
           </p>
         </div>
 
-        <div class="glass-panel p-7 rounded-2xl border-l-4 border-l-cyan-400 space-y-4">
+        <div class="miami-glass p-7 rounded-2xl border-l-4 border-l-purple-500 space-y-4">
           <div class="flex items-center justify-between">
-            <span class="font-mono text-xs text-cyan-400 font-bold">[ENGINE 3]</span>
-            <span class="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-cyan-950 text-cyan-300 border border-cyan-800">Monthly 5-6 Figure Wires</span>
+            <span class="font-mono text-xs text-purple-400 font-bold">[ENGINE 3]</span>
+            <span class="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-purple-950 text-purple-300 border border-purple-800">Monthly 5-6 Figure Wires</span>
           </div>
-          <h3 class="text-2xl font-extrabold text-white uppercase tracking-wide">High-Ticket RWA</h3>
-          <p class="text-xs font-mono text-emerald-400 font-bold">$15k-$50k Setup + 1.5%-3.0% Volume</p>
+          <h3 class="text-2xl font-extrabold text-white uppercase tracking-wide font-teko">High-Ticket RWA</h3>
+          <p class="text-xs font-mono text-cyan-400 font-bold">$15k-$50k Setup + 1.5%-3.0% Volume</p>
           <p class="text-sm text-zinc-300 leading-relaxed">
             Blue-chip art galleries, whiskey cask vaults, museum antiquities, watch loan origination, and private debt facilities.
           </p>
@@ -275,85 +291,49 @@
       
       <div class="flex items-center justify-between border-b border-zinc-800 pb-5">
         <div>
-          <h2 class="text-3xl font-extrabold text-white uppercase tracking-wide">
-            CLIENT ROSTER <span class="gold-text-gradient">// WHO THEY ARE & WHERE THEY GO</span>
+          <h2 class="text-3xl font-extrabold text-white uppercase tracking-wide font-teko">
+            CLIENT ROSTER <span class="miami-vice-text">// WHO THEY ARE & WHERE THEY GO</span>
           </h2>
           <p class="text-xs text-zinc-400 font-mono mt-1">12 target customer profiles paying platform access fees across our 23 properties.</p>
         </div>
-        <span class="px-3.5 py-1.5 rounded-full bg-gold-500/15 text-gold-400 border border-gold-500/30 text-xs font-mono font-bold">[12 CLIENT SEGMENTS]</span>
+        <span class="px-3.5 py-1.5 rounded-full bg-pink-500/20 text-pink-300 border border-pink-500/40 text-xs font-mono font-bold">[12 CLIENT SEGMENTS]</span>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         
-        <div class="glass-panel p-6 rounded-2xl space-y-4">
-          <span class="text-[10px] font-mono font-bold px-2.5 py-0.5 rounded bg-amber-950 text-amber-400 border border-amber-800">[SETTLEMENT CLIENT]</span>
+        <div class="miami-glass p-6 rounded-2xl space-y-4">
+          <span class="text-[10px] font-mono font-bold px-2.5 py-0.5 rounded bg-pink-950 text-pink-400 border border-pink-800">[SETTLEMENT CLIENT]</span>
           <h3 class="font-bold text-white text-base">1. Real Estate Wholesalers & Title Companies</h3>
           <p class="text-xs text-zinc-300 leading-relaxed">
             Wholesalers running double-close (A to B / B to C) deals needing same-day settlement without tying up capital.
           </p>
-          <div class="p-3.5 rounded-xl bg-obsidian-950 border border-zinc-800 text-xs font-mono space-y-1.5">
-            <p class="text-emerald-400 font-semibold">Fee: $500-$1,500 tech fee on HUD-1 + 0.5%-1% origination</p>
-            <p class="text-gold-400 font-semibold">Endpoint: flashrouter.io</p>
+          <div class="p-3.5 rounded-xl bg-miamiBlack border border-zinc-800 text-xs font-mono space-y-1.5">
+            <p class="text-cyan-400 font-semibold">Fee: $500-$1,500 tech fee on HUD-1 + 0.5%-1% origination</p>
+            <p class="text-pink-400 font-semibold">Endpoint: flashrouter.io</p>
           </div>
         </div>
 
-        <div class="glass-panel p-6 rounded-2xl space-y-4">
-          <span class="text-[10px] font-mono font-bold px-2.5 py-0.5 rounded bg-emerald-950 text-emerald-400 border border-emerald-800">[ESTATE CLIENT]</span>
-          <h3 class="font-bold text-white text-base">2. Estate Planning Attorneys & HNW Families</h3>
+        <div class="miami-glass p-6 rounded-2xl space-y-4">
+          <span class="text-[10px] font-mono font-bold px-2.5 py-0.5 rounded bg-cyan-950 text-cyan-400 border border-cyan-800">[SPORTS IP CLIENT]</span>
+          <h3 class="font-bold text-white text-base">2. MMA Fighters, Promoters & Purse Managers</h3>
           <p class="text-xs text-zinc-300 leading-relaxed">
-            Law firms and family offices storing digital wills, trusts, and power of attorney records with zero-knowledge encryption.
+            Combat sports fighters and promoters tokenizing sponsorship contracts, fight purses, and fan vote participation.
           </p>
-          <div class="p-3.5 rounded-xl bg-obsidian-950 border border-zinc-800 text-xs font-mono space-y-1.5">
-            <p class="text-emerald-400 font-semibold">Fee: $999/firm seat + $99-$299 B2C vault subscriptions</p>
-            <p class="text-gold-400 font-semibold">Endpoint: legacychain.app</p>
+          <div class="p-3.5 rounded-xl bg-miamiBlack border border-zinc-800 text-xs font-mono space-y-1.5">
+            <p class="text-pink-400 font-semibold">Fee: 5.0% fight purse syndication fee + PPV ticketing</p>
+            <p class="text-cyan-400 font-semibold">Endpoint: mma.unykorn.ai</p>
           </div>
         </div>
 
-        <div class="glass-panel p-6 rounded-2xl space-y-4">
-          <span class="text-[10px] font-mono font-bold px-2.5 py-0.5 rounded bg-cyan-950 text-cyan-400 border border-cyan-800">[AI AGENT CLIENT]</span>
-          <h3 class="font-bold text-white text-base">3. AI Developers & Autonomous Swarms</h3>
+        <div class="miami-glass p-6 rounded-2xl space-y-4">
+          <span class="text-[10px] font-mono font-bold px-2.5 py-0.5 rounded bg-purple-950 text-purple-400 border border-purple-800">[MIAMI HOSPITALITY]</span>
+          <h3 class="font-bold text-white text-base">3. Waterfront Real Estate & Luxury Hospitality</h3>
           <p class="text-xs text-zinc-300 leading-relaxed">
-            Developers deploying machine-native autonomous agents that pay and settle programmatically over HTTP 402 rails.
+            South Florida waterfront real estate, luxury hospitality syndications, and yacht charter asset tokenization.
           </p>
-          <div class="p-3.5 rounded-xl bg-obsidian-950 border border-zinc-800 text-xs font-mono space-y-1.5">
-            <p class="text-emerald-400 font-semibold">Fee: Pay-per-request micropay toll + $49-$499/mo developer tiers</p>
-            <p class="text-gold-400 font-semibold">Endpoint: genesis402.com</p>
-          </div>
-        </div>
-
-        <div class="glass-panel p-6 rounded-2xl space-y-4">
-          <span class="text-[10px] font-mono font-bold px-2.5 py-0.5 rounded bg-purple-950 text-purple-400 border border-purple-800">[INSTITUTIONAL CLIENT]</span>
-          <h3 class="font-bold text-white text-base">4. Capital Desks & Private Credit Sponsors</h3>
-          <p class="text-xs text-zinc-300 leading-relaxed">
-            Institutional lenders and asset managers syndicating debt facilities, monitoring collateral health, and tracking yield waterfalls.
-          </p>
-          <div class="p-3.5 rounded-xl bg-obsidian-950 border border-zinc-800 text-xs font-mono space-y-1.5">
-            <p class="text-emerald-400 font-semibold">Fee: 25-75 bps origination spread + 1.0%-2.5% syndication fee</p>
-            <p class="text-gold-400 font-semibold">Endpoint: capital.unykorn.ai & ldxrwa.unykorn.ai</p>
-          </div>
-        </div>
-
-        <div class="glass-panel p-6 rounded-2xl space-y-4">
-          <span class="text-[10px] font-mono font-bold px-2.5 py-0.5 rounded bg-pink-950 text-pink-400 border border-pink-800">[ART CLIENT]</span>
-          <h3 class="font-bold text-white text-base">5. Fine Art Galleries & High-Value Collectors</h3>
-          <p class="text-xs text-zinc-300 leading-relaxed">
-            Blue-chip galleries fractionalizing museum-grade paintings allowing collectors to trade shares while artwork remains exhibited.
-          </p>
-          <div class="p-3.5 rounded-xl bg-obsidian-950 border border-zinc-800 text-xs font-mono space-y-1.5">
-            <p class="text-emerald-400 font-semibold">Fee: 2.0% primary issuance fee + 1.0% secondary trading royalty</p>
-            <p class="text-gold-400 font-semibold">Endpoint: art.unykorn.ai</p>
-          </div>
-        </div>
-
-        <div class="glass-panel p-6 rounded-2xl space-y-4">
-          <span class="text-[10px] font-mono font-bold px-2.5 py-0.5 rounded bg-amber-950 text-amber-400 border border-amber-800">[SPIRITS CLIENT]</span>
-          <h3 class="font-bold text-white text-base">6. Distilleries & Whiskey Cask Investors</h3>
-          <p class="text-xs text-zinc-300 leading-relaxed">
-            Bonded warehouses tokenizing aging spirits casks, allowing investors to trade maturing barrels in climate-controlled vaults.
-          </p>
-          <div class="p-3.5 rounded-xl bg-obsidian-950 border border-zinc-800 text-xs font-mono space-y-1.5">
-            <p class="text-emerald-400 font-semibold">Fee: 3.0% cask minting surcharge + $250/barrel physical redemption</p>
-            <p class="text-gold-400 font-semibold">Endpoint: liquor.unykorn.ai</p>
+          <div class="p-3.5 rounded-xl bg-miamiBlack border border-zinc-800 text-xs font-mono space-y-1.5">
+            <p class="text-cyan-400 font-semibold">Fee: 1.0% property tokenization fee + membership sales</p>
+            <p class="text-pink-400 font-semibold">Endpoint: miami.unykorn.ai</p>
           </div>
         </div>
 
@@ -367,8 +347,8 @@
       
       <div class="flex items-center justify-between border-b border-zinc-800 pb-5">
         <div>
-          <h2 class="text-3xl font-extrabold text-white uppercase tracking-wide">
-            THE PLAYBOOK <span class="cyan-text-gradient">// ALL 23 LIVE REVENUE ENDPOINTS</span>
+          <h2 class="text-3xl font-extrabold text-white uppercase tracking-wide font-teko">
+            THE PLAYBOOK <span class="neon-cyan-text">// ALL 23 LIVE REVENUE ENDPOINTS</span>
           </h2>
           <p class="text-xs text-zinc-400 font-mono mt-1">Click any card to launch the live site, view fee schedules, or read the voice presentation script aloud to Sravan.</p>
         </div>
@@ -379,36 +359,36 @@
     </div>
 
     <!-- ═══════════════════════════════════════════════════════════════
-         SECTION 4: VIDEO ARENA
+         SECTION 4: SPORTS VIDEO ARENA (BASEBALL & MMA)
          ═══════════════════════════════════════════════════════════════ -->
     <div id="sec-jumbotron" class="section-block hidden space-y-8">
       
       <div class="flex items-center justify-between border-b border-zinc-800 pb-5">
         <div>
-          <h2 class="text-3xl font-extrabold text-white uppercase tracking-wide">
-            VIDEO ARENA <span class="gold-text-gradient">// UNYKORN REELS & MEDIA</span>
+          <h2 class="text-3xl font-extrabold text-white uppercase tracking-wide font-teko">
+            SPORTS VIDEO ARENA <span class="miami-vice-text">// BASEBALL, MMA & ATHLETIC REELS</span>
           </h2>
-          <p class="text-xs text-zinc-400 font-mono mt-1">Select any video reel below to broadcast directly onto the main screen.</p>
+          <p class="text-xs text-zinc-400 font-mono mt-1">Select any sports video reel below to broadcast directly onto the main Miami screen.</p>
         </div>
-        <span class="px-3.5 py-1.5 rounded-full bg-gold-500/15 text-gold-400 border border-gold-500/30 text-xs font-mono font-bold">[BROADCAST FEED]</span>
+        <span class="px-3.5 py-1.5 rounded-full bg-pink-500/20 text-pink-300 border border-pink-500/40 text-xs font-mono font-bold">[SPORTS BROADCAST ACTIVE]</span>
       </div>
 
-      <div class="glass-panel p-5 rounded-3xl gold-metallic-border space-y-5">
+      <div class="miami-glass p-5 rounded-3xl miami-border space-y-5">
         <div class="aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl relative border border-zinc-800">
           <video id="jumbotronVideo" controls autoplay loop muted class="w-full h-full object-cover">
             <source src="./media/WhatsApp Video 2026-08-23 at 4.08.55 AM.mp4" type="video/mp4">
           </video>
-          <div class="absolute top-4 left-4 px-3.5 py-1.5 rounded-full bg-obsidian-950/90 border border-gold-500/40 text-gold-400 font-mono text-xs font-bold uppercase">
-            [BROADCAST FEED ACTIVE]
+          <div class="absolute top-4 left-4 px-3.5 py-1.5 rounded-full bg-miamiBlack/90 border border-pink-500/50 text-pink-400 font-mono text-xs font-bold uppercase">
+            [SPORTS REEL FEED ACTIVE]
           </div>
         </div>
 
         <div class="flex flex-col sm:flex-row items-center justify-between gap-4 px-2">
           <div>
-            <h3 id="jumbotronTitle" class="text-2xl font-extrabold text-white uppercase leading-none">02. BASEBALL HITTING FOCUS</h3>
+            <h3 id="jumbotronTitle" class="text-3xl font-extrabold text-white uppercase leading-none font-teko">02. BASEBALL HITTING FOCUS</h3>
             <p id="jumbotronDesc" class="text-xs text-zinc-400 font-mono mt-1">Athletic discipline, power stroke generation, and clean execution.</p>
           </div>
-          <button onclick="toggleJumbotronAudio()" id="jumbotronAudioBtn" class="px-5 py-2.5 rounded-xl bg-gold-400 text-black font-bold text-xs transition hover:brightness-110 uppercase font-mono">
+          <button onclick="toggleJumbotronAudio()" id="jumbotronAudioBtn" class="px-5 py-2.5 rounded-xl bg-pink-500 text-white font-bold text-xs transition hover:brightness-110 uppercase font-mono shadow-lg shadow-pink-500/30">
             Unmute Broadcast Audio
           </button>
         </div>
@@ -417,49 +397,49 @@
       <!-- VIDEO REELS GRID -->
       <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
         
-        <div onclick="playJumbotron('./media/WhatsApp Video 2026-08-23 at 4.02.26 AM.mp4', '01. Hype Music Intro', 'Introductory soundtrack & stadium background.')" class="glass-panel p-3 rounded-xl cursor-pointer hover:border-gold-400 transition text-center space-y-2">
-          <div class="aspect-video bg-black rounded-lg overflow-hidden border border-zinc-800">
-            <video class="w-full h-full object-cover pointer-events-none" muted>
-              <source src="./media/WhatsApp Video 2026-08-23 at 4.02.26 AM.mp4" type="video/mp4">
-            </video>
-          </div>
-          <p class="text-xs font-bold text-white truncate font-mono">01. Hype Intro</p>
-        </div>
-
-        <div onclick="playJumbotron('./media/WhatsApp Video 2026-08-23 at 4.08.55 AM.mp4', '02. Baseball Hitting', 'Athletic discipline & precise hit execution.')" class="glass-panel p-3 rounded-xl cursor-pointer hover:border-gold-400 transition text-center space-y-2">
+        <div onclick="playJumbotron('./media/WhatsApp Video 2026-08-23 at 4.08.55 AM.mp4', '01. Baseball Hitting Focus', 'Athletic power swing & precise hit execution.')" class="miami-glass p-3 rounded-xl cursor-pointer hover:border-pink-400 transition text-center space-y-2">
           <div class="aspect-video bg-black rounded-lg overflow-hidden border border-zinc-800">
             <video class="w-full h-full object-cover pointer-events-none" muted>
               <source src="./media/WhatsApp Video 2026-08-23 at 4.08.55 AM.mp4" type="video/mp4">
             </video>
           </div>
-          <p class="text-xs font-bold text-white truncate font-mono">02. Baseball Hitting</p>
+          <p class="text-xs font-bold text-white truncate font-mono">01. Baseball Hitting</p>
         </div>
 
-        <div onclick="playJumbotron('./media/use_our_logos_and_colors_and_h.mp4', '03. MMA Fighting & Purse Rails', 'Branded combat sports fight purse syndication.')" class="glass-panel p-3 rounded-xl cursor-pointer hover:border-gold-400 transition text-center space-y-2">
-          <div class="aspect-video bg-black rounded-lg overflow-hidden border border-zinc-800">
-            <video class="w-full h-full object-cover pointer-events-none" muted>
-              <source src="./media/use_our_logos_and_colors_and_h.mp4" type="video/mp4">
-            </video>
-          </div>
-          <p class="text-xs font-bold text-white truncate font-mono">03. MMA Fighting</p>
-        </div>
-
-        <div onclick="playJumbotron('./media/left side perfect_hit_fr.mp4', '04. Perfect Hit Execution', 'Power stroke & clean bat swing execution.')" class="glass-panel p-3 rounded-xl cursor-pointer hover:border-gold-400 transition text-center space-y-2">
+        <div onclick="playJumbotron('./media/left side perfect_hit_fr.mp4', '02. Perfect Hit Execution', 'Power stroke bat swing execution.')" class="miami-glass p-3 rounded-xl cursor-pointer hover:border-pink-400 transition text-center space-y-2">
           <div class="aspect-video bg-black rounded-lg overflow-hidden border border-zinc-800">
             <video class="w-full h-full object-cover pointer-events-none" muted>
               <source src="./media/left side perfect_hit_fr.mp4" type="video/mp4">
             </video>
           </div>
-          <p class="text-xs font-bold text-white truncate font-mono">04. Perfect Hit</p>
+          <p class="text-xs font-bold text-white truncate font-mono">02. Perfect Swing</p>
         </div>
 
-        <div onclick="playJumbotron('./media/Regenerate_this_using_my_exact.mp4', '05. Kevan Avatar ID', 'Sovereign digital identity & avatar forge.')" class="glass-panel p-3 rounded-xl cursor-pointer hover:border-gold-400 transition text-center space-y-2">
+        <div onclick="playJumbotron('./media/use_our_logos_and_colors_and_h.mp4', '03. MMA Fight Purses & IP', 'Branded combat sports fight purse syndication.')" class="miami-glass p-3 rounded-xl cursor-pointer hover:border-pink-400 transition text-center space-y-2">
           <div class="aspect-video bg-black rounded-lg overflow-hidden border border-zinc-800">
             <video class="w-full h-full object-cover pointer-events-none" muted>
-              <source src="./media/Regenerate_this_using_my_exact.mp4" type="video/mp4">
+              <source src="./media/use_our_logos_and_colors_and_h.mp4" type="video/mp4">
             </video>
           </div>
-          <p class="text-xs font-bold text-white truncate font-mono">05. Kevan Avatar</p>
+          <p class="text-xs font-bold text-white truncate font-mono">03. MMA Fight Purses</p>
+        </div>
+
+        <div onclick="playJumbotron('./media/WhatsApp Video 2026-08-23 at 4.02.26 AM.mp4', '04. Stadium Hype Intro', 'Introductory soundtrack & stadium lights.')" class="miami-glass p-3 rounded-xl cursor-pointer hover:border-pink-400 transition text-center space-y-2">
+          <div class="aspect-video bg-black rounded-lg overflow-hidden border border-zinc-800">
+            <video class="w-full h-full object-cover pointer-events-none" muted>
+              <source src="./media/WhatsApp Video 2026-08-23 at 4.02.26 AM.mp4" type="video/mp4">
+            </video>
+          </div>
+          <p class="text-xs font-bold text-white truncate font-mono">04. Stadium Hype</p>
+        </div>
+
+        <div onclick="playJumbotron('./media/Kevanbtc_create_a_profession.mp4', '05. Kevan Exec Reel', 'Sovereign financial technology & institutional rails.')" class="miami-glass p-3 rounded-xl cursor-pointer hover:border-pink-400 transition text-center space-y-2">
+          <div class="aspect-video bg-black rounded-lg overflow-hidden border border-zinc-800">
+            <video class="w-full h-full object-cover pointer-events-none" muted>
+              <source src="./media/Kevanbtc_create_a_profession.mp4" type="video/mp4">
+            </video>
+          </div>
+          <p class="text-xs font-bold text-white truncate font-mono">05. Exec Reel</p>
         </div>
 
       </div>
@@ -472,8 +452,8 @@
       
       <div class="flex items-center justify-between border-b border-zinc-800 pb-5">
         <div>
-          <h2 class="text-3xl font-extrabold text-white uppercase tracking-wide">
-            ALIENWARE LOCAL VIDEO STUDIO <span class="gold-text-gradient">// INTERACTIVE GPU STUDIO</span>
+          <h2 class="text-3xl font-extrabold text-white uppercase tracking-wide font-teko">
+            ALIENWARE LOCAL VIDEO STUDIO <span class="miami-vice-text">// INTERACTIVE GPU STUDIO</span>
           </h2>
           <p class="text-xs text-zinc-400 font-mono mt-1">Select clips, customize title overlays, record voiceovers, and trigger local NVIDIA GPU renders directly from this UI.</p>
         </div>
@@ -483,36 +463,36 @@
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
         
         <!-- Column 1: Clip Sequence Selection -->
-        <div class="glass-panel p-6 rounded-2xl space-y-4">
+        <div class="miami-glass p-6 rounded-2xl space-y-4">
           <div class="flex items-center justify-between border-b border-zinc-800 pb-3">
             <h3 class="font-bold text-white text-base">1. Select Clip Sequence</h3>
-            <span class="text-[10px] font-mono px-2.5 py-0.5 rounded bg-gold-950 text-gold-400 border border-gold-800">[6 CLIPS IN SEQUENCE]</span>
+            <span class="text-[10px] font-mono px-2.5 py-0.5 rounded bg-pink-950 text-pink-400 border border-pink-800">[6 CLIPS IN SEQUENCE]</span>
           </div>
 
           <div class="space-y-2 text-xs font-mono" id="clipSelectionContainer">
-            <label class="flex items-center gap-2 p-2.5 rounded bg-obsidian-950 border border-zinc-800 text-zinc-300">
-              <input type="checkbox" checked value="Kevanbtc_create_a_profession.mp4" class="studio-clip-check accent-gold-400"> 01. Kevan Exec Reel
+            <label class="flex items-center gap-2 p-2.5 rounded bg-miamiBlack border border-zinc-800 text-zinc-300">
+              <input type="checkbox" checked value="Kevanbtc_create_a_profession.mp4" class="studio-clip-check accent-pink-500"> 01. Kevan Exec Reel
             </label>
-            <label class="flex items-center gap-2 p-2.5 rounded bg-obsidian-950 border border-zinc-800 text-zinc-300">
-              <input type="checkbox" checked value="use_our_logos_and_colors_and_h.mp4" class="studio-clip-check accent-gold-400"> 02. MMA Fight Purses
+            <label class="flex items-center gap-2 p-2.5 rounded bg-miamiBlack border border-zinc-800 text-zinc-300">
+              <input type="checkbox" checked value="use_our_logos_and_colors_and_h.mp4" class="studio-clip-check accent-pink-500"> 02. MMA Fight Purses
             </label>
-            <label class="flex items-center gap-2 p-2.5 rounded bg-obsidian-950 border border-zinc-800 text-zinc-300">
-              <input type="checkbox" checked value="left side perfect_hit_fr.mp4" class="studio-clip-check accent-gold-400"> 03. Perfect Hit Swing
+            <label class="flex items-center gap-2 p-2.5 rounded bg-miamiBlack border border-zinc-800 text-zinc-300">
+              <input type="checkbox" checked value="left side perfect_hit_fr.mp4" class="studio-clip-check accent-pink-500"> 03. Perfect Hit Swing
             </label>
-            <label class="flex items-center gap-2 p-2.5 rounded bg-obsidian-950 border border-zinc-800 text-zinc-300">
-              <input type="checkbox" checked value="unykorn_promo.mp4" class="studio-clip-check accent-gold-400"> 04. Unykorn Promo Reel
+            <label class="flex items-center gap-2 p-2.5 rounded bg-miamiBlack border border-zinc-800 text-zinc-300">
+              <input type="checkbox" checked value="unykorn_promo.mp4" class="studio-clip-check accent-pink-500"> 04. Unykorn Promo Reel
             </label>
-            <label class="flex items-center gap-2 p-2.5 rounded bg-obsidian-950 border border-zinc-800 text-zinc-300">
-              <input type="checkbox" checked value="maybe_dignity_gold_and_unykorn.mp4" class="studio-clip-check accent-gold-400"> 05. Dignity Gold Reserve
+            <label class="flex items-center gap-2 p-2.5 rounded bg-miamiBlack border border-zinc-800 text-zinc-300">
+              <input type="checkbox" checked value="maybe_dignity_gold_and_unykorn.mp4" class="studio-clip-check accent-pink-500"> 05. Dignity Gold Reserve
             </label>
-            <label class="flex items-center gap-2 p-2.5 rounded bg-obsidian-950 border border-zinc-800 text-zinc-300">
-              <input type="checkbox" checked value="hell_ya_that_is_what_im_talkin.mp4" class="studio-clip-check accent-gold-400"> 06. Victory Cut
+            <label class="flex items-center gap-2 p-2.5 rounded bg-miamiBlack border border-zinc-800 text-zinc-300">
+              <input type="checkbox" checked value="hell_ya_that_is_what_im_talkin.mp4" class="studio-clip-check accent-pink-500"> 06. Victory Cut
             </label>
           </div>
         </div>
 
         <!-- Column 2: Studio Title & Voiceover Configuration -->
-        <div class="glass-panel p-6 rounded-2xl space-y-4">
+        <div class="miami-glass p-6 rounded-2xl space-y-4">
           <div class="flex items-center justify-between border-b border-zinc-800 pb-3">
             <h3 class="font-bold text-white text-base">2. Overlay & Voice Script</h3>
             <span class="text-[10px] font-mono px-2.5 py-0.5 rounded bg-cyan-950 text-cyan-400 border border-cyan-800">[GPU OVERLAY]</span>
@@ -521,12 +501,12 @@
           <div class="space-y-3 font-mono text-xs text-zinc-300">
             <div>
               <label class="block text-zinc-400 mb-1">Title Overlay Text</label>
-              <input type="text" id="studioTitleInput" value="UNYKORN REVENUE RAILS" class="w-full bg-obsidian-950 border border-zinc-800 rounded-xl px-4 py-2 text-xs font-mono text-gold-400 focus:outline-none focus:border-gold-400" />
+              <input type="text" id="studioTitleInput" value="UNYKORN MIAMI VICE RAILS" class="w-full bg-miamiBlack border border-zinc-800 rounded-xl px-4 py-2 text-xs font-mono text-pink-400 focus:outline-none focus:border-pink-500" />
             </div>
 
             <div>
               <label class="block text-zinc-400 mb-1">Voiceover Speech Text</label>
-              <textarea id="studioScriptText" rows="4" class="w-full bg-obsidian-950 border border-zinc-800 rounded-xl p-3 text-xs font-mono text-zinc-200 focus:outline-none focus:border-gold-400">Sravan, the infrastructure buildout is complete. We are opening the monetization valves to extract immediate fees across Fast Settlement, Subscriptions, and High-Ticket Asset Tokenization.</textarea>
+              <textarea id="studioScriptText" rows="4" class="w-full bg-miamiBlack border border-zinc-800 rounded-xl p-3 text-xs font-mono text-zinc-200 focus:outline-none focus:border-pink-500">Sravan, the infrastructure buildout is complete. We are opening the monetization valves to extract immediate fees across Fast Settlement, Subscriptions, and High-Ticket Asset Tokenization.</textarea>
             </div>
           </div>
 
@@ -538,7 +518,7 @@
         </div>
 
         <!-- Column 3: Render Execution & Real-Time Player -->
-        <div class="glass-panel p-6 rounded-2xl space-y-4 flex flex-col justify-between">
+        <div class="miami-glass p-6 rounded-2xl space-y-4 flex flex-col justify-between">
           <div class="space-y-3">
             <div class="flex items-center justify-between border-b border-zinc-800 pb-3">
               <h3 class="font-bold text-white text-base">3. Render & Preview</h3>
@@ -552,7 +532,7 @@
             </div>
           </div>
 
-          <button id="renderTriggerBtn" onclick="triggerLocalStudioRender()" class="w-full py-4 rounded-xl bg-gradient-to-r from-gold-400 to-amber-500 text-black font-extrabold text-lg uppercase tracking-wider hover:brightness-110 transition shadow-lg shadow-gold-500/20 mt-4">
+          <button id="renderTriggerBtn" onclick="triggerLocalStudioRender()" class="w-full py-4 rounded-xl bg-gradient-to-r from-pink-500 via-purple-600 to-cyan-400 text-white font-extrabold text-lg uppercase tracking-wider hover:brightness-110 transition shadow-lg shadow-pink-500/30 mt-4 font-teko">
             RENDER HYPE VIDEO VIA NVIDIA NVENC
           </button>
         </div>
@@ -567,8 +547,8 @@
       
       <div class="flex items-center justify-between border-b border-zinc-800 pb-5">
         <div>
-          <h2 class="text-3xl font-extrabold text-white uppercase tracking-wide">
-            SOURCE CONTROL <span class="cyan-text-gradient">// FTHTRADING / SR REPOSITORY</span>
+          <h2 class="text-3xl font-extrabold text-white uppercase tracking-wide font-teko">
+            SOURCE CONTROL <span class="neon-cyan-text">// FTHTRADING / SR REPOSITORY</span>
           </h2>
           <p class="text-xs text-zinc-400 font-mono mt-1">Development environment, code setup, and repository commands.</p>
         </div>
@@ -577,10 +557,10 @@
         </a>
       </div>
 
-      <div class="glass-panel p-7 rounded-2xl space-y-6">
+      <div class="miami-glass p-7 rounded-2xl space-y-6">
         <div class="flex items-center justify-between border-b border-zinc-800 pb-4">
           <div>
-            <span class="text-xs font-mono text-gold-400 font-bold uppercase tracking-wider">[GITHUB REPO INFO]</span>
+            <span class="text-xs font-mono text-pink-400 font-bold uppercase tracking-wider">[GITHUB REPO INFO]</span>
             <h3 class="text-xl font-bold text-white font-mono mt-1">https://github.com/FTHTrading/sr.git</h3>
           </div>
           <span class="px-3.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 text-xs font-mono font-bold">[PUBLIC DEV REPO]</span>
@@ -589,29 +569,29 @@
         <div class="space-y-4">
           <div>
             <span class="text-xs font-mono text-zinc-400 block mb-1">Command Line Setup Initializer</span>
-            <div class="p-4 rounded-xl bg-obsidian-950 border border-zinc-800 font-mono text-xs text-emerald-400 overflow-x-auto select-all">
+            <div class="p-4 rounded-xl bg-miamiBlack border border-zinc-800 font-mono text-xs text-emerald-400 overflow-x-auto select-all">
               echo "# sr" &gt;&gt; README.md &amp;&amp; git init &amp;&amp; git add README.md &amp;&amp; git commit -m "first commit" &amp;&amp; git branch -M main &amp;&amp; git remote add origin https://github.com/FTHTrading/sr.git &amp;&amp; git push -u origin main
             </div>
           </div>
 
           <div>
             <span class="text-xs font-mono text-zinc-400 block mb-1">Push Existing Local Codebase</span>
-            <div class="p-4 rounded-xl bg-obsidian-950 border border-zinc-800 font-mono text-xs text-cyan-400 overflow-x-auto select-all">
+            <div class="p-4 rounded-xl bg-miamiBlack border border-zinc-800 font-mono text-xs text-cyan-400 overflow-x-auto select-all">
               git remote add origin https://github.com/FTHTrading/sr.git &amp;&amp; git branch -M main &amp;&amp; git push -u origin main
             </div>
           </div>
         </div>
 
         <div class="pt-4 border-t border-zinc-800 flex flex-wrap gap-4 text-xs font-mono text-zinc-400">
-          <a href="https://github.com/FTHTrading/sr/issues" target="_blank" class="hover:text-gold-400">Issues</a>
+          <a href="https://github.com/FTHTrading/sr/issues" target="_blank" class="hover:text-pink-400">Issues</a>
           <span>•</span>
-          <a href="https://github.com/FTHTrading/sr/pulls" target="_blank" class="hover:text-gold-400">Pull Requests</a>
+          <a href="https://github.com/FTHTrading/sr/pulls" target="_blank" class="hover:text-pink-400">Pull Requests</a>
           <span>•</span>
-          <a href="https://github.com/FTHTrading/sr/actions" target="_blank" class="hover:text-gold-400">Actions</a>
+          <a href="https://github.com/FTHTrading/sr/actions" target="_blank" class="hover:text-pink-400">Actions</a>
           <span>•</span>
-          <a href="https://github.com/FTHTrading/sr/security" target="_blank" class="hover:text-gold-400">Security & Quality</a>
+          <a href="https://github.com/FTHTrading/sr/security" target="_blank" class="hover:text-pink-400">Security & Quality</a>
           <span>•</span>
-          <a href="https://github.com/FTHTrading" target="_blank" class="hover:text-gold-400">FTHTrading Org</a>
+          <a href="https://github.com/FTHTrading" target="_blank" class="hover:text-pink-400">FTHTrading Org</a>
         </div>
       </div>
     </div>
@@ -619,10 +599,10 @@
   </main>
 
   <!-- VOICE SCRIPT DRAWER (NO EMOJIS) -->
-  <div id="scriptDrawer" class="fixed inset-y-0 right-0 max-w-lg w-full bg-obsidian-900 border-l border-zinc-800 shadow-2xl p-6 z-50 transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col overflow-y-auto">
+  <div id="scriptDrawer" class="fixed inset-y-0 right-0 max-w-lg w-full bg-miamiBlack border-l border-pink-500/40 shadow-2xl p-6 z-50 transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col overflow-y-auto">
     <div class="flex items-center justify-between pb-4 border-b border-zinc-800">
       <div>
-        <span id="drawerTag" class="text-xs font-mono uppercase tracking-widest text-gold-400 font-bold">[CATEGORY]</span>
+        <span id="drawerTag" class="text-xs font-mono uppercase tracking-widest text-pink-400 font-bold">[CATEGORY]</span>
         <h2 id="drawerTitle" class="text-xl font-bold text-white mt-0.5">Title</h2>
       </div>
       <button onclick="closeDrawer()" class="h-8 w-8 rounded-lg bg-obsidian-800 text-zinc-400 hover:text-white flex items-center justify-center font-bold">X</button>
@@ -631,12 +611,12 @@
     <div class="py-5 space-y-4 flex-1">
       <div>
         <span class="text-[11px] font-mono uppercase text-zinc-400 font-semibold block mb-1">Live Endpoint URL</span>
-        <a id="drawerUrl" href="#" target="_blank" class="text-xs font-mono text-gold-400 hover:underline break-all block p-3 rounded-lg bg-obsidian-950 border border-zinc-800">https://...</a>
+        <a id="drawerUrl" href="#" target="_blank" class="text-xs font-mono text-cyan-400 hover:underline break-all block p-3 rounded-lg bg-obsidian-950 border border-zinc-800">https://...</a>
       </div>
 
       <div>
-        <span class="text-[11px] font-mono uppercase text-emerald-400 font-bold block mb-1">How We Make Money Right Now</span>
-        <div id="drawerCashStep" class="text-xs text-emerald-300 font-mono leading-relaxed p-3.5 rounded-lg bg-emerald-950/40 border border-emerald-800/60">
+        <span class="text-[11px] font-mono uppercase text-pink-400 font-bold block mb-1">How We Make Money Right Now</span>
+        <div id="drawerCashStep" class="text-xs text-pink-300 font-mono leading-relaxed p-3.5 rounded-lg bg-pink-950/40 border border-pink-800/60">
           ...
         </div>
       </div>
@@ -644,7 +624,7 @@
       <div>
         <div class="flex items-center justify-between mb-1">
           <span class="text-[11px] font-mono uppercase text-zinc-400 font-semibold">Voice Script for Sravan Meeting</span>
-          <button onclick="readCurrentDrawerScript()" class="text-[10px] font-mono px-2.5 py-1 rounded bg-gold-500/20 text-gold-300 hover:bg-gold-500/30 transition border border-gold-500/40 font-bold uppercase">
+          <button onclick="readCurrentDrawerScript()" class="text-[10px] font-mono px-2.5 py-1 rounded bg-pink-500/20 text-pink-300 hover:bg-pink-500/30 transition border border-pink-500/40 font-bold uppercase">
             READ SCRIPT ALOUD
           </button>
         </div>
@@ -662,7 +642,7 @@
     </div>
 
     <div class="pt-4 border-t border-zinc-800 flex gap-3">
-      <a id="drawerLaunchBtn" href="#" target="_blank" class="flex-1 text-center py-3 px-4 rounded-xl bg-gradient-to-r from-gold-400 to-amber-500 text-black font-extrabold text-base uppercase tracking-wider transition">
+      <a id="drawerLaunchBtn" href="#" target="_blank" class="flex-1 text-center py-3 px-4 rounded-xl bg-gradient-to-r from-pink-500 via-purple-600 to-cyan-400 text-white font-extrabold text-base uppercase tracking-wider transition font-teko">
         LAUNCH LIVE SITE
       </a>
       <button onclick="closeDrawer()" class="py-3 px-4 rounded-xl bg-obsidian-800 hover:bg-obsidian-700 text-zinc-300 text-xs font-semibold transition font-mono">
@@ -917,22 +897,22 @@
 
       platforms.forEach(p => {
         const card = document.createElement('div');
-        card.className = "glass-panel rounded-2xl p-6 flex flex-col justify-between space-y-4";
+        card.className = "miami-glass rounded-2xl p-6 flex flex-col justify-between space-y-4";
         card.innerHTML = `
           <div>
             <div class="flex items-center justify-between gap-2 mb-2">
-              <span class="text-[10px] font-mono uppercase tracking-wider px-2.5 py-0.5 rounded bg-obsidian-950 text-gold-400 border border-gold-500/30 font-semibold">[${p.tag}]</span>
-              <span class="text-[10px] font-mono text-emerald-400 font-bold">[REVENUE READY]</span>
+              <span class="text-[10px] font-mono uppercase tracking-wider px-2.5 py-0.5 rounded bg-miamiBlack text-pink-400 border border-pink-500/30 font-semibold">[${p.tag}]</span>
+              <span class="text-[10px] font-mono text-cyan-400 font-bold">[REVENUE READY]</span>
             </div>
-            <h3 class="font-bold text-base text-white hover:text-gold-400 transition cursor-pointer" onclick="openDrawer('${p.id}')">${p.title}</h3>
-            <p class="text-xs text-emerald-300 font-mono mt-2 leading-relaxed">Fee: ${p.cash}</p>
+            <h3 class="font-bold text-base text-white hover:text-pink-400 transition cursor-pointer" onclick="openDrawer('${p.id}')">${p.title}</h3>
+            <p class="text-xs text-cyan-300 font-mono mt-2 leading-relaxed">Fee: ${p.cash}</p>
           </div>
 
           <div class="pt-3 border-t border-zinc-800/80 flex items-center justify-between gap-2">
-            <button onclick="openDrawer('${p.id}')" class="text-xs font-bold font-mono text-gold-400 hover:text-gold-300 flex items-center gap-1 uppercase">
+            <button onclick="openDrawer('${p.id}')" class="text-xs font-bold font-mono text-pink-400 hover:text-pink-300 flex items-center gap-1 uppercase">
               Voice Script <span>-&gt;</span>
             </button>
-            <a href="${p.url}" target="_blank" rel="noopener" class="px-3.5 py-1.5 rounded-lg bg-obsidian-950 hover:bg-zinc-800 text-zinc-200 text-xs font-mono font-medium transition flex items-center gap-1">
+            <a href="${p.url}" target="_blank" rel="noopener" class="px-3.5 py-1.5 rounded-lg bg-miamiBlack hover:bg-zinc-800 text-zinc-200 text-xs font-mono font-medium transition flex items-center gap-1">
               Launch Live
             </a>
           </div>
@@ -949,7 +929,7 @@
         document.querySelectorAll('.nav-tab').forEach(b => {
           b.className = "nav-tab px-4 py-2 rounded-lg text-zinc-400 hover:text-white hover:bg-obsidian-800 transition font-mono";
         });
-        btn.className = "nav-tab px-4 py-2 rounded-lg bg-gold-400 text-black font-bold transition font-mono";
+        btn.className = "nav-tab px-4 py-2 rounded-lg bg-pink-500 text-white font-bold transition font-mono";
       }
     }
 
@@ -1041,7 +1021,7 @@
     async function triggerLocalStudioRender() {
       const btn = document.getElementById('renderTriggerBtn');
       const badge = document.getElementById('renderStatusBadge');
-      const title = document.getElementById('studioTitleInput').value || "UNYKORN REVENUE RAILS";
+      const title = document.getElementById('studioTitleInput').value || "UNYKORN MIAMI VICE RAILS";
       
       const selectedClips = [];
       document.querySelectorAll('.studio-clip-check:checked').forEach(cb => {
@@ -1055,7 +1035,7 @@
       }
       if(badge) {
         badge.innerText = "[RENDERING IN PROGRESS...]";
-        badge.className = "text-[10px] font-mono px-2 py-0.5 rounded bg-amber-950 text-amber-400 border border-amber-800";
+        badge.className = "text-[10px] font-mono px-2 py-0.5 rounded bg-pink-950 text-pink-400 border border-pink-800";
       }
 
       try {
