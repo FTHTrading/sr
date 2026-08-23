@@ -31,16 +31,11 @@
           },
           animation: {
             'ticker': 'ticker 30s linear infinite',
-            'neon-pulse': 'neonPulse 2.5s infinite ease-in-out',
           },
           keyframes: {
             ticker: {
               '0%': { transform: 'translateX(0%)' },
               '100%': { transform: 'translateX(-50%)' }
-            },
-            neonPulse: {
-              '0%, 100%': { boxShadow: '0 0 15px rgba(255, 0, 127, 0.4), inset 0 0 10px rgba(0, 240, 255, 0.3)' },
-              '50%': { boxShadow: '0 0 35px rgba(255, 0, 127, 0.8), 0 0 20px rgba(0, 240, 255, 0.6)' }
             }
           }
         }
@@ -64,11 +59,6 @@
     }
     .neon-cyan-text {
       background: linear-gradient(135deg, #a5f3fc 0%, #00f0ff 50%, #0284c7 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .gold-text-gradient {
-      background: linear-gradient(135deg, #FFF6D1 0%, #FFD700 40%, #E6A100 75%, #B8860B 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
@@ -104,16 +94,15 @@
   <!-- TOP STADIUM TICKER MARQUEE (NO EMOJIS) -->
   <div class="bg-miamiBlack border-b border-pink-500/30 py-2 overflow-hidden font-mono text-[11px] uppercase tracking-widest text-pink-400">
     <div class="whitespace-nowrap flex animate-ticker">
-      <span class="mx-6 flex items-center gap-2"><strong class="text-cyan-400">[MIAMI VICE RAILS]</strong> TROPICAL SOUTH FLORIDA CAPITAL & ASSET TOKENIZATION</span>
+      <span class="mx-6 flex items-center gap-2"><strong class="text-cyan-400">[MIAMI VICE SQUAD]</strong> CROCKETT (KEVAN) • TUBBS (BUCK) • POLICE CHIEF SRAVAN</span>
+      <span class="mx-6 flex items-center gap-2"><strong class="text-white">[MEDIA GALLERY]</strong> 589 SYSTEM VIDEOS ORGANIZED IN USER VIDEOS GALLERY</span>
       <span class="mx-6 flex items-center gap-2"><strong class="text-white">[FLASHROUTER]</strong> DOUBLE-CLOSE SETTLEMENT ($500-$1.5K HUD-1 TECH FEES)</span>
       <span class="mx-6 flex items-center gap-2"><strong class="text-white">[LEGACYCHAIN]</strong> $999/FIRM B2B ATTORNEY SEATS & $99-$299 B2C VAULTS</span>
       <span class="mx-6 flex items-center gap-2"><strong class="text-white">[GENESIS402]</strong> x402 PROGRAMMATIC AGENT MICROPAYMENTS ($49-$499/MO)</span>
-      <span class="mx-6 flex items-center gap-2"><strong class="text-white">[SPORTS IP & MMA]</strong> MMA FIGHT PURSES & BASEBALL ATHLETIC REELS</span>
       <!-- Loop duplicate -->
-      <span class="mx-6 flex items-center gap-2"><strong class="text-cyan-400">[MIAMI VICE RAILS]</strong> TROPICAL SOUTH FLORIDA CAPITAL & ASSET TOKENIZATION</span>
+      <span class="mx-6 flex items-center gap-2"><strong class="text-cyan-400">[MIAMI VICE SQUAD]</strong> CROCKETT (KEVAN) • TUBBS (BUCK) • POLICE CHIEF SRAVAN</span>
+      <span class="mx-6 flex items-center gap-2"><strong class="text-white">[MEDIA GALLERY]</strong> 589 SYSTEM VIDEOS ORGANIZED IN USER VIDEOS GALLERY</span>
       <span class="mx-6 flex items-center gap-2"><strong class="text-white">[FLASHROUTER]</strong> DOUBLE-CLOSE SETTLEMENT ($500-$1.5K HUD-1 TECH FEES)</span>
-      <span class="mx-6 flex items-center gap-2"><strong class="text-white">[LEGACYCHAIN]</strong> $999/FIRM B2B ATTORNEY SEATS & $99-$299 B2C VAULTS</span>
-      <span class="mx-6 flex items-center gap-2"><strong class="text-white">[GENESIS402]</strong> x402 PROGRAMMATIC AGENT MICROPAYMENTS ($49-$499/MO)</span>
     </div>
   </div>
 
@@ -122,16 +111,16 @@
     <div class="absolute inset-0 bg-gradient-to-r from-miamiBlack/95 via-miamiBlack/70 to-transparent flex items-center">
       <div class="max-w-7xl mx-auto px-6 sm:px-8 w-full flex items-center justify-between">
         <div class="space-y-1">
-          <div class="flex items-center gap-3">
+          <div class="flex flex-wrap items-center gap-3">
             <span class="text-xs font-mono px-3 py-1 rounded-full bg-pink-500/20 text-pink-300 border border-pink-500/40 uppercase font-extrabold tracking-widest">
-              [FLAMINGO VAULT & MIAMI VICE EDITION]
+              [DET. CROCKETT & DET. TUBBS & POLICE CHIEF SRAVAN]
             </span>
-            <span class="text-xs font-mono text-cyan-400 font-bold">[SPORTS & ASSET REELS]</span>
+            <span class="text-xs font-mono text-cyan-400 font-bold">[589 VIDEOS ORGANIZED]</span>
           </div>
           <h1 class="text-4xl sm:text-5xl font-extrabold uppercase tracking-wider miami-vice-text font-teko">
             UNYKORN MIAMI VICE <span class="text-white">// MONETIZATION HUB</span>
           </h1>
-          <p class="text-xs text-zinc-300 font-mono">South Florida Capital Desks, Sports IP Purses & 23 Executive Portals</p>
+          <p class="text-xs text-zinc-300 font-mono">Led by Chief Sravan, Detective Kevan Crockett & Detective Buck Tubbs</p>
         </div>
       </div>
     </div>
@@ -157,7 +146,7 @@
               miami.unykorn.ai
             </span>
           </div>
-          <p class="text-[11px] text-zinc-400 font-mono">Wyoming LLC LEI: 2549008J7LUHSQ73SI26 • Flamingo Vault Rails</p>
+          <p class="text-[11px] text-zinc-400 font-mono">Police Chief Sravan Command Desk • 589 Videos Organized</p>
         </div>
       </div>
 
@@ -186,20 +175,20 @@
       <button onclick="showSection('sec-overview', this)" class="nav-tab px-4 py-2 rounded-lg bg-pink-500 text-white font-bold transition">
         01. Executive Premise
       </button>
+      <button onclick="showSection('sec-squad', this)" class="nav-tab px-4 py-2 rounded-lg text-zinc-400 hover:text-white hover:bg-obsidian-800 transition">
+        02. Miami Vice Squad Roles
+      </button>
       <button onclick="showSection('sec-clients', this)" class="nav-tab px-4 py-2 rounded-lg text-zinc-400 hover:text-white hover:bg-obsidian-800 transition">
-        02. Client Roster (12 Segments)
+        03. Client Roster (12 Segments)
       </button>
       <button onclick="showSection('sec-playbook', this)" class="nav-tab px-4 py-2 rounded-lg text-zinc-400 hover:text-white hover:bg-obsidian-800 transition">
-        03. What & Where We Are (23 Sites)
+        04. What & Where We Are (23 Sites)
       </button>
       <button onclick="showSection('sec-jumbotron', this)" class="nav-tab px-4 py-2 rounded-lg text-zinc-400 hover:text-white hover:bg-obsidian-800 transition">
-        04. Sports Video Arena (Baseball & MMA)
+        05. System Media Gallery (589 Videos)
       </button>
       <button onclick="showSection('sec-studio', this)" class="nav-tab px-4 py-2 rounded-lg text-zinc-400 hover:text-white hover:bg-obsidian-800 transition">
-        05. Alienware Hype Studio
-      </button>
-      <button onclick="showSection('sec-github', this)" class="nav-tab px-4 py-2 rounded-lg text-zinc-400 hover:text-white hover:bg-obsidian-800 transition">
-        06. GitHub Codebase (sr)
+        06. Alienware Hype Studio
       </button>
     </div>
   </header>
@@ -216,20 +205,20 @@
       <div class="miami-glass p-8 rounded-2xl miami-border flex flex-col lg:flex-row lg:items-center justify-between gap-6">
         <div class="space-y-4 max-w-4xl">
           <div class="flex items-center gap-3">
-            <span class="text-xs font-mono uppercase tracking-widest text-pink-400 font-extrabold">[DECISIVE PREMISE FOR SRAVAN]</span>
+            <span class="text-xs font-mono uppercase tracking-widest text-pink-400 font-extrabold">[DECISIVE PREMISE FOR CHIEF SRAVAN]</span>
             <button onclick="speakText(document.getElementById('execPitchText').innerText)" class="text-[11px] font-mono px-3 py-1 rounded bg-pink-500/20 text-pink-300 hover:bg-pink-500/30 transition border border-pink-500/40 uppercase font-bold">
               Read Statement Aloud
             </button>
           </div>
           <p id="execPitchText" class="text-lg sm:text-xl text-zinc-100 font-semibold leading-relaxed">
-            "Sravan, lead with one decisive premise: The infrastructure buildout is complete. We are not in R&D mode anymore; we are opening the monetization valves to extract immediate fees across 3 distinct cash engines: Fast Settlement, Retail SaaS, and High-Ticket Asset Tokenization."
+            "Chief Sravan, lead with one decisive premise: Detective Kevan Crockett and Detective Buck Tubbs have completed the infrastructure buildout. We are not in R&D mode anymore; we are opening the monetization valves to extract immediate fees across 3 distinct cash engines: Fast Settlement, Retail SaaS, and High-Ticket Asset Tokenization."
           </p>
           <div class="flex items-center gap-4 text-xs font-mono text-zinc-400 pt-2 border-t border-zinc-800">
             <span>UnyKorn LLC (Wyoming LLC)</span>
             <span>•</span>
             <span>LEI: 2549008J7LUHSQ73SI26</span>
             <span>•</span>
-            <span>Flamingo Vault Bailment (11 U.S.C. § 541)</span>
+            <span>589 System Videos Organized in C:\Users\Kevan\Videos\Unykorn_Miami_Vice_Media_Gallery</span>
           </div>
         </div>
         <div class="flex flex-col gap-3 min-w-[220px]">
@@ -285,7 +274,57 @@
     </div>
 
     <!-- ═══════════════════════════════════════════════════════════════
-         SECTION 2: CLIENT ROSTER (WHO THEY ARE)
+         SECTION 2: MIAMI VICE SQUAD ROLES
+         ═══════════════════════════════════════════════════════════════ -->
+    <div id="sec-squad" class="section-block hidden space-y-8">
+      
+      <div class="flex items-center justify-between border-b border-zinc-800 pb-5">
+        <div>
+          <h2 class="text-3xl font-extrabold text-white uppercase tracking-wide font-teko">
+            MIAMI VICE COMMAND SQUAD <span class="miami-vice-text">// ROLES & LEADERSHIP</span>
+          </h2>
+          <p class="text-xs text-zinc-400 font-mono mt-1">Executive leadership structure backing UnyKorn LLC asset rails.</p>
+        </div>
+        <span class="px-3.5 py-1.5 rounded-full bg-pink-500/20 text-pink-300 border border-pink-500/40 text-xs font-mono font-bold">[SQUAD COMMAND ACTIVE]</span>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <!-- Police Chief Sravan -->
+        <div class="miami-glass p-7 rounded-2xl border-l-4 border-l-yellow-400 space-y-4">
+          <span class="text-[10px] font-mono font-bold px-2.5 py-0.5 rounded bg-yellow-950 text-yellow-400 border border-yellow-800">[COMMAND HEAD]</span>
+          <h3 class="text-3xl font-extrabold text-white uppercase font-teko">POLICE CHIEF SRAVAN</h3>
+          <p class="text-xs font-mono text-yellow-300 font-bold">Executive Chairman & Chief Operations Officer</p>
+          <p class="text-xs text-zinc-300 leading-relaxed font-sans">
+            Directs executive strategy, approves institutional partnerships, and oversees revenue extraction across all 23 properties.
+          </p>
+        </div>
+
+        <!-- Kevan (Crockett) -->
+        <div class="miami-glass p-7 rounded-2xl border-l-4 border-l-pink-500 space-y-4">
+          <span class="text-[10px] font-mono font-bold px-2.5 py-0.5 rounded bg-pink-950 text-pink-400 border border-pink-800">[LEAD ARCHITECT]</span>
+          <h3 class="text-3xl font-extrabold text-white uppercase font-teko">KEVAN "SONNY CROCKETT"</h3>
+          <p class="text-xs font-mono text-pink-300 font-bold">Lead Sovereign Architect & Chief Technology Officer</p>
+          <p class="text-xs text-zinc-300 leading-relaxed font-sans">
+            Architected the 23-portal network, smart contracts, zero-knowledge vaults, and NVIDIA GPU render engine.
+          </p>
+        </div>
+
+        <!-- Buck (Tubbs) -->
+        <div class="miami-glass p-7 rounded-2xl border-l-4 border-l-cyan-400 space-y-4">
+          <span class="text-[10px] font-mono font-bold px-2.5 py-0.5 rounded bg-cyan-950 text-cyan-400 border border-cyan-800">[CAPITAL OPERATIONS]</span>
+          <h3 class="text-3xl font-extrabold text-white uppercase font-teko">BUCK "RICO TUBBS"</h3>
+          <p class="text-xs font-mono text-cyan-300 font-bold">Co-Founder & Head of Capital Operations</p>
+          <p class="text-xs text-zinc-300 leading-relaxed font-sans">
+            Manages institutional lender relationships, wholesale deal intake, and private credit liquidity pools.
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         SECTION 3: CLIENT ROSTER (WHO THEY ARE)
          ═══════════════════════════════════════════════════════════════ -->
     <div id="sec-clients" class="section-block hidden space-y-8">
       
@@ -341,7 +380,7 @@
     </div>
 
     <!-- ═══════════════════════════════════════════════════════════════
-         SECTION 3: THE PLAYBOOK (ALL 23 REVENUE ENDPOINTS)
+         SECTION 4: THE PLAYBOOK (ALL 23 REVENUE ENDPOINTS)
          ═══════════════════════════════════════════════════════════════ -->
     <div id="sec-playbook" class="section-block hidden space-y-8">
       
@@ -359,18 +398,41 @@
     </div>
 
     <!-- ═══════════════════════════════════════════════════════════════
-         SECTION 4: SPORTS VIDEO ARENA (BASEBALL & MMA)
+         SECTION 5: SYSTEM MEDIA GALLERY (589 VIDEOS ORGANIZED)
          ═══════════════════════════════════════════════════════════════ -->
     <div id="sec-jumbotron" class="section-block hidden space-y-8">
       
       <div class="flex items-center justify-between border-b border-zinc-800 pb-5">
         <div>
           <h2 class="text-3xl font-extrabold text-white uppercase tracking-wide font-teko">
-            SPORTS VIDEO ARENA <span class="miami-vice-text">// BASEBALL, MMA & ATHLETIC REELS</span>
+            SYSTEM MEDIA GALLERY <span class="miami-vice-text">// 589 VIDEOS CONSOLIDATED & ORGANIZED</span>
           </h2>
-          <p class="text-xs text-zinc-400 font-mono mt-1">Select any sports video reel below to broadcast directly onto the main Miami screen.</p>
+          <p class="text-xs text-zinc-400 font-mono mt-1">Located at: C:\Users\Kevan\Videos\Unykorn_Miami_Vice_Media_Gallery</p>
         </div>
-        <span class="px-3.5 py-1.5 rounded-full bg-pink-500/20 text-pink-300 border border-pink-500/40 text-xs font-mono font-bold">[SPORTS BROADCAST ACTIVE]</span>
+        <span class="px-3.5 py-1.5 rounded-full bg-pink-500/20 text-pink-300 border border-pink-500/40 text-xs font-mono font-bold">[589 VIDEOS READY]</span>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4 text-xs font-mono">
+        <div class="miami-glass p-4 rounded-xl border-l-4 border-l-pink-500 space-y-1">
+          <span class="text-pink-400 font-bold block">[FOLDER 01]</span>
+          <p class="text-white font-bold">01_Sports_Baseball_MMA</p>
+          <p class="text-zinc-400 text-[11px]">Baseball hitting, MMA fight purses & athletic cuts.</p>
+        </div>
+        <div class="miami-glass p-4 rounded-xl border-l-4 border-l-cyan-400 space-y-1">
+          <span class="text-cyan-400 font-bold block">[FOLDER 02]</span>
+          <p class="text-white font-bold">02_Executive_Promos_Hype</p>
+          <p class="text-zinc-400 text-[11px]">Kevan Crockett exec reels & unykorn promos.</p>
+        </div>
+        <div class="miami-glass p-4 rounded-xl border-l-4 border-l-yellow-400 space-y-1">
+          <span class="text-yellow-400 font-bold block">[FOLDER 03]</span>
+          <p class="text-white font-bold">03_Dignity_Gold_Reserves</p>
+          <p class="text-zinc-400 text-[11px]">Physical gold reserve backing & vault audits.</p>
+        </div>
+        <div class="miami-glass p-4 rounded-xl border-l-4 border-l-purple-400 space-y-1">
+          <span class="text-purple-400 font-bold block">[FOLDER 04]</span>
+          <p class="text-white font-bold">04_Master_Consolidated_Archive</p>
+          <p class="text-zinc-400 text-[11px]">Complete master archive of 589 system videos.</p>
+        </div>
       </div>
 
       <div class="miami-glass p-5 rounded-3xl miami-border space-y-5">
@@ -385,7 +447,7 @@
 
         <div class="flex flex-col sm:flex-row items-center justify-between gap-4 px-2">
           <div>
-            <h3 id="jumbotronTitle" class="text-3xl font-extrabold text-white uppercase leading-none font-teko">02. BASEBALL HITTING FOCUS</h3>
+            <h3 id="jumbotronTitle" class="text-3xl font-extrabold text-white uppercase leading-none font-teko">01. BASEBALL HITTING FOCUS</h3>
             <p id="jumbotronDesc" class="text-xs text-zinc-400 font-mono mt-1">Athletic discipline, power stroke generation, and clean execution.</p>
           </div>
           <button onclick="toggleJumbotronAudio()" id="jumbotronAudioBtn" class="px-5 py-2.5 rounded-xl bg-pink-500 text-white font-bold text-xs transition hover:brightness-110 uppercase font-mono shadow-lg shadow-pink-500/30">
@@ -446,7 +508,7 @@
     </div>
 
     <!-- ═══════════════════════════════════════════════════════════════
-         SECTION 5: ALIENWARE LOCAL VIDEO & VOICE STUDIO (INTERACTIVE UI)
+         SECTION 6: ALIENWARE LOCAL VIDEO & VOICE STUDIO (INTERACTIVE UI)
          ═══════════════════════════════════════════════════════════════ -->
     <div id="sec-studio" class="section-block hidden space-y-8">
       
@@ -506,7 +568,7 @@
 
             <div>
               <label class="block text-zinc-400 mb-1">Voiceover Speech Text</label>
-              <textarea id="studioScriptText" rows="4" class="w-full bg-miamiBlack border border-zinc-800 rounded-xl p-3 text-xs font-mono text-zinc-200 focus:outline-none focus:border-pink-500">Sravan, the infrastructure buildout is complete. We are opening the monetization valves to extract immediate fees across Fast Settlement, Subscriptions, and High-Ticket Asset Tokenization.</textarea>
+              <textarea id="studioScriptText" rows="4" class="w-full bg-miamiBlack border border-zinc-800 rounded-xl p-3 text-xs font-mono text-zinc-200 focus:outline-none focus:border-pink-500">Chief Sravan, the infrastructure buildout is complete. Detective Kevan Crockett and Detective Buck Tubbs are opening the monetization valves across Fast Settlement, Subscriptions, and High-Ticket Asset Tokenization.</textarea>
             </div>
           </div>
 
@@ -537,62 +599,6 @@
           </button>
         </div>
 
-      </div>
-    </div>
-
-    <!-- ═══════════════════════════════════════════════════════════════
-         SECTION 6: GITHUB REPO (FTHTRADING/SR)
-         ═══════════════════════════════════════════════════════════════ -->
-    <div id="sec-github" class="section-block hidden space-y-8">
-      
-      <div class="flex items-center justify-between border-b border-zinc-800 pb-5">
-        <div>
-          <h2 class="text-3xl font-extrabold text-white uppercase tracking-wide font-teko">
-            SOURCE CONTROL <span class="neon-cyan-text">// FTHTRADING / SR REPOSITORY</span>
-          </h2>
-          <p class="text-xs text-zinc-400 font-mono mt-1">Development environment, code setup, and repository commands.</p>
-        </div>
-        <a href="https://github.com/FTHTrading/sr" target="_blank" rel="noopener" class="px-3.5 py-1.5 rounded-xl bg-slate-900 text-slate-200 hover:text-white border border-slate-700 text-xs font-mono font-bold flex items-center gap-1.5">
-          FTHTrading/sr ↗
-        </a>
-      </div>
-
-      <div class="miami-glass p-7 rounded-2xl space-y-6">
-        <div class="flex items-center justify-between border-b border-zinc-800 pb-4">
-          <div>
-            <span class="text-xs font-mono text-pink-400 font-bold uppercase tracking-wider">[GITHUB REPO INFO]</span>
-            <h3 class="text-xl font-bold text-white font-mono mt-1">https://github.com/FTHTrading/sr.git</h3>
-          </div>
-          <span class="px-3.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 text-xs font-mono font-bold">[PUBLIC DEV REPO]</span>
-        </div>
-
-        <div class="space-y-4">
-          <div>
-            <span class="text-xs font-mono text-zinc-400 block mb-1">Command Line Setup Initializer</span>
-            <div class="p-4 rounded-xl bg-miamiBlack border border-zinc-800 font-mono text-xs text-emerald-400 overflow-x-auto select-all">
-              echo "# sr" &gt;&gt; README.md &amp;&amp; git init &amp;&amp; git add README.md &amp;&amp; git commit -m "first commit" &amp;&amp; git branch -M main &amp;&amp; git remote add origin https://github.com/FTHTrading/sr.git &amp;&amp; git push -u origin main
-            </div>
-          </div>
-
-          <div>
-            <span class="text-xs font-mono text-zinc-400 block mb-1">Push Existing Local Codebase</span>
-            <div class="p-4 rounded-xl bg-miamiBlack border border-zinc-800 font-mono text-xs text-cyan-400 overflow-x-auto select-all">
-              git remote add origin https://github.com/FTHTrading/sr.git &amp;&amp; git branch -M main &amp;&amp; git push -u origin main
-            </div>
-          </div>
-        </div>
-
-        <div class="pt-4 border-t border-zinc-800 flex flex-wrap gap-4 text-xs font-mono text-zinc-400">
-          <a href="https://github.com/FTHTrading/sr/issues" target="_blank" class="hover:text-pink-400">Issues</a>
-          <span>•</span>
-          <a href="https://github.com/FTHTrading/sr/pulls" target="_blank" class="hover:text-pink-400">Pull Requests</a>
-          <span>•</span>
-          <a href="https://github.com/FTHTrading/sr/actions" target="_blank" class="hover:text-pink-400">Actions</a>
-          <span>•</span>
-          <a href="https://github.com/FTHTrading/sr/security" target="_blank" class="hover:text-pink-400">Security & Quality</a>
-          <span>•</span>
-          <a href="https://github.com/FTHTrading" target="_blank" class="hover:text-pink-400">FTHTrading Org</a>
-        </div>
       </div>
     </div>
 
@@ -663,7 +669,7 @@
         url: "https://relics.unykorn.ai/",
         tag: "ANTIQUITIES & RELICS",
         cash: "$10,000 upfront setup + 1.5% tokenization fee + recurring storage pass-through.",
-        script: "Sravan, Relics tokenizes rare historical artifacts and museum antiquities. We charge a $10,000 upfront vaulting fee and 1.5% on tokenized asset volume while items remain secured in audited vaults.",
+        script: "Chief Sravan, Relics tokenizes rare historical artifacts and museum antiquities. Detective Kevan Crockett secured $10,000 upfront vaulting fees and 1.5% on tokenized asset volume while items remain secured in audited vaults.",
         tech: "Owners: UnyKorn LLC & Antiquities Custodians. Specs: NFC cryptographic pairing, vault audit oracles."
       },
       {
