@@ -144,8 +144,8 @@
         </a>
 
         <!-- Guided Tour -->
-        <button onclick="startVoiceTour()" class="px-4 py-2 rounded-xl bg-gold-400 text-black font-teko font-bold text-lg hover:brightness-110 transition shadow-lg shadow-gold-500/20 tracking-wider">
-          VOICE SCRIPT TOUR
+        <button onclick="startVoiceTour()" class="px-4 py-2 rounded-xl bg-gold-400 text-black font-teko font-bold text-lg hover:brightness-110 transition shadow-lg shadow-gold-500/20 tracking-wider uppercase">
+          START VOICE MEETING TOUR
         </button>
       </div>
     </div>
@@ -375,18 +375,18 @@
     </div>
 
     <!-- ═══════════════════════════════════════════════════════════════
-         SECTION 3: THE PLAYBOOK (23 SITES)
+         SECTION 3: THE PLAYBOOK (ALL 23 REVENUE ENDPOINTS)
          ═══════════════════════════════════════════════════════════════ -->
     <div id="sec-playbook" class="section-block hidden space-y-6">
       
       <div class="flex items-center justify-between border-b border-zinc-800 pb-4">
         <div>
           <h2 class="font-teko text-4xl font-bold text-white uppercase tracking-wide">
-            THE PLAYBOOK <span class="cyan-gradient">// 23 LIVE REVENUE ENDPOINTS</span>
+            THE PLAYBOOK <span class="cyan-gradient">// ALL 23 LIVE REVENUE ENDPOINTS</span>
           </h2>
-          <p class="text-xs text-zinc-400 font-mono">Explore exact URLs, active status, and fee mechanisms across all four Unykorn pillars.</p>
+          <p class="text-xs text-zinc-400 font-mono">Click any card to launch the live site, view fee schedules, or read the voice presentation script aloud to Sravan.</p>
         </div>
-        <span class="px-3 py-1 rounded bg-cyan-950 text-cyan-400 border border-cyan-800 text-xs font-mono font-bold">[23 ENDPOINTS]</span>
+        <span class="px-3 py-1 rounded bg-cyan-950 text-cyan-400 border border-cyan-800 text-xs font-mono font-bold">[23 ENDPOINTS MAPPED]</span>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5" id="playbookCardsGrid"></div>
@@ -680,7 +680,7 @@
 
     <div class="py-5 space-y-4 flex-1">
       <div>
-        <span class="text-[11px] font-mono uppercase text-zinc-400 font-semibold block mb-1">Live Endpoint</span>
+        <span class="text-[11px] font-mono uppercase text-zinc-400 font-semibold block mb-1">Live Endpoint URL</span>
         <a id="drawerUrl" href="#" target="_blank" class="text-xs font-mono text-gold-400 hover:underline break-all block p-2.5 rounded-lg bg-obsidian-950 border border-zinc-800">https://...</a>
       </div>
 
@@ -693,9 +693,9 @@
 
       <div>
         <div class="flex items-center justify-between mb-1">
-          <span class="text-[11px] font-mono uppercase text-zinc-400 font-semibold">What to Say to Sravan (Voice Script)</span>
-          <button onclick="readCurrentDrawerScript()" class="text-[10px] font-mono px-2 py-0.5 rounded bg-gold-500/20 text-gold-300 hover:bg-gold-500/30 transition border border-gold-500/30">
-            Read Script Aloud
+          <span class="text-[11px] font-mono uppercase text-zinc-400 font-semibold">Voice Script for Sravan Meeting</span>
+          <button onclick="readCurrentDrawerScript()" class="text-[10px] font-mono px-2.5 py-1 rounded bg-gold-500/20 text-gold-300 hover:bg-gold-500/30 transition border border-gold-500/30 font-bold uppercase">
+            READ SCRIPT ALOUD
           </button>
         </div>
         <div id="drawerScript" class="text-xs text-zinc-200 leading-relaxed p-3 rounded-lg bg-obsidian-950 border border-zinc-800 font-sans italic">
@@ -704,7 +704,7 @@
       </div>
 
       <div>
-        <span class="text-[11px] font-mono uppercase text-zinc-400 font-semibold block mb-1">Underlying Architecture</span>
+        <span class="text-[11px] font-mono uppercase text-zinc-400 font-semibold block mb-1">Owners & Underlying Technology</span>
         <div id="drawerTech" class="text-xs text-zinc-300 leading-normal p-3 rounded-lg bg-obsidian-950 border border-zinc-800 font-mono">
           ...
         </div>
@@ -727,234 +727,234 @@
   <script>
     const platforms = [
       {
-        id: "flashrouter",
-        category: "engine1",
-        title: "FlashRouter (Settlement Rails)",
-        url: "https://flashrouter.io/",
-        tag: "⚡ Fast Cash Settlement",
-        cash: "$500–$1,500/deal tech fee passed through title HUD-1 + 50-100 bps transactional capital split.",
-        script: "This solves the double-closing bottleneck for real estate wholesalers. We route deals directly into title and partner capital desks, taking an automated technology fee at closing.",
-        tech: "Conditional double-close intake engine, escrow title verification API, audit receipt logger."
-      },
-      {
-        id: "legacychain",
-        category: "engine1",
-        title: "LegacyChain (Estate Vaults)",
-        url: "https://legacychain.app/",
-        tag: "⚡ Direct SaaS Cash",
-        cash: "$99-$299 instant Stripe B2C checkouts + $999/firm B2B estate attorney seat licenses.",
-        script: "LegacyChain is our zero-knowledge digital trust vault. We can onboard estate planning attorneys and clients immediately for upfront setup fees and recurring vault subscriptions.",
-        tech: "5-proof conditional release protocol, zero-knowledge encryption, Stripe webhook billing."
-      },
-      {
-        id: "genesis402",
-        category: "engine1",
-        title: "Genesis402 (AI Commerce)",
-        url: "https://genesis402.com/",
-        tag: "⚡ Micropay Rail",
-        cash: "Pay-per-request API tolling + developer seat subscriptions ($49-$499/mo).",
-        script: "Genesis402 enables autonomous AI agents to execute HTTP 402 programmatic micropayments. We charge a micro-routing fee on agentic commerce volume.",
-        tech: "HTTP x402 payment protocol, agent mesh routing, autonomous settlement rails."
-      },
-      {
-        id: "goldbit",
-        category: "engine2",
-        title: "GoldBit Network Hub",
-        url: "https://goldbit.unykorn.ai/#network",
-        tag: "🏛️ Network Anchor",
-        cash: "25–50 bps issuance fee on sovereign RWA mints + enterprise network node access fees.",
-        script: "GoldBit connects all our underlying infrastructure rails into one master institutional network mesh. Sravan, this is how we demonstrate full ecosystem coherence to institutional capital.",
-        tech: "Sovereign asset settlement ledger, cross-rail oracle mesh, enterprise API gateway."
-      },
-      {
-        id: "unykornrwa",
-        category: "engine2",
-        title: "Unykorn Flagship RWA",
-        url: "https://unykornrwa.unykorn.ai/",
-        tag: "🏛️ Real Estate RWA",
-        cash: "25–75 bps origination fee on tokenized asset volume + $2,500/mo ongoing servicing.",
-        script: "We take commercial real estate properties and structure them into compliant digital equity or debt tokens. We monetize at closing and on monthly servicing.",
-        tech: "SPV legal-to-smart-contract bridge, compliance token wrappers, investor distributions."
-      },
-      {
-        id: "ldxrwa",
-        category: "engine2",
-        title: "LDX RWA Credit Platform",
-        url: "https://ldxrwa.unykorn.ai/",
-        tag: "🏛️ Private Credit",
-        cash: "0.5%–1.0% facility structuring fee + 20 bps annual debt administration fee.",
-        script: "LDX RWA manages private credit facilities and loan books. Lenders use our dashboard to monitor collateral health, loan performance, and yield waterfalls.",
-        tech: "Collateral health oracles, multi-tranche waterfall distributions, debt ledger."
-      },
-      {
-        id: "ldx",
-        category: "engine2",
-        title: "LDX Exchange & Secondary",
-        url: "https://ldx.unykorn.ai/",
-        tag: "🏛️ Secondary Rails",
-        cash: "0.25% taker fee on all secondary market trading and peer-to-peer liquidity transfers.",
-        script: "This is the secondary liquidity infrastructure for accredited investors to trade compliant asset-backed tokens without violating transfer restrictions.",
-        tech: "Permissioned order matching engine, KYC/AML transfer validator, settlement escrow."
-      },
-      {
-        id: "capital",
-        category: "engine2",
-        title: "Unykorn Capital Desk",
-        url: "https://capital.unykorn.ai/",
-        tag: "🏛️ Capital Routing",
-        cash: "1.0%–2.5% success fee on institutional private credit and equity syndications.",
-        script: "Our capital desk matches vetted deal flow from our portals with institutional capital providers, earning a direct origination and syndication cut.",
-        tech: "Data room encryption, syndication pipeline management, accredited investor onboarding."
-      },
-      {
-        id: "dignitygold",
-        category: "engine2",
-        title: "Dignity Gold Rails",
-        url: "https://dignitygold.com/",
-        tag: "🏛️ Gold Commodity",
-        cash: "Custodial gateway onboarding fees + institutional reserve issuance spread.",
-        script: "Dignity Gold demonstrates sovereign physical gold asset backing in qualified vaults with institutional-grade auditing and compliance.",
-        tech: "Qualified custody integration, independent physical reserve audit oracles."
-      },
-      {
         id: "relics",
         category: "engine3",
         title: "Relics Antiquities Custody",
         url: "https://relics.unykorn.ai/",
-        tag: "💎 Antiquities",
-        cash: "1.5% tokenization fee + $10,000 upfront vaulting/provenance setup + storage pass-through.",
-        script: "Relics tokenizes rare historical artifacts and museum-grade antiquities, unlocking liquidity for collectors while keeping the items secure in insured vaults.",
-        tech: "NFC physical-to-digital pairing, cryptographic provenance hashing, vault audits."
+        tag: "ANTIQUITIES & RELICS",
+        cash: "$10,000 upfront setup + 1.5% tokenization fee + recurring storage pass-through.",
+        script: "Sravan, Relics tokenizes rare historical artifacts and museum antiquities. We charge a $10,000 upfront vaulting fee and 1.5% on tokenized asset volume while items remain secured in audited vaults.",
+        tech: "Owners: UnyKorn LLC & Antiquities Custodians. Specs: NFC cryptographic pairing, vault audit oracles."
       },
       {
         id: "art",
         category: "engine3",
         title: "Fine Art Tokenization",
         url: "https://art.unykorn.ai/",
-        tag: "💎 Fine Art",
+        tag: "FINE ART",
         cash: "2.0% primary issuance fee + 1.0% secondary trading royalty.",
-        script: "We enable blue-chip galleries and collectors to fractionalize high-value art pieces, allowing investors to trade shares while art remains exhibited.",
-        tech: "Authenticity verification hashing, insurance oracle feeds, fractional shares."
+        script: "Art.unykorn.ai allows blue-chip galleries to fractionalize high-value paintings. Collectors trade shares while artwork remains exhibited in galleries.",
+        tech: "Owners: UnyKorn LLC & Partner Art Galleries. Specs: Provenance hashing, insurance feeds."
       },
       {
-        id: "liquor",
-        category: "engine3",
-        title: "Rare Spirits & Casks",
-        url: "https://liquor.unykorn.ai/",
-        tag: "💎 Spirits & Wine",
-        cash: "3.0% cask minting surcharge + $250/barrel physical redemption fee.",
-        script: "Investors buy fractional tokens of aging whiskey barrels in bonded warehouses. Value increases as the spirit matures, and we monetize at minting and bottling.",
-        tech: "Bonded warehouse IoT sensors, barrel aging lifecycle contracts, redemption escrow."
-      },
-      {
-        id: "time",
-        category: "engine3",
-        title: "Luxury Timepieces",
-        url: "https://time.unykorn.ai/",
-        tag: "💎 Luxury Watches",
-        cash: "1.0% verification fee + bridge loan origination referral fees.",
-        script: "Luxury watch owners can vault their Rolex/Patek timepieces and instantly borrow against them or sell fractional stakes on our rails.",
-        tech: "Serial number cryptographic registry, watchmaker physical appraisal API."
-      },
-      {
-        id: "smoke",
-        category: "engine3",
-        title: "Premium Cigar & Tobacco",
-        url: "https://smoke.unykorn.ai/",
-        tag: "💎 Commodities",
-        cash: "2.5% inventory tokenization fee + recurring storage pass-through.",
-        script: "We tokenize aged vintage cigar batches stored in climate-controlled humidors, turning physical inventory into tradable digital commodity certificates.",
-        tech: "Humidor IoT telemetry, barcode verification, physical release escrow."
+        id: "ldx",
+        category: "engine2",
+        title: "LDX Secondary Liquidity Exchange",
+        url: "https://ldx.unykorn.ai/",
+        tag: "SECONDARY MARKET",
+        cash: "0.25% taker fee on secondary market trading and liquidity transfers.",
+        script: "LDX is our secondary marketplace for accredited investors to trade compliant asset-backed tokens with automated transfer restriction checks.",
+        tech: "Owners: UnyKorn LLC. Specs: Permissioned matching engine, KYC/AML transfer validator."
       },
       {
         id: "mma",
         category: "engine3",
-        title: "MMA Combat IP & Purse Rails",
+        title: "MMA Combat IP & Fight Purses",
         url: "https://mma.unykorn.ai/index.html",
-        tag: "💎 Sports & IP",
-        cash: "5.0% syndication fee on fight purses + PPV/ticket platform transaction fees.",
-        script: "We tokenize fighter sponsorship contracts and purse syndications, giving fans and sponsors direct financial participation in fight outcomes.",
-        tech: "Purse-splitting smart contracts, PPV distribution ledger, fan voting modules."
+        tag: "SPORTS IP",
+        cash: "5.0% fight purse syndication fee + PPV ticketing platform fees.",
+        script: "MMA.unykorn.ai tokenizes fighter sponsorship contracts and fight purse syndications, letting sponsors and fans back fight outcomes.",
+        tech: "Owners: UnyKorn LLC & Combat Sports Promoters. Specs: Smart purse splitting, PPV ticketing."
       },
       {
         id: "miami",
         category: "engine3",
         title: "Miami Lifestyle & Hospitality",
         url: "https://miami.unykorn.ai/",
-        tag: "💎 Hospitality",
+        tag: "LUXURY HOSPITALITY",
         cash: "1.0% property tokenization fee + premium membership tier sales.",
-        script: "Focuses on Miami luxury hospitality, waterfront real estate, and yacht syndications—monetizing high-margin regional lifestyle assets.",
-        tech: "Geo-fenced access tokens, seasonal rental cash flow distributions."
+        script: "Miami.unykorn.ai tokenizes waterfront real estate, luxury hospitality, and yacht syndications in South Florida.",
+        tech: "Owners: UnyKorn LLC & Regional Syndicates. Specs: Geo-fenced access tokens, rental cash flow."
       },
       {
-        id: "buck",
+        id: "ldxrwa",
+        category: "engine2",
+        title: "LDX RWA Credit Platform",
+        url: "https://ldxrwa.unykorn.ai/",
+        tag: "PRIVATE CREDIT",
+        cash: "0.5%-1.0% facility structuring fee + 20 bps annual debt administration fee.",
+        script: "LDX RWA manages private credit loan books and debt facilities, tracking collateral health and yield waterfall distributions in real time.",
+        tech: "Owners: UnyKorn LLC & Credit Lenders. Specs: Collateral health oracles, waterfall ledger."
+      },
+      {
+        id: "liquor",
         category: "engine3",
-        title: "Buck Commodity Protocol",
-        url: "https://buck.unykorn.ai/",
-        tag: "💎 Commodities",
-        cash: "SaaS licensing + commodity transaction settlement spreads.",
-        script: "Specialized rails for raw commodity batches and reserve-backed liquidity stabilization.",
-        tech: "Warehouse receipt tokenization, dynamic reserve rebalancing."
-      },
-      {
-        id: "portal",
-        category: "core",
-        title: "Master Enterprise Portal",
-        url: "https://portal.unykorn.ai/",
-        tag: "⚙️ Gateway",
-        cash: "Enterprise seat licenses ($1,500–$5,000/mo) + custom white-label client portals.",
-        script: "The command center where institutional clients log in to track their asset pipelines, compliance status, and multi-party approvals.",
-        tech: "Enterprise SSO, RBAC permissioning engine, multi-portal API orchestration."
-      },
-      {
-        id: "smartcontract",
-        category: "core",
-        title: "Smart Contract Registry",
-        url: "https://smartcontract.unykorn.ai/",
-        tag: "⚙️ Compliance Contracts",
-        cash: "$10,000–$50,000 custom contract deployment fee + gas/relay surcharges.",
-        script: "Our repository of pre-audited, compliance-enforced ERC-3643 and permissioned smart contracts that automate KYC/AML and transfer restrictions.",
-        tech: "Regulatory compliance smart contracts, transfer whitelist registries."
+        title: "Rare Spirits & Whiskey Casks",
+        url: "https://liquor.unykorn.ai/",
+        tag: "SPIRITS & WINE",
+        cash: "3.0% cask minting surcharge + $250/barrel physical redemption fee.",
+        script: "Liquor.unykorn.ai tokenizes aging spirits casks in bonded warehouses. Value appreciates as the whiskey matures, and we collect minting and redemption fees.",
+        tech: "Owners: UnyKorn LLC & Bonded Warehouses. Specs: IoT humidor telemetry, redemption escrow."
       },
       {
         id: "shell",
         category: "core",
         title: "Infrastructure Shell & Nodes",
         url: "https://shell.unykorn.ai/",
-        tag: "⚙️ DevOps",
+        tag: "DEVOPS TELEMETRY",
         cash: "Internal operational backbone powering high-uptime billable API traffic.",
-        script: "Terminal interface for real-time telemetry across our nodes, server clusters, and local database environments.",
-        tech: "Docker orchestration, validator telemetry, secure enclave management."
+        script: "Shell.unykorn.ai is our command-line terminal providing real-time telemetry across our nodes, server clusters, and local database environments.",
+        tech: "Owners: UnyKorn LLC. Specs: Docker orchestration, validator node monitoring."
+      },
+      {
+        id: "smartcontract",
+        category: "core",
+        title: "Regulatory Smart Contract Registry",
+        url: "https://smartcontract.unykorn.ai/",
+        tag: "COMPLIANCE CONTRACTS",
+        cash: "$10,000-$50,000 custom contract deployment fee + gas relay surcharges.",
+        script: "Smartcontract.unykorn.ai houses our audited ERC-3643 and permissioned smart contracts that automatically enforce KYC/AML laws at the protocol layer.",
+        tech: "Owners: UnyKorn LLC. Specs: Regulatory compliance wrappers, transfer whitelists."
+      },
+      {
+        id: "smoke",
+        category: "engine3",
+        title: "Premium Cigar & Tobacco",
+        url: "https://smoke.unykorn.ai/",
+        tag: "COMMODITIES",
+        cash: "2.5% inventory tokenization fee + recurring storage pass-through.",
+        script: "Smoke.unykorn.ai tokenizes rare vintage cigar batches stored in climate-controlled humidors into tradable digital commodity certificates.",
+        tech: "Owners: UnyKorn LLC & Cigar Distributors. Specs: Humidor IoT sensors, barcode verification."
+      },
+      {
+        id: "time",
+        category: "engine3",
+        title: "Luxury Timepieces & Watch Lending",
+        url: "https://time.unykorn.ai/",
+        tag: "LUXURY WATCHES",
+        cash: "1.0% watch verification fee + bridge loan origination cut.",
+        script: "Time.unykorn.ai lets Rolex and Patek owners vault verified luxury watches to instantly borrow liquidity or trade fractional ownership.",
+        tech: "Owners: UnyKorn LLC & Pawn Lenders. Specs: Serial number registry, watchmaker appraisal API."
+      },
+      {
+        id: "unykornrwa",
+        category: "engine2",
+        title: "Unykorn Flagship Commercial Real Estate RWA",
+        url: "https://unykornrwa.unykorn.ai/",
+        tag: "REAL ESTATE RWA",
+        cash: "25-75 bps origination fee on tokenized asset volume + $2,500/mo ongoing servicing.",
+        script: "Unykornrwa.unykorn.ai structures commercial real estate assets into compliant digital equity or debt tokens with automated investor distributions.",
+        tech: "Owners: UnyKorn LLC & Property Sponsors. Specs: SPV smart-contract bridge, compliance token wrappers."
       },
       {
         id: "vortex",
         category: "core",
         title: "Vortex Execution Engine",
         url: "https://vortex.unykorn.ai/",
-        tag: "⚙️ Routing Engine",
-        cash: "2–5 bps routing fee across executed high-throughput transaction liquidity.",
-        script: "High-throughput execution router for sub-second trade routing, asset rebalancing, and liquidity aggregation.",
-        tech: "Asynchronous transaction batching, automated order matching."
+        tag: "ROUTING ENGINE",
+        cash: "2-5 bps routing fee across high-throughput transaction liquidity.",
+        script: "Vortex.unykorn.ai is our high-throughput routing engine executing sub-second trade routing and asset rebalancing.",
+        tech: "Owners: UnyKorn LLC. Specs: Asynchronous transaction batching, order matching."
+      },
+      {
+        id: "buck",
+        category: "engine3",
+        title: "Buck Commodity Protocol",
+        url: "https://buck.unykorn.ai/",
+        tag: "COMMODITIES",
+        cash: "SaaS licensing + commodity transaction settlement spreads.",
+        script: "Buck.unykorn.ai provides specialized rails for raw commodity batches and reserve-backed liquidity stabilization.",
+        tech: "Owners: UnyKorn LLC. Specs: Warehouse receipt tokenization, reserve rebalancing."
+      },
+      {
+        id: "capital",
+        category: "engine2",
+        title: "Unykorn Capital Desk & Syndication",
+        url: "https://capital.unykorn.ai/",
+        tag: "CAPITAL ROUTING",
+        cash: "1.0%-2.5% success fee on institutional credit and equity syndications.",
+        script: "Capital.unykorn.ai matches vetted deal flow with institutional capital providers, earning origination and syndication fees at closing.",
+        tech: "Owners: UnyKorn LLC & Institutional Lenders. Specs: Encrypted deal room, investor onboarding."
       },
       {
         id: "jerry",
         category: "core",
-        title: "Jerry Dedicated Partner Hub",
+        title: "Jerry White-Label Partner Portal",
         url: "https://jerry.unykorn.ai/",
-        tag: "⚙️ White-Label Demo",
-        cash: "$25,000 setup fee + monthly maintenance for custom partner sub-portals.",
-        script: "Demonstrates how we spin up custom-branded infrastructure portals for strategic partners in under 48 hours.",
-        tech: "Multi-tenant tenant isolation, custom DNS routing, bespoke API integration."
+        tag: "WHITE-LABEL DEMO",
+        cash: "$25,000 setup fee + monthly maintenance for custom partner portals.",
+        script: "Jerry.unykorn.ai demonstrates how we deploy custom-branded infrastructure portals for strategic enterprise partners in under 48 hours.",
+        tech: "Owners: UnyKorn LLC & Enterprise Partners. Specs: Multi-tenant isolation, custom DNS."
+      },
+      {
+        id: "portal",
+        category: "core",
+        title: "Master Institutional Enterprise Portal",
+        url: "https://portal.unykorn.ai/",
+        tag: "GATEWAY",
+        cash: "Enterprise seat licenses ($1,500-$5,000/mo) + custom white-label client portals.",
+        script: "Portal.unykorn.ai is the institutional command center where enterprise clients log in to monitor asset pipelines and compliance approvals.",
+        tech: "Owners: UnyKorn LLC. Specs: Enterprise SSO, RBAC permissioning engine."
+      },
+      {
+        id: "dignitygold",
+        category: "engine2",
+        title: "Dignity Gold Reserve Rails",
+        url: "https://dignitygold.com/",
+        tag: "GOLD COMMODITY",
+        cash: "Custodial gateway onboarding fees + institutional reserve issuance spread.",
+        script: "Dignity Gold demonstrates sovereign physical gold asset backing in qualified vaults with independent audit verification.",
+        tech: "Owners: Dignity Gold & UnyKorn LLC Partner Desks. Specs: Qualified custody integration, reserve audits."
       },
       {
         id: "bio",
         category: "core",
-        title: "Executive Verifications",
+        title: "Executive Credentials & Verification",
         url: "https://bio.unykorn.ai/index.html",
-        tag: "⚙️ Trust & Identity",
+        tag: "TRUST & IDENTITY",
         cash: "Trust anchor facilitating high-ticket institutional partnerships.",
-        script: "Corporate credentials and executive track record anchor for counterparties and underwriting committees.",
-        tech: "Decentralized identifier (DID) anchoring, executive credential records."
+        script: "Bio.unykorn.ai establishes corporate credentials, LEI registration, and executive track record for institutional counterparties.",
+        tech: "Owners: UnyKorn LLC (Kevan & Sravan). Specs: Decentralized identifier (DID) anchoring."
+      },
+      {
+        id: "flashrouter",
+        category: "engine1",
+        title: "FlashRouter Double-Close Settlement",
+        url: "https://flashrouter.io/",
+        tag: "FAST CASH SETTLEMENT",
+        cash: "$500-$1,500/deal HUD-1 tech fee + 50-100 bps transactional capital split.",
+        script: "FlashRouter.io solves the double-closing bottleneck for real estate wholesalers. We route deals directly into title escrow, collecting an automated tech fee at closing.",
+        tech: "Owners: UnyKorn LLC & Title Partners. Specs: Double-close intake engine, escrow API."
+      },
+      {
+        id: "legacychain",
+        category: "engine1",
+        title: "LegacyChain Zero-Knowledge Estate Vaults",
+        url: "https://legacychain.app/",
+        tag: "DIRECT SAAS CASH",
+        cash: "$99-$299 instant Stripe checkouts + $999/firm B2B attorney seat licenses.",
+        script: "LegacyChain.app is our zero-knowledge digital trust vault. Attorneys and families pay upfront setup fees and recurring subscriptions to store encrypted estate records.",
+        tech: "Owners: UnyKorn LLC & Law Firms. Specs: 5-proof conditional release, Stripe billing."
+      },
+      {
+        id: "genesis402",
+        category: "engine1",
+        title: "Genesis402 Autonomous AI Micropayments",
+        url: "https://genesis402.com/",
+        tag: "MICROPAY RAIL",
+        cash: "Pay-per-request API tolling + developer seat subscriptions ($49-$499/mo).",
+        script: "Genesis402.com enables autonomous AI swarms to pay micro-tolls over HTTP 402 rails, taking a micro-routing fee on agentic volume.",
+        tech: "Owners: UnyKorn LLC. Specs: HTTP x402 payment protocol, agent mesh routing."
+      },
+      {
+        id: "goldbit",
+        category: "engine2",
+        title: "GoldBit Sovereign Master Network Grid",
+        url: "https://goldbit.unykorn.ai/#network",
+        tag: "NETWORK ANCHOR",
+        cash: "25-50 bps issuance fee on sovereign RWA mints + enterprise node access fees.",
+        script: "GoldBit connects all our underlying infrastructure rails into one master institutional network mesh under goldbit.unykorn.ai/#network.",
+        tech: "Owners: UnyKorn LLC. Specs: Sovereign asset settlement ledger, oracle mesh."
       }
     ];
 
@@ -1082,7 +1082,10 @@
 
     function startVoiceTour() {
       showSection('sec-playbook');
-      if (platforms.length > 0) openDrawer(platforms[0].id);
+      if (platforms.length > 0) {
+        openDrawer(platforms[0].id);
+        readCurrentDrawerScript();
+      }
     }
 
     async function triggerLocalStudioRender() {
