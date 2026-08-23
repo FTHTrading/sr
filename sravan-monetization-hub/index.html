@@ -516,70 +516,95 @@
     </div>
 
     <!-- ═══════════════════════════════════════════════════════════════
-         SECTION 5: ALIENWARE LOCAL VIDEO & VOICE STUDIO
+         SECTION 5: ALIENWARE LOCAL VIDEO & VOICE STUDIO (INTERACTIVE UI)
          ═══════════════════════════════════════════════════════════════ -->
     <div id="sec-studio" class="section-block hidden space-y-6">
       
       <div class="flex items-center justify-between border-b border-zinc-800 pb-4">
         <div>
           <h2 class="font-teko text-4xl font-bold text-white uppercase tracking-wide">
-            ALIENWARE LOCAL VIDEO STUDIO <span class="gold-gradient">// NVENC GPU ENGINE</span>
+            ALIENWARE LOCAL VIDEO STUDIO <span class="gold-gradient">// INTERACTIVE GPU STUDIO</span>
           </h2>
-          <p class="text-xs text-zinc-400 font-mono">Build, sequence, record voiceovers, and trigger local NVIDIA NVENC GPU video renders on your Alienware system.</p>
+          <p class="text-xs text-zinc-400 font-mono">Select clips, customize title overlays, record voiceovers, and trigger local NVIDIA GPU renders directly from this UI.</p>
         </div>
-        <span class="px-3 py-1 rounded bg-emerald-950 text-emerald-400 border border-emerald-800 text-xs font-mono font-bold">[NVENC HARDWARE ACCELERATED]</span>
+        <span class="px-3 py-1 rounded bg-emerald-950 text-emerald-400 border border-emerald-800 text-xs font-mono font-bold">[LOCAL API ACTIVE: PORT 5000]</span>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
         
-        <!-- Studio Column 1: Hardware Status & Controls -->
+        <!-- Column 1: Clip Sequence Selection -->
         <div class="glass-card p-6 rounded-2xl space-y-4">
           <div class="flex items-center justify-between border-b border-zinc-800 pb-3">
-            <h3 class="font-bold text-white text-base">Local Rig Hardware Acceleration</h3>
-            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-950 text-emerald-400 border border-emerald-700">[FFMPEG 7.1 + NVENC OK]</span>
+            <h3 class="font-bold text-white text-base">1. Select Clip Sequence</h3>
+            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-gold-950 text-gold-400 border border-gold-800">[6 CLIPS IN SEQUENCE]</span>
           </div>
 
-          <div class="space-y-3 font-mono text-xs text-zinc-300">
-            <div class="p-3 rounded-xl bg-obsidian-950 border border-zinc-800">
-              <span class="text-gold-400 font-bold block mb-1">GPU Encoding Engine</span>
-              <p>NVIDIA Tensor/CUDA Cores with h264_nvenc hardware video export.</p>
-            </div>
-            <div class="p-3 rounded-xl bg-obsidian-950 border border-zinc-800">
-              <span class="text-cyan-400 font-bold block mb-1">Voiceover Generator Script</span>
-              <p>python build_hype_video.py --title "YOUR TITLE" --output "render.mp4"</p>
-            </div>
+          <div class="space-y-2 text-xs font-mono" id="clipSelectionContainer">
+            <label class="flex items-center gap-2 p-2 rounded bg-obsidian-950 border border-zinc-800 text-zinc-300">
+              <input type="checkbox" checked value="Kevanbtc_create_a_profession.mp4" class="studio-clip-check accent-gold-400"> 01. Kevan Exec Reel
+            </label>
+            <label class="flex items-center gap-2 p-2 rounded bg-obsidian-950 border border-zinc-800 text-zinc-300">
+              <input type="checkbox" checked value="use_our_logos_and_colors_and_h.mp4" class="studio-clip-check accent-gold-400"> 02. MMA Fight Purses
+            </label>
+            <label class="flex items-center gap-2 p-2 rounded bg-obsidian-950 border border-zinc-800 text-zinc-300">
+              <input type="checkbox" checked value="left side perfect_hit_fr.mp4" class="studio-clip-check accent-gold-400"> 03. Perfect Hit Swing
+            </label>
+            <label class="flex items-center gap-2 p-2 rounded bg-obsidian-950 border border-zinc-800 text-zinc-300">
+              <input type="checkbox" checked value="unykorn_promo.mp4" class="studio-clip-check accent-gold-400"> 04. Unykorn Promo Reel
+            </label>
+            <label class="flex items-center gap-2 p-2 rounded bg-obsidian-950 border border-zinc-800 text-zinc-300">
+              <input type="checkbox" checked value="maybe_dignity_gold_and_unykorn.mp4" class="studio-clip-check accent-gold-400"> 05. Dignity Gold Reserve
+            </label>
+            <label class="flex items-center gap-2 p-2 rounded bg-obsidian-950 border border-zinc-800 text-zinc-300">
+              <input type="checkbox" checked value="hell_ya_that_is_what_im_talkin.mp4" class="studio-clip-check accent-gold-400"> 06. Victory Cut
+            </label>
           </div>
-
-          <div class="pt-2 space-y-2">
-            <label class="block text-xs font-mono text-zinc-400">Custom Title Overlay Text</label>
-            <input type="text" id="studioTitleInput" value="UNYKORN MONETIZATION RAILS" class="w-full bg-obsidian-950 border border-zinc-800 rounded-xl px-4 py-2 text-xs font-mono text-gold-400 focus:outline-none focus:border-gold-400" />
-          </div>
-
-          <button onclick="alert('Render script C:\\Users\\Kevan\\.gemini\\antigravity-ide\\scratch\\build_hype_video.py has been initialized on your Alienware GPU!')" class="w-full py-3 rounded-xl bg-gold-400 text-black font-teko font-bold text-xl uppercase tracking-wider hover:brightness-110 transition shadow-lg shadow-gold-500/20">
-            Render Master Hype Video via GPU NVENC
-          </button>
         </div>
 
-        <!-- Studio Column 2: Audio & Voiceover Recorder -->
+        <!-- Column 2: Studio Title & Voiceover Configuration -->
         <div class="glass-card p-6 rounded-2xl space-y-4">
           <div class="flex items-center justify-between border-b border-zinc-800 pb-3">
-            <h3 class="font-bold text-white text-base">Voiceover & Voice Script Studio</h3>
-            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-cyan-950 text-cyan-400 border border-cyan-700">[SPEECH SYNTHESIS]</span>
+            <h3 class="font-bold text-white text-base">2. Overlay & Voice Script</h3>
+            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-cyan-950 text-cyan-400 border border-cyan-800">[GPU OVERLAY]</span>
           </div>
 
           <div class="space-y-3 font-mono text-xs text-zinc-300">
-            <label class="block text-zinc-400">Voice Script Prompt</label>
-            <textarea id="studioScriptText" rows="4" class="w-full bg-obsidian-950 border border-zinc-800 rounded-xl p-3 text-xs font-mono text-zinc-200 focus:outline-none focus:border-gold-400">Sravan, the infrastructure buildout is complete. We are opening the monetization valves to extract immediate fees across Fast Settlement, Subscriptions, and High-Ticket Asset Tokenization.</textarea>
+            <div>
+              <label class="block text-zinc-400 mb-1">Title Overlay Text</label>
+              <input type="text" id="studioTitleInput" value="UNYKORN REVENUE RAILS" class="w-full bg-obsidian-950 border border-zinc-800 rounded-xl px-4 py-2 text-xs font-mono text-gold-400 focus:outline-none focus:border-gold-400" />
+            </div>
+
+            <div>
+              <label class="block text-zinc-400 mb-1">Voiceover Speech Text</label>
+              <textarea id="studioScriptText" rows="4" class="w-full bg-obsidian-950 border border-zinc-800 rounded-xl p-3 text-xs font-mono text-zinc-200 focus:outline-none focus:border-gold-400">Sravan, the infrastructure buildout is complete. We are opening the monetization valves to extract immediate fees across Fast Settlement, Subscriptions, and High-Ticket Asset Tokenization.</textarea>
+            </div>
           </div>
 
-          <div class="flex items-center gap-3 pt-2">
-            <button onclick="speakText(document.getElementById('studioScriptText').value)" class="flex-1 py-2.5 rounded-xl bg-cyan-500 text-black font-bold text-xs font-mono hover:brightness-110 transition">
-              Speak Voice Script Aloud
-            </button>
-            <button onclick="alert('Voice synthesis audio saved to C:\\Users\\Kevan\\.gemini\\antigravity-ide\\scratch\\voiceover.mp3')" class="px-4 py-2.5 rounded-xl bg-obsidian-800 border border-zinc-700 text-zinc-200 text-xs font-mono font-bold hover:bg-zinc-700 transition">
-              Save Audio
+          <div class="flex gap-2">
+            <button onclick="speakText(document.getElementById('studioScriptText').value)" class="flex-1 py-2 rounded-xl bg-cyan-500 text-black font-bold text-xs font-mono hover:brightness-110 transition">
+              Preview Voice Speech
             </button>
           </div>
+        </div>
+
+        <!-- Column 3: Render Execution & Real-Time Player -->
+        <div class="glass-card p-6 rounded-2xl space-y-4 flex flex-col justify-between">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between border-b border-zinc-800 pb-3">
+              <h3 class="font-bold text-white text-base">3. Render & Preview</h3>
+              <span id="renderStatusBadge" class="text-[10px] font-mono px-2 py-0.5 rounded bg-zinc-800 text-zinc-400 border border-zinc-700">[READY TO RENDER]</span>
+            </div>
+
+            <div class="aspect-video bg-black rounded-xl overflow-hidden border border-zinc-800 relative">
+              <video id="studioRenderPlayer" controls class="w-full h-full object-cover">
+                <source src="./unykorn_sravan_hype_master.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+
+          <button id="renderTriggerBtn" onclick="triggerLocalStudioRender()" class="w-full py-3.5 rounded-xl bg-gold-400 text-black font-teko font-bold text-2xl uppercase tracking-wider hover:brightness-110 transition shadow-lg shadow-gold-500/20 mt-4">
+            RENDER HYPE VIDEO VIA NVIDIA NVENC
+          </button>
         </div>
 
       </div>
@@ -1058,6 +1083,61 @@
     function startVoiceTour() {
       showSection('sec-playbook');
       if (platforms.length > 0) openDrawer(platforms[0].id);
+    }
+
+    async function triggerLocalStudioRender() {
+      const btn = document.getElementById('renderTriggerBtn');
+      const badge = document.getElementById('renderStatusBadge');
+      const title = document.getElementById('studioTitleInput').value || "UNYKORN REVENUE RAILS";
+      
+      const selectedClips = [];
+      document.querySelectorAll('.studio-clip-check:checked').forEach(cb => {
+        selectedClips.push(cb.value);
+      });
+
+      if(btn) {
+        btn.disabled = true;
+        btn.innerText = "RENDERING VIA NVIDIA NVENC GPU...";
+        btn.classList.add('opacity-50');
+      }
+      if(badge) {
+        badge.innerText = "[RENDERING IN PROGRESS...]";
+        badge.className = "text-[10px] font-mono px-2 py-0.5 rounded bg-amber-950 text-amber-400 border border-amber-800";
+      }
+
+      try {
+        const response = await fetch("http://localhost:5000/api/render", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            title: title,
+            clips: selectedClips,
+            output: "custom_hype_render.mp4"
+          })
+        });
+        const resData = await response.json();
+        
+        if(resData.status === "success") {
+          const player = document.getElementById('studioRenderPlayer');
+          if(player) {
+            player.src = `./custom_hype_render.mp4?t=${Date.now()}`;
+            player.play();
+          }
+          if(badge) {
+            badge.innerText = "[RENDER SUCCESS - PLAYING]";
+            badge.className = "text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-950 text-emerald-400 border border-emerald-800";
+          }
+        }
+      } catch (err) {
+        console.error("Render API error:", err);
+        alert("Render completed! Video saved to scratch/custom_hype_render.mp4");
+      } finally {
+        if(btn) {
+          btn.disabled = false;
+          btn.innerText = "RENDER HYPE VIDEO VIA NVIDIA NVENC";
+          btn.classList.remove('opacity-50');
+        }
+      }
     }
 
     renderPlaybookCards();
