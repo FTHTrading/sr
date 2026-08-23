@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UNYKORN INFRASTRUCTURE // Sravan Executive Review & Monetization Hub</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Teko:wght@500;600;700&family=Space+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            teko: ['"Teko"', 'sans-serif'],
+            sans: ['"Space Grotesk"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            gold: {
+              300: '#ffe547',
+              400: '#ffd700',
+              500: '#f5b800',
+              600: '#d48b00',
+              700: '#a86100',
+            },
+            obsidian: {
+              950: '#030509',
+              900: '#080d17',
+              800: '#101726',
+              700: '#1a2438',
+              600: '#26344d',
+            },
+            cyan: {
+              400: '#22d3ee',
+              500: '#06b6d4',
+            },
+            emerald: {
+              400: '#34d399',
+              500: '#10b981',
+            }
+          },
+          animation: {
+            'ticker': 'ticker 28s linear infinite',
+          },
+          keyframes: {
+            ticker: {
+              '0%': { transform: 'translateX(0%)' },
+              '100%': { transform: 'translateX(-50%)' }
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { background-color: #030509; color: #f8fafc; overflow-x: hidden; }
+    .glass-card {
+      background: linear-gradient(180deg, rgba(16, 23, 38, 0.9) 0%, rgba(8, 13, 23, 0.95) 100%);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 215, 0, 0.15);
+      transition: all 0.25s ease-in-out;
+    }
+    .glass-card:hover {
+      border-color: rgba(255, 215, 0, 0.45);
+      transform: translateY(-2px);
+    }
+    .gold-gradient {
+      background: linear-gradient(135deg, #FFE57F 0%, #FFD700 50%, #B8860B 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .cyan-gradient {
+      background: linear-gradient(135deg, #38bdf8 0%, #22d3ee 50%, #06b6d4 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #030509; }
+    ::-webkit-scrollbar-thumb { background: #1a2438; border-radius: 3px; }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col font-sans selection:bg-gold-500/30 selection:text-gold-200">
+
+  <!-- BACKGROUND AUDIO INTRO TRACK -->
+  <audio id="bgAudio" loop preload="auto">
+    <source src="./media/WhatsApp Video 2026-08-23 at 4.02.26 AM.mp4" type="video/mp4">
+  </audio>
+
+  <!-- TOP STADIUM TICKER MARQUEE (NO EMOJIS) -->
+  <div class="bg-obsidian-950 border-b border-gold-500/20 py-1.5 overflow-hidden font-mono text-[11px] uppercase tracking-widest text-gold-400">
+    <div class="whitespace-nowrap flex animate-ticker">
+      <span class="mx-6 flex items-center gap-2"><strong class="text-white">[FLASHROUTER]</strong> DOUBLE-CLOSE SETTLEMENT ($500-$1.5K HUD-1 TECH FEES)</span>
+      <span class="mx-6 flex items-center gap-2"><strong class="text-white">[LEGACYCHAIN]</strong> $999/FIRM B2B ATTORNEY SEATS & $99-$299 B2C VAULTS</span>
+      <span class="mx-6 flex items-center gap-2"><strong class="text-white">[GENESIS402]</strong> x402 PROGRAMMATIC AGENT MICROPAYMENTS ($49-$499/MO)</span>
+      <span class="mx-6 flex items-center gap-2"><strong class="text-white">[GOLDBIT & RWA]</strong> 25-75 BPS PRIVATE CREDIT ORIGINATION SPREADS</span>
+      <span class="mx-6 flex items-center gap-2"><strong class="text-white">[LUXURY VERTICALS]</strong> 1.5%-3.0% TOKENIZATION + $10K-$50K UPFRONT STRUCTURING</span>
+      <span class="mx-6 flex items-center gap-2"><strong class="text-white">[GITHUB REPO]</strong> FTHTRADING/SR LIVE AND CONNECTED</span>
+      <!-- Seamless Loop Duplicate -->
+      <span class="mx-6 flex items-center gap-2"><strong class="text-white">[FLASHROUTER]</strong> DOUBLE-CLOSE SETTLEMENT ($500-$1.5K HUD-1 TECH FEES)</span>
+      <span class="mx-6 flex items-center gap-2"><strong class="text-white">[LEGACYCHAIN]</strong> $999/FIRM B2B ATTORNEY SEATS & $99-$299 B2C VAULTS</span>
+      <span class="mx-6 flex items-center gap-2"><strong class="text-white">[GENESIS402]</strong> x402 PROGRAMMATIC AGENT MICROPAYMENTS ($49-$499/MO)</span>
+      <span class="mx-6 flex items-center gap-2"><strong class="text-white">[GOLDBIT & RWA]</strong> 25-75 BPS PRIVATE CREDIT ORIGINATION SPREADS</span>
+    </div>
+  </div>
+
+  <!-- MAIN NAVIGATION HEADER -->
+  <header class="sticky top-0 z-50 bg-obsidian-950/95 backdrop-blur-xl border-b border-gold-500/20 shadow-xl">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-wrap items-center justify-between gap-4">
+      
+      <!-- Brand & Status -->
+      <div class="flex items-center space-x-3">
+        <div class="h-10 w-10 rounded-xl bg-gradient-to-br from-gold-300 via-gold-500 to-amber-600 p-0.5 shadow-lg shadow-gold-500/20">
+          <div class="w-full h-full bg-obsidian-950 rounded-[10px] flex items-center justify-center font-teko text-2xl font-bold text-gold-400">
+            U
+          </div>
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 class="font-teko text-2xl tracking-wider text-white uppercase font-bold leading-none">
+              UNYKORN <span class="gold-gradient">// MONETIZATION HUB</span>
+            </h1>
+            <span class="text-[10px] font-mono font-extrabold px-2 py-0.5 rounded bg-emerald-950 text-emerald-400 border border-emerald-700/60">
+              [STATUS: PRODUCTION READY]
+            </span>
+          </div>
+          <p class="text-xs text-zinc-400 font-mono">Executive Review Playbook, Client Roster & Local Video Studio</p>
+        </div>
+      </div>
+
+      <!-- Header Controls -->
+      <div class="flex items-center gap-3">
+        <!-- Audio Track Toggle -->
+        <button id="audioToggleBtn" onclick="toggleAudio()" class="px-3.5 py-1.5 rounded-xl bg-obsidian-800 hover:bg-obsidian-700 border border-gold-500/30 text-gold-400 text-xs font-mono font-bold transition flex items-center gap-2">
+          <span id="audioStatusText">Play Audio Intro</span>
+        </button>
+
+        <!-- GitHub Repo Link -->
+        <a href="https://github.com/FTHTrading/sr" target="_blank" rel="noopener" class="px-3.5 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 text-xs font-mono font-bold transition flex items-center gap-1.5">
+          <svg class="w-4 h-4 text-white fill-current" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          FTHTrading/sr
+        </a>
+
+        <!-- Guided Tour -->
+        <button onclick="startVoiceTour()" class="px-4 py-2 rounded-xl bg-gold-400 text-black font-teko font-bold text-lg hover:brightness-110 transition shadow-lg shadow-gold-500/20 tracking-wider">
+          VOICE SCRIPT TOUR
+        </button>
+      </div>
+    </div>
+
+    <!-- MAIN PAGE TABS (NO EMOJIS) -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex items-center gap-2 overflow-x-auto text-xs font-mono border-t border-zinc-800/60">
+      <button onclick="showSection('sec-overview', this)" class="nav-tab px-3.5 py-1.5 rounded-lg bg-gold-400 text-black font-bold transition">
+        01. Executive Premise
+      </button>
+      <button onclick="showSection('sec-clients', this)" class="nav-tab px-3.5 py-1.5 rounded-lg text-zinc-400 hover:text-white hover:bg-zinc-800 transition">
+        02. Client Roster (12 Segments)
+      </button>
+      <button onclick="showSection('sec-playbook', this)" class="nav-tab px-3.5 py-1.5 rounded-lg text-zinc-400 hover:text-white hover:bg-zinc-800 transition">
+        03. What & Where We Are (23 Sites)
+      </button>
+      <button onclick="showSection('sec-jumbotron', this)" class="nav-tab px-3.5 py-1.5 rounded-lg text-zinc-400 hover:text-white hover:bg-zinc-800 transition">
+        04. Video Arena (9 Reels)
+      </button>
+      <button onclick="showSection('sec-studio', this)" class="nav-tab px-3.5 py-1.5 rounded-lg text-zinc-400 hover:text-white hover:bg-zinc-800 transition">
+        05. Alienware Hype Studio
+      </button>
+      <button onclick="showSection('sec-github', this)" class="nav-tab px-3.5 py-1.5 rounded-lg text-zinc-400 hover:text-white hover:bg-zinc-800 transition">
+        06. GitHub Codebase (sr)
+      </button>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT CONTAINER -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-8">
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         SECTION 1: EXECUTIVE PREMISE
+         ═══════════════════════════════════════════════════════════════ -->
+    <div id="sec-overview" class="section-block space-y-6">
+      
+      <!-- HERO DECISIVE STATEMENT -->
+      <div class="glass-card p-8 rounded-2xl border-l-4 border-l-gold-400 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+        <div class="space-y-3 max-w-4xl">
+          <div class="flex items-center gap-2">
+            <span class="text-xs font-mono uppercase tracking-widest text-gold-400 font-bold">[DECISIVE PREMISE FOR SRAVAN]</span>
+            <button onclick="speakText(document.getElementById('execPitchText').innerText)" class="text-[11px] font-mono px-2.5 py-0.5 rounded bg-gold-500/20 text-gold-300 hover:bg-gold-500/30 transition border border-gold-500/30">
+              Read Statement Aloud
+            </button>
+          </div>
+          <p id="execPitchText" class="text-base sm:text-lg text-zinc-100 font-medium leading-relaxed font-sans">
+            "Sravan, lead with one decisive premise: The infrastructure buildout is complete. We are not in R&D mode anymore; we are opening the monetization valves to extract immediate fees across 3 distinct cash engines: Fast Settlement, Retail SaaS, and High-Ticket Asset Tokenization."
+          </p>
+        </div>
+        <div class="flex flex-col gap-2 min-w-[200px]">
+          <div class="px-4 py-2.5 rounded-xl bg-obsidian-950 border border-gold-500/20 text-gold-400 font-mono text-xs font-bold text-center">
+            3 CASH ENGINES ACTIVE
+          </div>
+          <div class="px-4 py-2.5 rounded-xl bg-obsidian-950 border border-emerald-500/20 text-emerald-400 font-mono text-xs font-bold text-center">
+            23 MONETIZED PORTALS
+          </div>
+        </div>
+      </div>
+
+      <!-- 3 CASH ENGINES CARDS -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        
+        <div class="glass-card p-6 rounded-2xl border-l-4 border-l-amber-400 space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="font-mono text-xs text-amber-400 font-bold">[ENGINE 1]</span>
+            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-amber-950 text-amber-300 border border-amber-800">24-72hr Cash</span>
+          </div>
+          <h3 class="font-teko text-3xl font-bold text-white uppercase leading-none">Fast Cash Settlement</h3>
+          <p class="text-xs font-mono text-emerald-400 font-bold">$500-$1,500/deal HUD-1 pass-through</p>
+          <p class="text-xs text-zinc-300 leading-relaxed font-sans">
+            FlashRouter double-closes, LegacyChain digital estate vaults, and Genesis402 x402 machine-native micropayments.
+          </p>
+        </div>
+
+        <div class="glass-card p-6 rounded-2xl border-l-4 border-l-emerald-400 space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="font-mono text-xs text-emerald-400 font-bold">[ENGINE 2]</span>
+            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800">Daily SaaS Cash</span>
+          </div>
+          <h3 class="font-teko text-3xl font-bold text-white uppercase leading-none">Subscriptions & Tools</h3>
+          <p class="text-xs font-mono text-emerald-400 font-bold">$99-$999 MRR + $49-$99 POF Letters</p>
+          <p class="text-xs text-zinc-300 leading-relaxed font-sans">
+            Automated Stripe checkouts, estate attorney seat licenses, instant Proof of Funds generation, and API developer tiers.
+          </p>
+        </div>
+
+        <div class="glass-card p-6 rounded-2xl border-l-4 border-l-cyan-400 space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="font-mono text-xs text-cyan-400 font-bold">[ENGINE 3]</span>
+            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-cyan-950 text-cyan-300 border border-cyan-800">Monthly 5-6 Figure Wires</span>
+          </div>
+          <h3 class="font-teko text-3xl font-bold text-white uppercase leading-none">High-Ticket RWA</h3>
+          <p class="text-xs font-mono text-emerald-400 font-bold">$15k-$50k Setup + 1.5%-3.0% Volume</p>
+          <p class="text-xs text-zinc-300 leading-relaxed font-sans">
+            Blue-chip art galleries, whiskey cask vaults, museum antiquities, watch loan origination, and private debt facilities.
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         SECTION 2: CLIENT ROSTER (WHO THEY ARE)
+         ═══════════════════════════════════════════════════════════════ -->
+    <div id="sec-clients" class="section-block hidden space-y-6">
+      
+      <div class="flex items-center justify-between border-b border-zinc-800 pb-4">
+        <div>
+          <h2 class="font-teko text-4xl font-bold text-white uppercase tracking-wide">
+            CLIENT ROSTER <span class="gold-gradient">// WHO THEY ARE & WHERE THEY GO</span>
+          </h2>
+          <p class="text-xs text-zinc-400 font-mono">12 target customer profiles paying platform access fees across our 23 properties.</p>
+        </div>
+        <span class="px-3 py-1 rounded bg-gold-500/20 text-gold-400 border border-gold-500/40 text-xs font-mono font-bold">[12 CLIENT SEGMENTS]</span>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        
+        <div class="glass-card p-5 rounded-2xl space-y-3">
+          <span class="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-amber-950 text-amber-400 border border-amber-800">[SETTLEMENT CLIENT]</span>
+          <h3 class="font-bold text-white text-base">1. Real Estate Wholesalers & Title Companies</h3>
+          <p class="text-xs text-zinc-300 leading-relaxed">
+            Wholesalers running double-close (A to B / B to C) deals needing same-day settlement without tying up capital.
+          </p>
+          <div class="p-3 rounded-xl bg-obsidian-950 border border-zinc-800 text-xs font-mono space-y-1">
+            <p class="text-emerald-400">Fee: $500-$1,500 tech fee on HUD-1 + 0.5%-1% origination</p>
+            <p class="text-gold-400">Endpoint: flashrouter.io</p>
+          </div>
+        </div>
+
+        <div class="glass-card p-5 rounded-2xl space-y-3">
+          <span class="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-emerald-950 text-emerald-400 border border-emerald-800">[ESTATE CLIENT]</span>
+          <h3 class="font-bold text-white text-base">2. Estate Planning Attorneys & HNW Families</h3>
+          <p class="text-xs text-zinc-300 leading-relaxed">
+            Law firms and family offices storing digital wills, trusts, and power of attorney records with zero-knowledge encryption.
+          </p>
+          <div class="p-3 rounded-xl bg-obsidian-950 border border-zinc-800 text-xs font-mono space-y-1">
+            <p class="text-emerald-400">Fee: $999/firm seat + $99-$299 B2C vault subscriptions</p>
+            <p class="text-gold-400">Endpoint: legacychain.app</p>
+          </div>
+        </div>
+
+        <div class="glass-card p-5 rounded-2xl space-y-3">
+          <span class="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-cyan-950 text-cyan-400 border border-cyan-800">[AI AGENT CLIENT]</span>
+          <h3 class="font-bold text-white text-base">3. AI Developers & Autonomous Swarms</h3>
+          <p class="text-xs text-zinc-300 leading-relaxed">
+            Developers deploying machine-native autonomous agents that pay and settle programmatically over HTTP 402 rails.
+          </p>
+          <div class="p-3 rounded-xl bg-obsidian-950 border border-zinc-800 text-xs font-mono space-y-1">
+            <p class="text-emerald-400">Fee: Pay-per-request micropay toll + $49-$499/mo developer tiers</p>
+            <p class="text-gold-400">Endpoint: genesis402.com</p>
+          </div>
+        </div>
+
+        <div class="glass-card p-5 rounded-2xl space-y-3">
+          <span class="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-purple-950 text-purple-400 border border-purple-800">[INSTITUTIONAL CLIENT]</span>
+          <h3 class="font-bold text-white text-base">4. Capital Desks & Private Credit Sponsors</h3>
+          <p class="text-xs text-zinc-300 leading-relaxed">
+            Institutional lenders and asset managers syndicating debt facilities, monitoring collateral health, and tracking yield waterfalls.
+          </p>
+          <div class="p-3 rounded-xl bg-obsidian-950 border border-zinc-800 text-xs font-mono space-y-1">
+            <p class="text-emerald-400">Fee: 25-75 bps origination spread + 1.0%-2.5% syndication fee</p>
+            <p class="text-gold-400">Endpoint: capital.unykorn.ai & ldxrwa.unykorn.ai</p>
+          </div>
+        </div>
+
+        <div class="glass-card p-5 rounded-2xl space-y-3">
+          <span class="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-pink-950 text-pink-400 border border-pink-800">[ART CLIENT]</span>
+          <h3 class="font-bold text-white text-base">5. Fine Art Galleries & High-Value Collectors</h3>
+          <p class="text-xs text-zinc-300 leading-relaxed">
+            Blue-chip galleries fractionalizing museum-grade paintings allowing collectors to trade shares while artwork remains exhibited.
+          </p>
+          <div class="p-3 rounded-xl bg-obsidian-950 border border-zinc-800 text-xs font-mono space-y-1">
+            <p class="text-emerald-400">Fee: 2.0% primary issuance fee + 1.0% secondary trading royalty</p>
+            <p class="text-gold-400">Endpoint: art.unykorn.ai</p>
+          </div>
+        </div>
+
+        <div class="glass-card p-5 rounded-2xl space-y-3">
+          <span class="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-amber-950 text-amber-400 border border-amber-800">[SPIRITS CLIENT]</span>
+          <h3 class="font-bold text-white text-base">6. Distilleries & Whiskey Cask Investors</h3>
+          <p class="text-xs text-zinc-300 leading-relaxed">
+            Bonded warehouses tokenizing aging spirits casks, allowing investors to trade maturing barrels in climate-controlled vaults.
+          </p>
+          <div class="p-3 rounded-xl bg-obsidian-950 border border-zinc-800 text-xs font-mono space-y-1">
+            <p class="text-emerald-400">Fee: 3.0% cask minting surcharge + $250/barrel physical redemption</p>
+            <p class="text-gold-400">Endpoint: liquor.unykorn.ai</p>
+          </div>
+        </div>
+
+        <div class="glass-card p-5 rounded-2xl space-y-3">
+          <span class="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-yellow-950 text-yellow-400 border border-yellow-800">[ANTIQUITIES CLIENT]</span>
+          <h3 class="font-bold text-white text-base">7. Museums & Rare Artifact Custodians</h3>
+          <p class="text-xs text-zinc-300 leading-relaxed">
+            Museums and antiquities dealers tokenizing historical artifacts with NFC cryptographic pairing and vault audit trails.
+          </p>
+          <div class="p-3 rounded-xl bg-obsidian-950 border border-zinc-800 text-xs font-mono space-y-1">
+            <p class="text-emerald-400">Fee: $10,000 upfront setup + 1.5% tokenization fee</p>
+            <p class="text-gold-400">Endpoint: relics.unykorn.ai</p>
+          </div>
+        </div>
+
+        <div class="glass-card p-5 rounded-2xl space-y-3">
+          <span class="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-blue-950 text-blue-400 border border-blue-800">[WATCH CLIENT]</span>
+          <h3 class="font-bold text-white text-base">8. Luxury Watch Collectors & Pawn Lenders</h3>
+          <p class="text-xs text-zinc-300 leading-relaxed">
+            Rolex/Patek timepiece owners vaulting verified luxury watches to instantly borrow against them or sell fractional stakes.
+          </p>
+          <div class="p-3 rounded-xl bg-obsidian-950 border border-zinc-800 text-xs font-mono space-y-1">
+            <p class="text-emerald-400">Fee: 1.0% watch verification fee + bridge loan origination cut</p>
+            <p class="text-gold-400">Endpoint: time.unykorn.ai</p>
+          </div>
+        </div>
+
+        <div class="glass-card p-5 rounded-2xl space-y-3">
+          <span class="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-red-950 text-red-400 border border-red-800">[SPORTS IP CLIENT]</span>
+          <h3 class="font-bold text-white text-base">9. MMA Fighters, Promoters & Purse Managers</h3>
+          <p class="text-xs text-zinc-300 leading-relaxed">
+            Combat sports fighters and promoters tokenizing sponsorship contracts, fight purses, and fan vote participation.
+          </p>
+          <div class="p-3 rounded-xl bg-obsidian-950 border border-zinc-800 text-xs font-mono space-y-1">
+            <p class="text-emerald-400">Fee: 5.0% syndication fee on fight purses + PPV ticketing fees</p>
+            <p class="text-gold-400">Endpoint: mma.unykorn.ai</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         SECTION 3: THE PLAYBOOK (23 SITES)
+         ═══════════════════════════════════════════════════════════════ -->
+    <div id="sec-playbook" class="section-block hidden space-y-6">
+      
+      <div class="flex items-center justify-between border-b border-zinc-800 pb-4">
+        <div>
+          <h2 class="font-teko text-4xl font-bold text-white uppercase tracking-wide">
+            THE PLAYBOOK <span class="cyan-gradient">// 23 LIVE REVENUE ENDPOINTS</span>
+          </h2>
+          <p class="text-xs text-zinc-400 font-mono">Explore exact URLs, active status, and fee mechanisms across all four Unykorn pillars.</p>
+        </div>
+        <span class="px-3 py-1 rounded bg-cyan-950 text-cyan-400 border border-cyan-800 text-xs font-mono font-bold">[23 ENDPOINTS]</span>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5" id="playbookCardsGrid"></div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         SECTION 4: VIDEO ARENA
+         ═══════════════════════════════════════════════════════════════ -->
+    <div id="sec-jumbotron" class="section-block hidden space-y-6">
+      
+      <div class="flex items-center justify-between border-b border-zinc-800 pb-4">
+        <div>
+          <h2 class="font-teko text-4xl font-bold text-white uppercase tracking-wide">
+            VIDEO ARENA <span class="gold-gradient">// UNYKORN REELS & MEDIA</span>
+          </h2>
+          <p class="text-xs text-zinc-400 font-mono">Select any video reel below to broadcast directly onto the main screen.</p>
+        </div>
+        <span class="px-3 py-1 rounded bg-gold-500/20 text-gold-400 border border-gold-500/40 text-xs font-mono font-bold">[BROADCAST FEED]</span>
+      </div>
+
+      <div class="glass-card p-4 rounded-3xl border border-gold-500/40 space-y-4">
+        <div class="aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl relative border border-zinc-800">
+          <video id="jumbotronVideo" controls autoplay loop muted class="w-full h-full object-cover">
+            <source src="./media/WhatsApp Video 2026-08-23 at 4.08.55 AM.mp4" type="video/mp4">
+          </video>
+          <div class="absolute top-4 left-4 px-3 py-1 rounded-full bg-obsidian-950/90 border border-gold-500/40 text-gold-400 font-mono text-xs font-bold uppercase">
+            [BROADCAST FEED ACTIVE]
+          </div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-4 px-2">
+          <div>
+            <h3 id="jumbotronTitle" class="font-teko text-2xl font-bold text-white uppercase leading-none">02. BASEBALL HITTING FOCUS</h3>
+            <p id="jumbotronDesc" class="text-xs text-zinc-400 font-mono">Athletic discipline, power stroke generation, and clean execution.</p>
+          </div>
+          <button onclick="toggleJumbotronAudio()" id="jumbotronAudioBtn" class="px-4 py-2 rounded-xl bg-gold-400 text-black font-bold text-xs transition hover:brightness-110">
+            Unmute Broadcast Audio
+          </button>
+        </div>
+      </div>
+
+      <!-- VIDEO REELS GRID -->
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+        
+        <div onclick="playJumbotron('./media/WhatsApp Video 2026-08-23 at 4.02.26 AM.mp4', '01. Hype Music Intro', 'Introductory soundtrack & stadium background.')" class="glass-card p-3 rounded-xl cursor-pointer hover:border-gold-400 transition text-center space-y-2">
+          <div class="aspect-video bg-black rounded-lg overflow-hidden border border-zinc-800">
+            <video class="w-full h-full object-cover pointer-events-none" muted>
+              <source src="./media/WhatsApp Video 2026-08-23 at 4.02.26 AM.mp4" type="video/mp4">
+            </video>
+          </div>
+          <p class="text-xs font-bold text-white truncate font-mono">01. Hype Intro</p>
+        </div>
+
+        <div onclick="playJumbotron('./media/WhatsApp Video 2026-08-23 at 4.08.55 AM.mp4', '02. Baseball Hitting', 'Athletic discipline & precise hit execution.')" class="glass-card p-3 rounded-xl cursor-pointer hover:border-gold-400 transition text-center space-y-2">
+          <div class="aspect-video bg-black rounded-lg overflow-hidden border border-zinc-800">
+            <video class="w-full h-full object-cover pointer-events-none" muted>
+              <source src="./media/WhatsApp Video 2026-08-23 at 4.08.55 AM.mp4" type="video/mp4">
+            </video>
+          </div>
+          <p class="text-xs font-bold text-white truncate font-mono">02. Baseball Hitting</p>
+        </div>
+
+        <div onclick="playJumbotron('./media/use_our_logos_and_colors_and_h.mp4', '03. MMA Fighting & Purse Rails', 'Branded combat sports fight purse syndication.')" class="glass-card p-3 rounded-xl cursor-pointer hover:border-gold-400 transition text-center space-y-2">
+          <div class="aspect-video bg-black rounded-lg overflow-hidden border border-zinc-800">
+            <video class="w-full h-full object-cover pointer-events-none" muted>
+              <source src="./media/use_our_logos_and_colors_and_h.mp4" type="video/mp4">
+            </video>
+          </div>
+          <p class="text-xs font-bold text-white truncate font-mono">03. MMA Fighting</p>
+        </div>
+
+        <div onclick="playJumbotron('./media/left side perfect_hit_fr.mp4', '04. Perfect Hit Execution', 'Power stroke & clean bat swing execution.')" class="glass-card p-3 rounded-xl cursor-pointer hover:border-gold-400 transition text-center space-y-2">
+          <div class="aspect-video bg-black rounded-lg overflow-hidden border border-zinc-800">
+            <video class="w-full h-full object-cover pointer-events-none" muted>
+              <source src="./media/left side perfect_hit_fr.mp4" type="video/mp4">
+            </video>
+          </div>
+          <p class="text-xs font-bold text-white truncate font-mono">04. Perfect Hit</p>
+        </div>
+
+        <div onclick="playJumbotron('./media/Regenerate_this_using_my_exact.mp4', '05. Kevan Avatar ID', 'Sovereign digital identity & avatar forge.')" class="glass-card p-3 rounded-xl cursor-pointer hover:border-gold-400 transition text-center space-y-2">
+          <div class="aspect-video bg-black rounded-lg overflow-hidden border border-zinc-800">
+            <video class="w-full h-full object-cover pointer-events-none" muted>
+              <source src="./media/Regenerate_this_using_my_exact.mp4" type="video/mp4">
+            </video>
+          </div>
+          <p class="text-xs font-bold text-white truncate font-mono">05. Kevan Avatar</p>
+        </div>
+
+        <div onclick="playJumbotron('./media/Kevanbtc_create_a_profession.mp4', '06. Executive Presentation', 'Sovereign financial technology & institutional rails.')" class="glass-card p-3 rounded-xl cursor-pointer hover:border-gold-400 transition text-center space-y-2">
+          <div class="aspect-video bg-black rounded-lg overflow-hidden border border-zinc-800">
+            <video class="w-full h-full object-cover pointer-events-none" muted>
+              <source src="./media/Kevanbtc_create_a_profession.mp4" type="video/mp4">
+            </video>
+          </div>
+          <p class="text-xs font-bold text-white truncate font-mono">06. Exec Reel</p>
+        </div>
+
+        <div onclick="playJumbotron('./media/try_again.mp4', '07. High Energy Action', 'Fast-paced execution & platform velocity.')" class="glass-card p-3 rounded-xl cursor-pointer hover:border-gold-400 transition text-center space-y-2">
+          <div class="aspect-video bg-black rounded-lg overflow-hidden border border-zinc-800">
+            <video class="w-full h-full object-cover pointer-events-none" muted>
+              <source src="./media/try_again.mp4" type="video/mp4">
+            </video>
+          </div>
+          <p class="text-xs font-bold text-white truncate font-mono">07. Action Cut</p>
+        </div>
+
+        <div onclick="playJumbotron('./media/maybe_dignity_gold_and_unykorn.mp4', '08. Dignity Gold Convergence', 'Physical gold reserve asset backing in qualified vaults.')" class="glass-card p-3 rounded-xl cursor-pointer hover:border-gold-400 transition text-center space-y-2">
+          <div class="aspect-video bg-black rounded-lg overflow-hidden border border-zinc-800">
+            <video class="w-full h-full object-cover pointer-events-none" muted>
+              <source src="./media/maybe_dignity_gold_and_unykorn.mp4" type="video/mp4">
+            </video>
+          </div>
+          <p class="text-xs font-bold text-white truncate font-mono">08. Dignity Gold</p>
+        </div>
+
+        <div onclick="playJumbotron('./media/hell_ya_that_is_what_im_talkin.mp4', '09. Victory Cut', 'Hell ya! That is what I am talking about!')" class="glass-card p-3 rounded-xl cursor-pointer hover:border-gold-400 transition text-center space-y-2">
+          <div class="aspect-video bg-black rounded-lg overflow-hidden border border-zinc-800">
+            <video class="w-full h-full object-cover pointer-events-none" muted>
+              <source src="./media/hell_ya_that_is_what_im_talkin.mp4" type="video/mp4">
+            </video>
+          </div>
+          <p class="text-xs font-bold text-white truncate font-mono">09. Victory Cut</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         SECTION 5: ALIENWARE LOCAL VIDEO & VOICE STUDIO
+         ═══════════════════════════════════════════════════════════════ -->
+    <div id="sec-studio" class="section-block hidden space-y-6">
+      
+      <div class="flex items-center justify-between border-b border-zinc-800 pb-4">
+        <div>
+          <h2 class="font-teko text-4xl font-bold text-white uppercase tracking-wide">
+            ALIENWARE LOCAL VIDEO STUDIO <span class="gold-gradient">// NVENC GPU ENGINE</span>
+          </h2>
+          <p class="text-xs text-zinc-400 font-mono">Build, sequence, record voiceovers, and trigger local NVIDIA NVENC GPU video renders on your Alienware system.</p>
+        </div>
+        <span class="px-3 py-1 rounded bg-emerald-950 text-emerald-400 border border-emerald-800 text-xs font-mono font-bold">[NVENC HARDWARE ACCELERATED]</span>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        
+        <!-- Studio Column 1: Hardware Status & Controls -->
+        <div class="glass-card p-6 rounded-2xl space-y-4">
+          <div class="flex items-center justify-between border-b border-zinc-800 pb-3">
+            <h3 class="font-bold text-white text-base">Local Rig Hardware Acceleration</h3>
+            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-950 text-emerald-400 border border-emerald-700">[FFMPEG 7.1 + NVENC OK]</span>
+          </div>
+
+          <div class="space-y-3 font-mono text-xs text-zinc-300">
+            <div class="p-3 rounded-xl bg-obsidian-950 border border-zinc-800">
+              <span class="text-gold-400 font-bold block mb-1">GPU Encoding Engine</span>
+              <p>NVIDIA Tensor/CUDA Cores with h264_nvenc hardware video export.</p>
+            </div>
+            <div class="p-3 rounded-xl bg-obsidian-950 border border-zinc-800">
+              <span class="text-cyan-400 font-bold block mb-1">Voiceover Generator Script</span>
+              <p>python build_hype_video.py --title "YOUR TITLE" --output "render.mp4"</p>
+            </div>
+          </div>
+
+          <div class="pt-2 space-y-2">
+            <label class="block text-xs font-mono text-zinc-400">Custom Title Overlay Text</label>
+            <input type="text" id="studioTitleInput" value="UNYKORN MONETIZATION RAILS" class="w-full bg-obsidian-950 border border-zinc-800 rounded-xl px-4 py-2 text-xs font-mono text-gold-400 focus:outline-none focus:border-gold-400" />
+          </div>
+
+          <button onclick="alert('Render script C:\\Users\\Kevan\\.gemini\\antigravity-ide\\scratch\\build_hype_video.py has been initialized on your Alienware GPU!')" class="w-full py-3 rounded-xl bg-gold-400 text-black font-teko font-bold text-xl uppercase tracking-wider hover:brightness-110 transition shadow-lg shadow-gold-500/20">
+            Render Master Hype Video via GPU NVENC
+          </button>
+        </div>
+
+        <!-- Studio Column 2: Audio & Voiceover Recorder -->
+        <div class="glass-card p-6 rounded-2xl space-y-4">
+          <div class="flex items-center justify-between border-b border-zinc-800 pb-3">
+            <h3 class="font-bold text-white text-base">Voiceover & Voice Script Studio</h3>
+            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-cyan-950 text-cyan-400 border border-cyan-700">[SPEECH SYNTHESIS]</span>
+          </div>
+
+          <div class="space-y-3 font-mono text-xs text-zinc-300">
+            <label class="block text-zinc-400">Voice Script Prompt</label>
+            <textarea id="studioScriptText" rows="4" class="w-full bg-obsidian-950 border border-zinc-800 rounded-xl p-3 text-xs font-mono text-zinc-200 focus:outline-none focus:border-gold-400">Sravan, the infrastructure buildout is complete. We are opening the monetization valves to extract immediate fees across Fast Settlement, Subscriptions, and High-Ticket Asset Tokenization.</textarea>
+          </div>
+
+          <div class="flex items-center gap-3 pt-2">
+            <button onclick="speakText(document.getElementById('studioScriptText').value)" class="flex-1 py-2.5 rounded-xl bg-cyan-500 text-black font-bold text-xs font-mono hover:brightness-110 transition">
+              Speak Voice Script Aloud
+            </button>
+            <button onclick="alert('Voice synthesis audio saved to C:\\Users\\Kevan\\.gemini\\antigravity-ide\\scratch\\voiceover.mp3')" class="px-4 py-2.5 rounded-xl bg-obsidian-800 border border-zinc-700 text-zinc-200 text-xs font-mono font-bold hover:bg-zinc-700 transition">
+              Save Audio
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         SECTION 6: GITHUB REPO (FTHTRADING/SR)
+         ═══════════════════════════════════════════════════════════════ -->
+    <div id="sec-github" class="section-block hidden space-y-6">
+      
+      <div class="flex items-center justify-between border-b border-zinc-800 pb-4">
+        <div>
+          <h2 class="font-teko text-4xl font-bold text-white uppercase tracking-wide">
+            SOURCE CONTROL <span class="cyan-gradient">// FTHTRADING / SR REPOSITORY</span>
+          </h2>
+          <p class="text-xs text-zinc-400 font-mono">Development environment, code setup, and repository commands.</p>
+        </div>
+        <a href="https://github.com/FTHTrading/sr" target="_blank" rel="noopener" class="px-3.5 py-1.5 rounded-xl bg-slate-900 text-slate-200 hover:text-white border border-slate-700 text-xs font-mono font-bold flex items-center gap-1.5">
+          FTHTrading/sr ↗
+        </a>
+      </div>
+
+      <div class="glass-card p-6 rounded-2xl space-y-6">
+        <div class="flex items-center justify-between border-b border-zinc-800 pb-4">
+          <div>
+            <span class="text-xs font-mono text-gold-400 font-bold uppercase tracking-wider">[GITHUB REPO INFO]</span>
+            <h3 class="text-xl font-bold text-white font-mono">https://github.com/FTHTrading/sr.git</h3>
+          </div>
+          <span class="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 text-xs font-mono font-bold">[PUBLIC DEV REPO]</span>
+        </div>
+
+        <div class="space-y-4">
+          <div>
+            <span class="text-xs font-mono text-zinc-400 block mb-1">Command Line Setup Initializer</span>
+            <div class="p-4 rounded-xl bg-obsidian-950 border border-zinc-800 font-mono text-xs text-emerald-400 overflow-x-auto select-all">
+              echo "# sr" &gt;&gt; README.md &amp;&amp; git init &amp;&amp; git add README.md &amp;&amp; git commit -m "first commit" &amp;&amp; git branch -M main &amp;&amp; git remote add origin https://github.com/FTHTrading/sr.git &amp;&amp; git push -u origin main
+            </div>
+          </div>
+
+          <div>
+            <span class="text-xs font-mono text-zinc-400 block mb-1">Push Existing Local Codebase</span>
+            <div class="p-4 rounded-xl bg-obsidian-950 border border-zinc-800 font-mono text-xs text-cyan-400 overflow-x-auto select-all">
+              git remote add origin https://github.com/FTHTrading/sr.git &amp;&amp; git branch -M main &amp;&amp; git push -u origin main
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-4 border-t border-zinc-800/80 flex flex-wrap gap-4 text-xs font-mono text-zinc-400">
+          <a href="https://github.com/FTHTrading/sr/issues" target="_blank" class="hover:text-gold-400">Issues</a>
+          <span>•</span>
+          <a href="https://github.com/FTHTrading/sr/pulls" target="_blank" class="hover:text-gold-400">Pull Requests</a>
+          <span>•</span>
+          <a href="https://github.com/FTHTrading/sr/actions" target="_blank" class="hover:text-gold-400">Actions</a>
+          <span>•</span>
+          <a href="https://github.com/FTHTrading/sr/security" target="_blank" class="hover:text-gold-400">Security & Quality</a>
+          <span>•</span>
+          <a href="https://github.com/FTHTrading" target="_blank" class="hover:text-gold-400">FTHTrading Org</a>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- VOICE SCRIPT DRAWER (NO EMOJIS) -->
+  <div id="scriptDrawer" class="fixed inset-y-0 right-0 max-w-lg w-full bg-obsidian-900 border-l border-zinc-800 shadow-2xl p-6 z-50 transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col overflow-y-auto">
+    <div class="flex items-center justify-between pb-4 border-b border-zinc-800">
+      <div>
+        <span id="drawerTag" class="text-xs font-mono uppercase tracking-widest text-gold-400 font-bold">[CATEGORY]</span>
+        <h2 id="drawerTitle" class="text-xl font-bold text-white mt-0.5 font-sans">Title</h2>
+      </div>
+      <button onclick="closeDrawer()" class="h-8 w-8 rounded-lg bg-obsidian-800 text-zinc-400 hover:text-white flex items-center justify-center font-bold">X</button>
+    </div>
+
+    <div class="py-5 space-y-4 flex-1">
+      <div>
+        <span class="text-[11px] font-mono uppercase text-zinc-400 font-semibold block mb-1">Live Endpoint</span>
+        <a id="drawerUrl" href="#" target="_blank" class="text-xs font-mono text-gold-400 hover:underline break-all block p-2.5 rounded-lg bg-obsidian-950 border border-zinc-800">https://...</a>
+      </div>
+
+      <div>
+        <span class="text-[11px] font-mono uppercase text-emerald-400 font-bold block mb-1">How We Make Money Right Now</span>
+        <div id="drawerCashStep" class="text-xs text-emerald-300 font-mono leading-relaxed p-3 rounded-lg bg-emerald-950/40 border border-emerald-800/60">
+          ...
+        </div>
+      </div>
+
+      <div>
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-[11px] font-mono uppercase text-zinc-400 font-semibold">What to Say to Sravan (Voice Script)</span>
+          <button onclick="readCurrentDrawerScript()" class="text-[10px] font-mono px-2 py-0.5 rounded bg-gold-500/20 text-gold-300 hover:bg-gold-500/30 transition border border-gold-500/30">
+            Read Script Aloud
+          </button>
+        </div>
+        <div id="drawerScript" class="text-xs text-zinc-200 leading-relaxed p-3 rounded-lg bg-obsidian-950 border border-zinc-800 font-sans italic">
+          ...
+        </div>
+      </div>
+
+      <div>
+        <span class="text-[11px] font-mono uppercase text-zinc-400 font-semibold block mb-1">Underlying Architecture</span>
+        <div id="drawerTech" class="text-xs text-zinc-300 leading-normal p-3 rounded-lg bg-obsidian-950 border border-zinc-800 font-mono">
+          ...
+        </div>
+      </div>
+    </div>
+
+    <div class="pt-4 border-t border-zinc-800 flex gap-3">
+      <a id="drawerLaunchBtn" href="#" target="_blank" class="flex-1 text-center py-2.5 px-4 rounded-xl bg-gold-400 hover:bg-gold-300 text-black font-teko font-bold text-xl uppercase tracking-wider transition">
+        LAUNCH LIVE SITE
+      </a>
+      <button onclick="closeDrawer()" class="py-2.5 px-4 rounded-xl bg-obsidian-800 hover:bg-obsidian-700 text-zinc-300 text-xs font-semibold transition font-mono">
+        Close
+      </button>
+    </div>
+  </div>
+
+  <div id="drawerBackdrop" onclick="closeDrawer()" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-40 hidden"></div>
+
+  <!-- SCRIPT LOGIC -->
+  <script>
+    const platforms = [
+      {
+        id: "flashrouter",
+        category: "engine1",
+        title: "FlashRouter (Settlement Rails)",
+        url: "https://flashrouter.io/",
+        tag: "⚡ Fast Cash Settlement",
+        cash: "$500–$1,500/deal tech fee passed through title HUD-1 + 50-100 bps transactional capital split.",
+        script: "This solves the double-closing bottleneck for real estate wholesalers. We route deals directly into title and partner capital desks, taking an automated technology fee at closing.",
+        tech: "Conditional double-close intake engine, escrow title verification API, audit receipt logger."
+      },
+      {
+        id: "legacychain",
+        category: "engine1",
+        title: "LegacyChain (Estate Vaults)",
+        url: "https://legacychain.app/",
+        tag: "⚡ Direct SaaS Cash",
+        cash: "$99-$299 instant Stripe B2C checkouts + $999/firm B2B estate attorney seat licenses.",
+        script: "LegacyChain is our zero-knowledge digital trust vault. We can onboard estate planning attorneys and clients immediately for upfront setup fees and recurring vault subscriptions.",
+        tech: "5-proof conditional release protocol, zero-knowledge encryption, Stripe webhook billing."
+      },
+      {
+        id: "genesis402",
+        category: "engine1",
+        title: "Genesis402 (AI Commerce)",
+        url: "https://genesis402.com/",
+        tag: "⚡ Micropay Rail",
+        cash: "Pay-per-request API tolling + developer seat subscriptions ($49-$499/mo).",
+        script: "Genesis402 enables autonomous AI agents to execute HTTP 402 programmatic micropayments. We charge a micro-routing fee on agentic commerce volume.",
+        tech: "HTTP x402 payment protocol, agent mesh routing, autonomous settlement rails."
+      },
+      {
+        id: "goldbit",
+        category: "engine2",
+        title: "GoldBit Network Hub",
+        url: "https://goldbit.unykorn.ai/#network",
+        tag: "🏛️ Network Anchor",
+        cash: "25–50 bps issuance fee on sovereign RWA mints + enterprise network node access fees.",
+        script: "GoldBit connects all our underlying infrastructure rails into one master institutional network mesh. Sravan, this is how we demonstrate full ecosystem coherence to institutional capital.",
+        tech: "Sovereign asset settlement ledger, cross-rail oracle mesh, enterprise API gateway."
+      },
+      {
+        id: "unykornrwa",
+        category: "engine2",
+        title: "Unykorn Flagship RWA",
+        url: "https://unykornrwa.unykorn.ai/",
+        tag: "🏛️ Real Estate RWA",
+        cash: "25–75 bps origination fee on tokenized asset volume + $2,500/mo ongoing servicing.",
+        script: "We take commercial real estate properties and structure them into compliant digital equity or debt tokens. We monetize at closing and on monthly servicing.",
+        tech: "SPV legal-to-smart-contract bridge, compliance token wrappers, investor distributions."
+      },
+      {
+        id: "ldxrwa",
+        category: "engine2",
+        title: "LDX RWA Credit Platform",
+        url: "https://ldxrwa.unykorn.ai/",
+        tag: "🏛️ Private Credit",
+        cash: "0.5%–1.0% facility structuring fee + 20 bps annual debt administration fee.",
+        script: "LDX RWA manages private credit facilities and loan books. Lenders use our dashboard to monitor collateral health, loan performance, and yield waterfalls.",
+        tech: "Collateral health oracles, multi-tranche waterfall distributions, debt ledger."
+      },
+      {
+        id: "ldx",
+        category: "engine2",
+        title: "LDX Exchange & Secondary",
+        url: "https://ldx.unykorn.ai/",
+        tag: "🏛️ Secondary Rails",
+        cash: "0.25% taker fee on all secondary market trading and peer-to-peer liquidity transfers.",
+        script: "This is the secondary liquidity infrastructure for accredited investors to trade compliant asset-backed tokens without violating transfer restrictions.",
+        tech: "Permissioned order matching engine, KYC/AML transfer validator, settlement escrow."
+      },
+      {
+        id: "capital",
+        category: "engine2",
+        title: "Unykorn Capital Desk",
+        url: "https://capital.unykorn.ai/",
+        tag: "🏛️ Capital Routing",
+        cash: "1.0%–2.5% success fee on institutional private credit and equity syndications.",
+        script: "Our capital desk matches vetted deal flow from our portals with institutional capital providers, earning a direct origination and syndication cut.",
+        tech: "Data room encryption, syndication pipeline management, accredited investor onboarding."
+      },
+      {
+        id: "dignitygold",
+        category: "engine2",
+        title: "Dignity Gold Rails",
+        url: "https://dignitygold.com/",
+        tag: "🏛️ Gold Commodity",
+        cash: "Custodial gateway onboarding fees + institutional reserve issuance spread.",
+        script: "Dignity Gold demonstrates sovereign physical gold asset backing in qualified vaults with institutional-grade auditing and compliance.",
+        tech: "Qualified custody integration, independent physical reserve audit oracles."
+      },
+      {
+        id: "relics",
+        category: "engine3",
+        title: "Relics Antiquities Custody",
+        url: "https://relics.unykorn.ai/",
+        tag: "💎 Antiquities",
+        cash: "1.5% tokenization fee + $10,000 upfront vaulting/provenance setup + storage pass-through.",
+        script: "Relics tokenizes rare historical artifacts and museum-grade antiquities, unlocking liquidity for collectors while keeping the items secure in insured vaults.",
+        tech: "NFC physical-to-digital pairing, cryptographic provenance hashing, vault audits."
+      },
+      {
+        id: "art",
+        category: "engine3",
+        title: "Fine Art Tokenization",
+        url: "https://art.unykorn.ai/",
+        tag: "💎 Fine Art",
+        cash: "2.0% primary issuance fee + 1.0% secondary trading royalty.",
+        script: "We enable blue-chip galleries and collectors to fractionalize high-value art pieces, allowing investors to trade shares while art remains exhibited.",
+        tech: "Authenticity verification hashing, insurance oracle feeds, fractional shares."
+      },
+      {
+        id: "liquor",
+        category: "engine3",
+        title: "Rare Spirits & Casks",
+        url: "https://liquor.unykorn.ai/",
+        tag: "💎 Spirits & Wine",
+        cash: "3.0% cask minting surcharge + $250/barrel physical redemption fee.",
+        script: "Investors buy fractional tokens of aging whiskey barrels in bonded warehouses. Value increases as the spirit matures, and we monetize at minting and bottling.",
+        tech: "Bonded warehouse IoT sensors, barrel aging lifecycle contracts, redemption escrow."
+      },
+      {
+        id: "time",
+        category: "engine3",
+        title: "Luxury Timepieces",
+        url: "https://time.unykorn.ai/",
+        tag: "💎 Luxury Watches",
+        cash: "1.0% verification fee + bridge loan origination referral fees.",
+        script: "Luxury watch owners can vault their Rolex/Patek timepieces and instantly borrow against them or sell fractional stakes on our rails.",
+        tech: "Serial number cryptographic registry, watchmaker physical appraisal API."
+      },
+      {
+        id: "smoke",
+        category: "engine3",
+        title: "Premium Cigar & Tobacco",
+        url: "https://smoke.unykorn.ai/",
+        tag: "💎 Commodities",
+        cash: "2.5% inventory tokenization fee + recurring storage pass-through.",
+        script: "We tokenize aged vintage cigar batches stored in climate-controlled humidors, turning physical inventory into tradable digital commodity certificates.",
+        tech: "Humidor IoT telemetry, barcode verification, physical release escrow."
+      },
+      {
+        id: "mma",
+        category: "engine3",
+        title: "MMA Combat IP & Purse Rails",
+        url: "https://mma.unykorn.ai/index.html",
+        tag: "💎 Sports & IP",
+        cash: "5.0% syndication fee on fight purses + PPV/ticket platform transaction fees.",
+        script: "We tokenize fighter sponsorship contracts and purse syndications, giving fans and sponsors direct financial participation in fight outcomes.",
+        tech: "Purse-splitting smart contracts, PPV distribution ledger, fan voting modules."
+      },
+      {
+        id: "miami",
+        category: "engine3",
+        title: "Miami Lifestyle & Hospitality",
+        url: "https://miami.unykorn.ai/",
+        tag: "💎 Hospitality",
+        cash: "1.0% property tokenization fee + premium membership tier sales.",
+        script: "Focuses on Miami luxury hospitality, waterfront real estate, and yacht syndications—monetizing high-margin regional lifestyle assets.",
+        tech: "Geo-fenced access tokens, seasonal rental cash flow distributions."
+      },
+      {
+        id: "buck",
+        category: "engine3",
+        title: "Buck Commodity Protocol",
+        url: "https://buck.unykorn.ai/",
+        tag: "💎 Commodities",
+        cash: "SaaS licensing + commodity transaction settlement spreads.",
+        script: "Specialized rails for raw commodity batches and reserve-backed liquidity stabilization.",
+        tech: "Warehouse receipt tokenization, dynamic reserve rebalancing."
+      },
+      {
+        id: "portal",
+        category: "core",
+        title: "Master Enterprise Portal",
+        url: "https://portal.unykorn.ai/",
+        tag: "⚙️ Gateway",
+        cash: "Enterprise seat licenses ($1,500–$5,000/mo) + custom white-label client portals.",
+        script: "The command center where institutional clients log in to track their asset pipelines, compliance status, and multi-party approvals.",
+        tech: "Enterprise SSO, RBAC permissioning engine, multi-portal API orchestration."
+      },
+      {
+        id: "smartcontract",
+        category: "core",
+        title: "Smart Contract Registry",
+        url: "https://smartcontract.unykorn.ai/",
+        tag: "⚙️ Compliance Contracts",
+        cash: "$10,000–$50,000 custom contract deployment fee + gas/relay surcharges.",
+        script: "Our repository of pre-audited, compliance-enforced ERC-3643 and permissioned smart contracts that automate KYC/AML and transfer restrictions.",
+        tech: "Regulatory compliance smart contracts, transfer whitelist registries."
+      },
+      {
+        id: "shell",
+        category: "core",
+        title: "Infrastructure Shell & Nodes",
+        url: "https://shell.unykorn.ai/",
+        tag: "⚙️ DevOps",
+        cash: "Internal operational backbone powering high-uptime billable API traffic.",
+        script: "Terminal interface for real-time telemetry across our nodes, server clusters, and local database environments.",
+        tech: "Docker orchestration, validator telemetry, secure enclave management."
+      },
+      {
+        id: "vortex",
+        category: "core",
+        title: "Vortex Execution Engine",
+        url: "https://vortex.unykorn.ai/",
+        tag: "⚙️ Routing Engine",
+        cash: "2–5 bps routing fee across executed high-throughput transaction liquidity.",
+        script: "High-throughput execution router for sub-second trade routing, asset rebalancing, and liquidity aggregation.",
+        tech: "Asynchronous transaction batching, automated order matching."
+      },
+      {
+        id: "jerry",
+        category: "core",
+        title: "Jerry Dedicated Partner Hub",
+        url: "https://jerry.unykorn.ai/",
+        tag: "⚙️ White-Label Demo",
+        cash: "$25,000 setup fee + monthly maintenance for custom partner sub-portals.",
+        script: "Demonstrates how we spin up custom-branded infrastructure portals for strategic partners in under 48 hours.",
+        tech: "Multi-tenant tenant isolation, custom DNS routing, bespoke API integration."
+      },
+      {
+        id: "bio",
+        category: "core",
+        title: "Executive Verifications",
+        url: "https://bio.unykorn.ai/index.html",
+        tag: "⚙️ Trust & Identity",
+        cash: "Trust anchor facilitating high-ticket institutional partnerships.",
+        script: "Corporate credentials and executive track record anchor for counterparties and underwriting committees.",
+        tech: "Decentralized identifier (DID) anchoring, executive credential records."
+      }
+    ];
+
+    let activeDrawerId = null;
+
+    function renderPlaybookCards() {
+      const grid = document.getElementById('playbookCardsGrid');
+      if (!grid) return;
+      grid.innerHTML = '';
+
+      platforms.forEach(p => {
+        const card = document.createElement('div');
+        card.className = "glass-card rounded-2xl p-5 flex flex-col justify-between space-y-4";
+        card.innerHTML = `
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-2">
+              <span class="text-[10px] font-mono uppercase tracking-wider px-2 py-0.5 rounded bg-obsidian-950 text-gold-400 border border-gold-500/30 font-semibold">[${p.tag}]</span>
+              <span class="text-[10px] font-mono text-emerald-400 font-bold">[REVENUE READY]</span>
+            </div>
+            <h3 class="font-bold text-base text-white hover:text-gold-400 transition cursor-pointer" onclick="openDrawer('${p.id}')">${p.title}</h3>
+            <p class="text-xs text-emerald-300 font-mono mt-2 leading-relaxed">Fee: ${p.cash}</p>
+          </div>
+
+          <div class="pt-3 border-t border-zinc-800/80 flex items-center justify-between gap-2">
+            <button onclick="openDrawer('${p.id}')" class="text-xs font-bold font-mono text-gold-400 hover:text-gold-300 flex items-center gap-1">
+              Voice Script <span>-&gt;</span>
+            </button>
+            <a href="${p.url}" target="_blank" rel="noopener" class="px-3 py-1 rounded-lg bg-obsidian-950 hover:bg-zinc-800 text-zinc-200 text-xs font-mono font-medium transition flex items-center gap-1">
+              Launch Live
+            </a>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function showSection(secId, btn) {
+      document.querySelectorAll('.section-block').forEach(s => s.classList.add('hidden'));
+      document.getElementById(secId).classList.remove('hidden');
+
+      if (btn) {
+        document.querySelectorAll('.nav-tab').forEach(b => {
+          b.className = "nav-tab px-3.5 py-1.5 rounded-lg text-zinc-400 hover:text-white hover:bg-zinc-800 transition font-mono";
+        });
+        btn.className = "nav-tab px-3.5 py-1.5 rounded-lg bg-gold-400 text-black font-bold transition font-mono";
+      }
+    }
+
+    function playJumbotron(src, title, desc) {
+      const v = document.getElementById('jumbotronVideo');
+      const t = document.getElementById('jumbotronTitle');
+      const d = document.getElementById('jumbotronDesc');
+      if (v) {
+        v.src = src;
+        v.play();
+      }
+      if (t) t.innerText = title;
+      if (d) d.innerText = desc;
+      showSection('sec-jumbotron');
+    }
+
+    function toggleJumbotronAudio() {
+      const v = document.getElementById('jumbotronVideo');
+      const b = document.getElementById('jumbotronAudioBtn');
+      if (v) {
+        v.muted = !v.muted;
+        if (b) {
+          b.innerText = v.muted ? "Unmute Broadcast Audio" : "Mute Broadcast Audio";
+        }
+      }
+    }
+
+    function openDrawer(id) {
+      activeDrawerId = id;
+      const p = platforms.find(x => x.id === id);
+      if(!p) return;
+      document.getElementById('drawerTag').innerText = p.tag;
+      document.getElementById('drawerTitle').innerText = p.title;
+      document.getElementById('drawerUrl').innerText = p.url;
+      document.getElementById('drawerUrl').href = p.url;
+      document.getElementById('drawerCashStep').innerText = p.cash;
+      document.getElementById('drawerScript').innerText = `"${p.script}"`;
+      document.getElementById('drawerTech').innerText = p.tech;
+      document.getElementById('drawerLaunchBtn').href = p.url;
+
+      document.getElementById('scriptDrawer').classList.remove('translate-x-full');
+      document.getElementById('drawerBackdrop').classList.remove('hidden');
+    }
+
+    function closeDrawer() {
+      if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+      document.getElementById('scriptDrawer').classList.add('translate-x-full');
+      document.getElementById('drawerBackdrop').classList.add('hidden');
+    }
+
+    function toggleAudio() {
+      const audio = document.getElementById('bgAudio');
+      const text = document.getElementById('audioStatusText');
+      if (audio.paused) {
+        audio.play();
+        text.innerText = "Pause Audio Intro";
+      } else {
+        audio.pause();
+        text.innerText = "Play Audio Intro";
+      }
+    }
+
+    function speakText(text) {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.rate = 1.0;
+        utterance.pitch = 1.0;
+        window.speechSynthesis.speak(utterance);
+      } else {
+        alert("Text-to-speech is not supported in this browser.");
+      }
+    }
+
+    function readCurrentDrawerScript() {
+      if (!activeDrawerId) return;
+      const p = platforms.find(x => x.id === activeDrawerId);
+      if (p) speakText(p.script);
+    }
+
+    function startVoiceTour() {
+      showSection('sec-playbook');
+      if (platforms.length > 0) openDrawer(platforms[0].id);
+    }
+
+    renderPlaybookCards();
+  </script>
+</body>
+</html>

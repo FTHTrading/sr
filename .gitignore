@@ -1,0 +1,17 @@
+# Dependencies & Build Outputs
+node_modules/
+dist/
+build/
+.cache/
+
+# Temporary Render Outputs
+*.tmp
+concat_list.txt
+
+# Environment & Logs
+.env
+*.log
+.DS_Store
+
+# Large media originals (kept locally in media/)
+# media/
