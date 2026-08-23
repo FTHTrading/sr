@@ -86,23 +86,22 @@
 </head>
 <body class="min-h-screen flex flex-col font-sans selection:bg-pink-500/30 selection:text-pink-200">
 
-  <!-- BACKGROUND AUDIO INTRO TRACK -->
+  <!-- BACKGROUND AUDIO INTRO TRACK (LINKIN PARK MIAMI VICE) -->
   <audio id="bgAudio" loop preload="auto">
-    <source src="./media/WhatsApp Video 2026-08-23 at 4.02.26 AM.mp4" type="video/mp4">
+    <source src="./media/miami_vice_linkin_park.mp3" type="audio/mp3">
   </audio>
 
   <!-- TOP STADIUM TICKER MARQUEE (NO EMOJIS) -->
   <div class="bg-miamiBlack border-b border-pink-500/30 py-2 overflow-hidden font-mono text-[11px] uppercase tracking-widest text-pink-400">
     <div class="whitespace-nowrap flex animate-ticker">
-      <span class="mx-6 flex items-center gap-2"><strong class="text-cyan-400">[MIAMI VICE SQUAD]</strong> CROCKETT (KEVAN) • TUBBS (BUCK) • POLICE CHIEF SRAVAN</span>
+      <span class="mx-6 flex items-center gap-2"><strong class="text-cyan-400">[MIAMI VICE SOUNDTRACK]</strong> LINKIN PARK & JAY-Z NUMB/ENCORE SOUNDTRACK LOADED</span>
+      <span class="mx-6 flex items-center gap-2"><strong class="text-white">[MIAMI VICE SQUAD]</strong> CROCKETT (KEVAN) • TUBBS (BUCK) • POLICE CHIEF SRAVAN</span>
       <span class="mx-6 flex items-center gap-2"><strong class="text-white">[MEDIA GALLERY]</strong> 589 SYSTEM VIDEOS ORGANIZED IN USER VIDEOS GALLERY</span>
       <span class="mx-6 flex items-center gap-2"><strong class="text-white">[FLASHROUTER]</strong> DOUBLE-CLOSE SETTLEMENT ($500-$1.5K HUD-1 TECH FEES)</span>
-      <span class="mx-6 flex items-center gap-2"><strong class="text-white">[LEGACYCHAIN]</strong> $999/FIRM B2B ATTORNEY SEATS & $99-$299 B2C VAULTS</span>
-      <span class="mx-6 flex items-center gap-2"><strong class="text-white">[GENESIS402]</strong> x402 PROGRAMMATIC AGENT MICROPAYMENTS ($49-$499/MO)</span>
       <!-- Loop duplicate -->
-      <span class="mx-6 flex items-center gap-2"><strong class="text-cyan-400">[MIAMI VICE SQUAD]</strong> CROCKETT (KEVAN) • TUBBS (BUCK) • POLICE CHIEF SRAVAN</span>
+      <span class="mx-6 flex items-center gap-2"><strong class="text-cyan-400">[MIAMI VICE SOUNDTRACK]</strong> LINKIN PARK & JAY-Z NUMB/ENCORE SOUNDTRACK LOADED</span>
+      <span class="mx-6 flex items-center gap-2"><strong class="text-white">[MIAMI VICE SQUAD]</strong> CROCKETT (KEVAN) • TUBBS (BUCK) • POLICE CHIEF SRAVAN</span>
       <span class="mx-6 flex items-center gap-2"><strong class="text-white">[MEDIA GALLERY]</strong> 589 SYSTEM VIDEOS ORGANIZED IN USER VIDEOS GALLERY</span>
-      <span class="mx-6 flex items-center gap-2"><strong class="text-white">[FLASHROUTER]</strong> DOUBLE-CLOSE SETTLEMENT ($500-$1.5K HUD-1 TECH FEES)</span>
     </div>
   </div>
 
@@ -113,7 +112,7 @@
         <div class="space-y-1">
           <div class="flex flex-wrap items-center gap-3">
             <span class="text-xs font-mono px-3 py-1 rounded-full bg-pink-500/20 text-pink-300 border border-pink-500/40 uppercase font-extrabold tracking-widest">
-              [DET. CROCKETT & DET. TUBBS & POLICE CHIEF SRAVAN]
+              [LINKIN PARK MIAMI VICE SOUNDTRACK ACTIVE]
             </span>
             <span class="text-xs font-mono text-cyan-400 font-bold">[589 VIDEOS ORGANIZED]</span>
           </div>
@@ -146,15 +145,15 @@
               miami.unykorn.ai
             </span>
           </div>
-          <p class="text-[11px] text-zinc-400 font-mono">Police Chief Sravan Command Desk • 589 Videos Organized</p>
+          <p class="text-[11px] text-zinc-400 font-mono">Police Chief Sravan Command Desk • Linkin Park Soundtrack Active</p>
         </div>
       </div>
 
       <!-- Header Controls -->
       <div class="flex items-center gap-3">
         <!-- Audio Track Toggle -->
-        <button id="audioToggleBtn" onclick="toggleAudio()" class="px-3.5 py-2 rounded-xl bg-obsidian-800 hover:bg-obsidian-700 border border-pink-500/40 text-pink-300 text-xs font-mono font-bold transition">
-          <span id="audioStatusText">Play Audio Intro</span>
+        <button id="audioToggleBtn" onclick="toggleAudio()" class="px-3.5 py-2 rounded-xl bg-pink-950/80 hover:bg-pink-900 border border-pink-500/50 text-pink-300 text-xs font-mono font-bold transition flex items-center gap-2 shadow-lg shadow-pink-500/20">
+          <span id="audioStatusText">Play Linkin Park Track</span>
         </button>
 
         <!-- GitHub Repo Link -->
@@ -421,7 +420,7 @@
         <div class="miami-glass p-4 rounded-xl border-l-4 border-l-cyan-400 space-y-1">
           <span class="text-cyan-400 font-bold block">[FOLDER 02]</span>
           <p class="text-white font-bold">02_Executive_Promos_Hype</p>
-          <p class="text-zinc-400 text-[11px]">Kevan Crockett exec reels & unykorn promos.</p>
+          <p class="text-zinc-400 text-[11px]">Kevan Crockett exec reels & Linkin Park soundtrack.</p>
         </div>
         <div class="miami-glass p-4 rounded-xl border-l-4 border-l-yellow-400 space-y-1">
           <span class="text-yellow-400 font-bold block">[FOLDER 03]</span>
@@ -991,10 +990,10 @@
       const text = document.getElementById('audioStatusText');
       if (audio.paused) {
         audio.play();
-        text.innerText = "Pause Audio Intro";
+        text.innerText = "Pause Linkin Park Track";
       } else {
         audio.pause();
-        text.innerText = "Play Audio Intro";
+        text.innerText = "Play Linkin Park Track";
       }
     }
 
