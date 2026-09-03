@@ -1,0 +1,2646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UnyKorn Cockpit v2 // Anti-Gravity</title>
+    <!-- Google Fonts for Premium Aesthetics -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Outfit:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #07090e;
+            --bg-glass: rgba(13, 17, 28, 0.7);
+            --bg-glass-hover: rgba(255, 255, 255, 0.04);
+            --border-glass: rgba(255, 255, 255, 0.08);
+            --accent-glow: #00ffcc;
+            --accent-purple: #bd93f9;
+            --accent-pink: #ff79c6;
+            --text-main: #f0f4f8;
+            --text-dim: #7a8c9e;
+            --success: #50fa7b;
+            --error: #ff5555;
+            --font-display: 'Outfit', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: var(--bg-dark);
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(0, 255, 204, 0.03) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(189, 147, 249, 0.04) 0px, transparent 50%);
+            font-family: var(--font-display);
+            color: var(--text-main);
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        /* Custom Scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--border-glass);
+        }
+
+        /* Anti-Gravity Grid Layout */
+        .cockpit-container {
+            display: grid;
+            grid-template-columns: 260px 1fr 400px;
+            height: 100vh;
+            background: #020306;
+        }
+
+        /* Sidebar Pane */
+        .sidebar {
+            background: var(--bg-glass);
+            backdrop-filter: blur(25px);
+            border-right: 1px solid var(--border-glass);
+            padding: 24px 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow-y: auto;
+        }
+
+        .brand-section {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 30px;
+            padding: 0 8px;
+        }
+
+        .logo-mark {
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, var(--accent-glow), var(--accent-purple));
+            box-shadow: 0 0 15px rgba(0, 255, 204, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #000;
+            font-size: 0.9rem;
+        }
+
+        .brand-title {
+            font-family: var(--font-display);
+            font-size: 1.15rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            background: linear-gradient(to right, #ffffff, #a0aec0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-title {
+            font-size: 0.68rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            margin: 20px 8px 10px 8px;
+            font-family: var(--font-mono);
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 14px;
+            margin-bottom: 6px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 0.85rem;
+            font-weight: 500;
+            border: 1px solid transparent;
+            color: var(--text-dim);
+        }
+
+        .nav-item:hover {
+            background: var(--bg-glass-hover);
+            color: var(--text-main);
+            border-color: rgba(255, 255, 255, 0.03);
+        }
+
+        .nav-item.active {
+            background: rgba(0, 255, 204, 0.05);
+            border-color: rgba(0, 255, 204, 0.15);
+            color: var(--accent-glow);
+            box-shadow: 0 0 20px rgba(0, 255, 204, 0.03);
+        }
+
+        .nav-item .badge {
+            font-size: 0.7rem;
+            padding: 1px 6px;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-dim);
+            font-family: var(--font-mono);
+        }
+
+        .nav-item.active .badge {
+            background: rgba(0, 255, 204, 0.15);
+            color: var(--accent-glow);
+        }
+
+        /* Viewport Pane */
+        .viewport-pane {
+            background: #04060b;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            height: 100vh;
+        }
+
+        .viewport-header {
+            background: rgba(10, 14, 23, 0.8);
+            backdrop-filter: blur(15px);
+            padding: 14px 24px;
+            border-bottom: 1px solid var(--border-glass);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .viewport-title-area {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .viewport-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent-glow);
+            box-shadow: 0 0 10px var(--accent-glow);
+        }
+
+        #viewport-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .pills-container {
+            display: flex;
+            gap: 8px;
+        }
+
+        .status-pill {
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            font-family: var(--font-mono);
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-glass);
+            color: var(--text-dim);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .status-pill .indicator {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .status-pill.active {
+            color: var(--accent-glow);
+            border-color: rgba(0, 255, 204, 0.2);
+            background: rgba(0, 255, 204, 0.04);
+        }
+        .status-pill.active .indicator {
+            background: var(--accent-glow);
+            box-shadow: 0 0 8px var(--accent-glow);
+        }
+
+        .status-pill.danger {
+            color: var(--accent-pink);
+            border-color: rgba(255, 121, 198, 0.2);
+            background: rgba(255, 121, 198, 0.04);
+        }
+        .status-pill.danger .indicator {
+            background: var(--accent-pink);
+            box-shadow: 0 0 8px var(--accent-pink);
+        }
+
+        .viewport-content {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .embedded-frame {
+            width: 100%;
+            height: 100%;
+            border: none;
+            background: transparent;
+            display: none;
+        }
+
+        .embedded-frame.active {
+            display: block;
+        }
+
+        /* Local Screen Layouts */
+        .local-screen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            padding: 30px;
+            overflow-y: auto;
+            display: none;
+            animation: fadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .local-screen.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Intelligence & Chat Pane */
+        .intel-pane {
+            background: var(--bg-glass);
+            backdrop-filter: blur(25px);
+            border-left: 1px solid var(--border-glass);
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        .chat-output {
+            flex: 1;
+            padding: 24px;
+            overflow-y: auto;
+            font-size: 0.85rem;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .message {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            max-width: 85%;
+        }
+
+        .message.system {
+            align-self: center;
+            text-align: center;
+            max-width: 90%;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px dashed var(--border-glass);
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            color: var(--accent-glow);
+        }
+
+        .message.user {
+            align-self: flex-end;
+            background: rgba(0, 255, 204, 0.06);
+            border: 1px solid rgba(0, 255, 204, 0.15);
+            padding: 12px 16px;
+            border-radius: 12px 12px 2px 12px;
+            color: #fff;
+        }
+
+        .message.assistant {
+            align-self: flex-start;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-glass);
+            padding: 12px 16px;
+            border-radius: 12px 12px 12px 2px;
+            color: var(--text-main);
+        }
+
+        .message-meta {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            color: var(--text-dim);
+            margin-bottom: 2px;
+        }
+
+        .chat-input-container {
+            padding: 16px;
+            border-top: 1px solid var(--border-glass);
+            background: rgba(4, 6, 11, 0.4);
+        }
+
+        .input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .cockpit-input {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-glass);
+            padding: 14px 45px 14px 16px;
+            color: #fff;
+            border-radius: 8px;
+            font-family: var(--font-mono);
+            font-size: 0.82rem;
+            outline: none;
+            transition: all 0.25s ease;
+        }
+
+        .cockpit-input:focus {
+            border-color: var(--accent-glow);
+            background: rgba(255, 255, 255, 0.03);
+            box-shadow: 0 0 15px rgba(0, 255, 210, 0.05);
+        }
+
+        .send-btn {
+            position: absolute;
+            right: 12px;
+            background: transparent;
+            border: none;
+            color: var(--text-dim);
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: color 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .send-btn:hover {
+            color: var(--accent-glow);
+        }
+
+        /* Typography & Custom Card elements */
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-top: 0;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .subtitle {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            margin-bottom: 25px;
+        }
+
+        .grid-dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-glass);
+            border-radius: 12px;
+            padding: 20px;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .card:hover {
+            border-color: rgba(255, 255, 255, 0.12);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .card-title {
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-dim);
+            font-family: var(--font-mono);
+        }
+
+        .metric {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #fff;
+            margin: 10px 0;
+        }
+
+        .status-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.78rem;
+            font-family: var(--font-mono);
+        }
+
+        /* BP Blueprint Visual Canvas Mock */
+        .blueprint-canvas {
+            width: 100%;
+            height: 260px;
+            border: 1px solid var(--border-glass);
+            border-radius: 8px;
+            background: 
+                radial-gradient(circle, rgba(0, 255, 204, 0.05) 1px, transparent 1px) 0 0 / 20px 20px,
+                #070a10;
+            position: relative;
+            overflow: hidden;
+            margin-top: 15px;
+        }
+
+        .blueprint-node {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--accent-glow);
+            box-shadow: 0 0 10px var(--accent-glow);
+        }
+
+        /* Loading Indicator */
+        .typing-indicator {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 8px;
+        }
+
+        .typing-indicator span {
+            width: 6px;
+            height: 6px;
+            background: var(--text-dim);
+            border-radius: 50%;
+            animation: bounce 1.4s infinite ease-in-out both;
+        }
+
+        .typing-indicator span:nth-child(1) { animation-delay: -0.32s; }
+        .typing-indicator span:nth-child(2) { animation-delay: -0.16s; }
+
+        @keyframes bounce {
+            0%, 80%, 100% { transform: scale(0); }
+            40% { transform: scale(1.0); }
+        }
+
+        /* Stack layer controls */
+        .stack-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .stack-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 16px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.01);
+            border: 1px solid var(--border-glass);
+        }
+
+        /* Toggle switch */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 38px;
+            height: 20px;
+        }
+
+        .switch input { 
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(255,255,255,0.1);
+            transition: .3s;
+            border-radius: 20px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 14px;
+            width: 14px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .3s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: var(--accent-glow);
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(18px);
+        }
+
+        /* Kanban Column Layout */
+        .kanban-board {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-top: 15px;
+        }
+
+        .kanban-col {
+            background: rgba(255,255,255,0.01);
+            border: 1px solid var(--border-glass);
+            border-radius: 8px;
+            padding: 14px;
+            min-height: 350px;
+        }
+
+        .kanban-title {
+            font-size: 0.72rem;
+            font-family: var(--font-mono);
+            font-weight: 600;
+            color: var(--text-dim);
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .kanban-card {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--border-glass);
+            border-radius: 6px;
+            padding: 12px;
+            margin-bottom: 10px;
+            cursor: grab;
+            font-size: 0.8rem;
+        }
+
+        .kanban-card:hover {
+            border-color: rgba(255,255,255,0.08);
+            background: rgba(255,255,255,0.03);
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 0.65rem;
+            font-family: var(--font-mono);
+            margin-top: 6px;
+        }
+
+        /* Chips & Blotter styling */
+        .chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 3px 9px;
+            border-radius: 4px;
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        .chip-rail {
+            background: rgba(80, 250, 123, 0.12);
+            color: #50fa7b;
+            border: 1px solid rgba(80, 250, 123, 0.4);
+            box-shadow: 0 0 10px rgba(80, 250, 123, 0.15);
+        }
+        .chip-hold {
+            background: rgba(255, 184, 108, 0.14);
+            color: #ffb86c;
+            border: 1px solid rgba(255, 184, 108, 0.45);
+            box-shadow: 0 0 10px rgba(255, 184, 108, 0.15);
+        }
+        .chip-eval {
+            background: rgba(189, 147, 249, 0.14);
+            color: #bd93f9;
+            border: 1px solid rgba(189, 147, 249, 0.4);
+        }
+        .chip-dash {
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text-dim);
+            border: 1px solid var(--border-glass);
+        }
+        .chip-refuse {
+            background: rgba(255, 85, 85, 0.15);
+            color: #ff5555;
+            border: 1px solid rgba(255, 85, 85, 0.45);
+            box-shadow: 0 0 10px rgba(255, 85, 85, 0.2);
+        }
+
+        /* Institutional Data Tables */
+        .data-table-wrap {
+            border: 1px solid var(--border-glass);
+            border-radius: 8px;
+            overflow: hidden;
+            background: rgba(4, 6, 11, 0.6);
+            margin: 16px 0 24px 0;
+        }
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.82rem;
+            text-align: left;
+        }
+        .data-table th {
+            padding: 12px 16px;
+            background: rgba(255, 255, 255, 0.03);
+            color: var(--text-dim);
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 1px solid var(--border-glass);
+        }
+        .data-table td {
+            padding: 12px 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+            vertical-align: middle;
+        }
+        .data-table tr:last-child td {
+            border-bottom: none;
+        }
+        .data-table tr:hover td {
+            background: rgba(255, 255, 255, 0.015);
+        }
+
+        /* Stack Sync Banner */
+        .stack-sync-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 18px;
+            background: rgba(0, 255, 204, 0.03);
+            border: 1px solid rgba(0, 255, 204, 0.15);
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .stack-sync-toggles {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .toggle-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            user-select: none;
+        }
+        .toggle-item input[type="checkbox"] {
+            accent-color: var(--accent-glow);
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+        }
+
+        /* Sizing Metric Cards */
+        .sizing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 14px;
+            margin-top: 14px;
+        }
+        .sizing-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-glass);
+            border-radius: 8px;
+            padding: 14px 16px;
+        }
+        .sizing-card .label {
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+        }
+        .sizing-card .val {
+            font-family: var(--font-mono);
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #fff;
+            margin: 6px 0 2px 0;
+        }
+        .sizing-card .sub {
+            font-size: 0.72rem;
+            color: var(--text-dim);
+        }
+
+        /* Ops Possession Gate Checklist */
+        .ops-check-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 16px;
+        }
+        .ops-check-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 12px 16px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.015);
+            border: 1px solid var(--border-glass);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .ops-check-item:hover {
+            border-color: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.03);
+        }
+        .ops-check-item input[type="checkbox"] {
+            margin-top: 3px;
+            accent-color: var(--accent-glow);
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+        .ops-check-content {
+            flex: 1;
+        }
+        .ops-check-title {
+            font-weight: 600;
+            font-size: 0.84rem;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .ops-check-desc {
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            line-height: 1.45;
+            margin-top: 4px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="cockpit-container">
+        
+        <!-- SIDEBAR PANE -->
+        <div class="sidebar">
+            <div>
+                <!-- Brand logo -->
+                <div class="brand-section">
+                    <div class="logo-mark">⚡</div>
+                    <div class="brand-title">UnyKorn v2</div>
+                </div>
+
+                <div class="section-title">Platforms</div>
+                <div class="nav-item active" onclick="switchView('platform-hub', 'Platform Hub', true)">
+                    <span>🌐 Platform Hub</span>
+                    <span class="badge">Live</span>
+                </div>
+                <div class="nav-item" onclick="switchView('sol-verify', 'Sol Verify', false)">
+                    <span>⚙ Sol Verify</span>
+                </div>
+                <div class="nav-item" onclick="switchView('bp-blueprint', 'BP Blueprint', false)">
+                    <span>💠 BP Blueprint</span>
+                </div>
+                <div class="nav-item" onclick="switchView('xrpl-loans', 'XRPL Loans', false)">
+                    <span>⚖ XRPL Loans</span>
+                </div>
+                <div class="nav-item" onclick="switchView('finn-view', 'Finn Family', true, 'https://finn.unykorn.org/')">
+                    <span>◈ Finn</span>
+                    <span class="badge">Live</span>
+                </div>
+                <div class="nav-item" onclick="switchView('legal-ops-view', 'Legal Operations', false)">
+                    <span>📜 Legal Ops</span>
+                </div>
+                <div class="nav-item" onclick="switchView('predictive-codex', 'Predictive Codex', false)">
+                    <span>📈 Predictive Codex</span>
+                </div>
+
+                <div class="section-title">Core Operating Stack</div>
+                <div class="nav-item" id="nav-infra" onclick="switchView('infra-view', 'Infra', false)">
+                    <span>🗺️ Infra</span>
+                    <span class="badge" id="nav-infra-chip" style="background: rgba(0, 255, 204, 0.15); color: var(--accent-glow)">Map</span>
+                </div>
+                <div class="nav-item" id="nav-quant" onclick="switchView('quant-view', 'Quant', false)">
+                    <span>📊 Quant</span>
+                    <span class="badge" id="nav-quant-chip" style="background: rgba(189, 147, 249, 0.15); color: var(--accent-purple)">Blotter</span>
+                </div>
+                <div class="nav-item" id="nav-ops" onclick="switchView('ops-view', 'Ops', false)">
+                    <span>🛡️ Ops</span>
+                    <span class="badge" id="nav-ops-badge" style="background: rgba(255, 85, 85, 0.15); color: var(--error)">Refuses</span>
+                </div>
+
+                <div class="section-title">Fleet Controls</div>
+                <div class="nav-item" onclick="switchView('kanban-view', 'Kanban Board ⌘', false)">
+                    <span>📋 Kanban</span>
+                </div>
+                <div class="nav-item" onclick="switchView('stack-view', 'System Stack', false)">
+                    <span>⚡ Stack</span>
+                    <span class="badge" id="stack-count">5/14</span>
+                </div>
+            </div>
+
+            <!-- Footer indicator -->
+            <div style="font-family: var(--font-mono); font-size: 0.62rem; color: var(--text-dim); text-align: center; border-top: 1px solid var(--border-glass); padding-top: 15px;">
+                ANTI-GRAVITY CONTROL PLANE v2.0
+            </div>
+        </div>
+
+        <!-- MAIN VIEWPORT PANE -->
+        <div class="viewport-pane">
+            <div class="viewport-header">
+                <div class="viewport-title-area">
+                    <div class="viewport-dot"></div>
+                    <span id="viewport-title">Platform Hub</span>
+                </div>
+                <div class="pills-container">
+                    <div class="status-pill active">
+                        <span class="indicator"></span>Gateway 7877
+                    </div>
+                    <div class="status-pill danger" id="nim-pill">
+                        <span class="indicator"></span>NIM: OFF
+                    </div>
+                    <div class="status-pill active" id="openrouter-pill">
+                        <span class="indicator"></span>OpenRouter: ON
+                    </div>
+                    <div class="status-pill active" id="timer-pill" style="border-color: rgba(0, 255, 204, 0.3); background: rgba(0, 255, 204, 0.05); color: var(--accent-glow);">
+                        <span class="indicator" style="background: var(--accent-glow); box-shadow: 0 0 8px var(--accent-glow);"></span>Sync: <span id="timer-countdown">5.0</span>s
+                    </div>
+                </div>
+            </div>
+
+            <div class="viewport-content">
+                <!-- Platform Hub (Iframe View) -->
+                <iframe id="cockpit-frame" class="embedded-frame active" src="https://platform.unykorn.org/"></iframe>
+
+                <!-- Sol Verify (Local View) -->
+                <div id="sol-verify" class="local-screen">
+                    <h2>On-Chain Signature Verification</h2>
+                    <p class="subtitle">Real-time status check for connected wallets and message sign-offs.</p>
+                    <div class="grid-dashboard">
+                        <div class="card">
+                            <div class="card-header">
+                                <span class="card-title">Solana Status</span>
+                                <span class="status-indicator" style="color: var(--success)">● Devnet Connected</span>
+                            </div>
+                            <div class="metric">54.418 SOL</div>
+                            <p style="font-size: 0.78rem; color: var(--text-dim); font-family: var(--font-mono); margin-top: 5px;">
+                                Wallet: 5xBscJ2f38...XqkRNU3d
+                            </p>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">
+                                <span class="card-title">Signature Registry</span>
+                                <span class="badge" style="background: rgba(0, 255, 204, 0.1); color: var(--accent-glow)">OK</span>
+                            </div>
+                            <p style="font-size: 0.8rem; line-height: 1.5; color: var(--text-dim); margin-top: 10px;">
+                                Last verified signature:<br>
+                                <span style="font-family: var(--font-mono); color: #fff; font-size: 0.72rem; word-break: break-all;">
+                                    5zAxpQZ321...kRJ28Hsa
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BP Blueprint (Local View) -->
+                <div id="bp-blueprint" class="local-screen">
+                    <h2>BP Blueprint Schematic Map</h2>
+                    <p class="subtitle">Vector spatial nodes and network connection paths.</p>
+                    <div class="grid-dashboard">
+                        <div class="card" style="grid-column: span 2;">
+                            <div class="card-title">Node Network Topology</div>
+                            <div class="blueprint-canvas" id="canvas-container">
+                                <div class="blueprint-node" style="top: 30px; left: 80px;" title="Gateway 7877"></div>
+                                <div class="blueprint-node" style="top: 150px; left: 240px; background: var(--accent-purple); box-shadow: 0 0 10px var(--accent-purple);" title="OpenRouter Relay"></div>
+                                <div class="blueprint-node" style="top: 90px; left: 450px;" title="Solana Devnet"></div>
+                                <div class="blueprint-node" style="top: 200px; left: 90px;" title="Local Vectors Store"></div>
+                                <div class="blueprint-node" style="top: 60px; left: 290px;" title="Platform Hub Router"></div>
+                                <div style="position: absolute; color: var(--text-dim); font-size: 0.65rem; font-family: var(--font-mono); bottom: 10px; right: 15px;">
+                                    Vector Grid: 100 x 100 Scale
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- XRPL Loans (Local View) -->
+                <div id="xrpl-loans" class="local-screen">
+                    <h2>XRPL Smart Loan Protocol</h2>
+                    <p class="subtitle">Collateralized debt positions and lending thresholds on XRPL ledger.</p>
+                    <div class="grid-dashboard">
+                        <div class="card">
+                            <div class="card-title">Debt Threshold</div>
+                            <div class="metric">12,500 XRP</div>
+                            <span style="color: var(--success); font-family: var(--font-mono); font-size: 0.78rem;">LTV: 45% (Safe)</span>
+                        </div>
+                        <div class="card">
+                            <div class="card-title">Interest Rate (APR)</div>
+                            <div class="metric">3.24%</div>
+                            <span style="color: var(--text-dim); font-family: var(--font-mono); font-size: 0.78rem;">Fixed Rate</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kanban (Local View) -->
+                <div id="kanban-view" class="local-screen">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                        <div>
+                            <h2>Cockpit Action Board</h2>
+                            <p class="subtitle" style="margin-bottom: 0;">Manage pending tasks, deployments, and gateway configurations.</p>
+                        </div>
+                        <button id="run-task-btn" style="background: var(--accent-glow); color: #000; padding: 10px 18px; border-radius: 8px; border: none; font-weight: 700; cursor: pointer; font-family: var(--font-mono); font-size: 0.8rem; box-shadow: 0 0 15px rgba(0, 255, 204, 0.3); transition: all 0.2s;" onclick="runNextTask()">▶ RUN NEXT TASK</button>
+                    </div>
+                    <div class="kanban-board" id="kanban-board-container">
+                        <!-- Columns will be injected dynamically -->
+                    </div>
+                </div>
+
+                <!-- Stack (Local View) -->
+                <div id="stack-view" class="local-screen">
+                    <h2>Platform Runtime Stack</h2>
+                    <p class="subtitle">Enable/disable subsystems and view engine latencies.</p>
+                    <div class="stack-list">
+                        <div class="stack-row">
+                            <div>
+                                <strong style="font-size: 0.9rem;">OpenRouter Inference Relay</strong>
+                                <div style="font-size: 0.72rem; color: var(--text-dim); font-family: var(--font-mono); margin-top: 3px;">
+                                    Fallback remote model: anthropic/claude-3.5-sonnet // Latency: 120ms
+                                </div>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" checked onchange="toggleCompute('openrouter', this.checked)">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        <div class="stack-row">
+                            <div>
+                                <strong style="font-size: 0.9rem;">Local NVIDIA NIM Inference</strong>
+                                <div style="font-size: 0.72rem; color: var(--text-dim); font-family: var(--font-mono); margin-top: 3px;">
+                                    Offline (NIM: OFF) // Latency: --
+                                </div>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" onchange="toggleCompute('nim', this.checked)">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        <div class="stack-row">
+                            <div>
+                                <strong style="font-size: 0.9rem;">Local Vector Store Database</strong>
+                                <div style="font-size: 0.72rem; color: var(--text-dim); font-family: var(--font-mono); margin-top: 3px;">
+                                    653 anchors indexed locally // Size: 1.2 MB
+                                </div>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" checked disabled>
+                                <span class="slider" style="opacity: 0.6; cursor: not-allowed;"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Legal Operations (Local View) -->
+                <div id="legal-ops-view" class="local-screen">
+                    <h2>Sovereign Legal Operations</h2>
+                    <p class="subtitle">Draft, review, and authorize formal legal notices with deterministic, hallucination-free compliance verification.</p>
+                    
+                    <div class="grid-dashboard" style="grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <!-- Staging Form Card -->
+                        <div class="card" style="padding: 20px;">
+                            <h3 style="margin-top:0; font-family: var(--font-mono); font-size: 0.95rem; color: var(--accent-glow); margin-bottom: 15px;">📜 STAGE NEW COMPLIANCE NOTICE</h3>
+                            
+                            <div style="margin-bottom: 12px;">
+                                <label style="display:block; font-size: 0.72rem; color: var(--text-dim); margin-bottom: 5px; font-family: var(--font-mono);">NOTICE TYPE</label>
+                                <select id="legal-template-select" style="width: 100%; background: rgba(0,0,0,0.5); border: 1px solid var(--border-glass); border-radius: 4px; color: var(--text-light); padding: 8px; font-family: var(--font-mono); font-size: 0.8rem;">
+                                    <option value="CEASE_AND_DESIST">Cease and Desist (Proprietary IP)</option>
+                                </select>
+                            </div>
+                            
+                            <div style="margin-bottom: 12px;">
+                                <label style="display:block; font-size: 0.72rem; color: var(--text-dim); margin-bottom: 5px; font-family: var(--font-mono);">TARGET ENTITY NAME</label>
+                                <input type="text" id="legal-target-name" placeholder="e.g. MOCK_EXTERNAL_ENTITY_LLC" style="width: 100%; background: rgba(0,0,0,0.5); border: 1px solid var(--border-glass); border-radius: 4px; color: var(--text-light); padding: 8px; font-family: var(--font-mono); font-size: 0.8rem; box-sizing: border-box;">
+                            </div>
+                            
+                            <div style="margin-bottom: 12px;">
+                                <label style="display:block; font-size: 0.72rem; color: var(--text-dim); margin-bottom: 5px; font-family: var(--font-mono);">TARGET COMPLIANCE EMAIL</label>
+                                <input type="email" id="legal-target-email" placeholder="e.g. compliance@entity.com" style="width: 100%; background: rgba(0,0,0,0.5); border: 1px solid var(--border-glass); border-radius: 4px; color: var(--text-light); padding: 8px; font-family: var(--font-mono); font-size: 0.8rem; box-sizing: border-box;">
+                            </div>
+                            
+                            <div style="margin-bottom: 15px;">
+                                <label style="display:block; font-size: 0.72rem; color: var(--text-dim); margin-bottom: 5px; font-family: var(--font-mono);">SPECIFIC VIOLATION DETAIL</label>
+                                <textarea id="legal-violation-detail" rows="3" placeholder="Describe the unauthorized usage or port duplication..." style="width: 100%; background: rgba(0,0,0,0.5); border: 1px solid var(--border-glass); border-radius: 4px; color: var(--text-light); padding: 8px; font-family: var(--font-mono); font-size: 0.8rem; resize: none; box-sizing: border-box;"></textarea>
+                            </div>
+                            
+                            <button onclick="stageNewNotice()" style="background: var(--accent-purple); color: #fff; padding: 10px 15px; border-radius: 6px; border: none; font-weight: 700; cursor: pointer; font-family: var(--font-mono); font-size: 0.78rem; transition: all 0.2s; box-shadow: 0 0 10px rgba(189, 147, 249, 0.3);">⚡ STAGE NOTICE IN VAULT</button>
+                        </div>
+                        
+                        <!-- Staged Notices Panel -->
+                        <div class="card" style="padding: 20px; display: flex; flex-direction: column; height: 380px;">
+                            <h3 style="margin-top:0; font-family: var(--font-mono); font-size: 0.95rem; color: var(--accent-glow); margin-bottom: 15px;">🔒 AWAITING EXECUTIVE RELEASE GATE</h3>
+                            <div id="staged-notices-container" style="flex: 1; overflow-y: auto; padding-right: 5px;">
+                                <!-- Notices will be rendered dynamically -->
+                                <div style="color: var(--text-dim); font-size: 0.8rem; text-align: center; margin-top: 40px; font-family: var(--font-mono);">No active drafts staged.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Predictive Codex (Local View) -->
+                <div id="predictive-codex" class="local-screen">
+                    <h2>Predictive Codex Dashboard</h2>
+                    <p class="subtitle">12-Year Quantitative Macro Cycle Tracker & Halving supply-drift forecast engine.</p>
+                    
+                    <!-- KPI Metric Cards Grid -->
+                    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-bottom: 20px;">
+                        <div class="card" style="padding: 15px; border-color: rgba(0, 255, 204, 0.15); background: rgba(0, 255, 204, 0.02);">
+                            <div style="font-size: 0.68rem; color: var(--text-dim); text-transform: uppercase; font-family: var(--font-mono);">Ecosystem Signal</div>
+                            <div id="codex-signal" style="font-size: 1.3rem; font-weight: 700; color: var(--accent-glow); margin-top: 5px; font-family: var(--font-mono);">LOADING...</div>
+                        </div>
+                        <div class="card" style="padding: 15px;">
+                            <div style="font-size: 0.68rem; color: var(--text-dim); text-transform: uppercase; font-family: var(--font-mono);">MVRV Z-Score Proximity</div>
+                            <div id="codex-mvrv" style="font-size: 1.3rem; font-weight: 700; color: var(--accent-purple); margin-top: 5px; font-family: var(--font-mono);">-</div>
+                        </div>
+                        <div class="card" style="padding: 15px;">
+                            <div style="font-size: 0.68rem; color: var(--text-dim); text-transform: uppercase; font-family: var(--font-mono);">Puell Multiple (Miner stress)</div>
+                            <div id="codex-puell" style="font-size: 1.3rem; font-weight: 700; color: var(--accent-pink); margin-top: 5px; font-family: var(--font-mono);">-</div>
+                        </div>
+                        <div class="card" style="padding: 15px;">
+                            <div style="font-size: 0.68rem; color: var(--text-dim); text-transform: uppercase; font-family: var(--font-mono);">Bear Phase Progress</div>
+                            <div id="codex-progress" style="font-size: 1.3rem; font-weight: 700; color: #fff; margin-top: 5px; font-family: var(--font-mono);">-</div>
+                        </div>
+                    </div>
+
+                    <!-- Canvas Chart Card -->
+                    <div class="card" style="padding: 20px; margin-bottom: 20px; position: relative;">
+                        <h3 style="margin-top:0; font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent-glow); display: flex; justify-content: space-between; align-items: center;">
+                            <span>📈 12-YEAR QUANTITATIVE MACRO INDEX & LOGARITHMIC TIMELINE</span>
+                            <span style="font-size: 0.68rem; color: var(--text-dim);">Hover over canvas to track price, dates, and cycle indicators</span>
+                        </h3>
+                        <div style="position: relative; width: 100%;">
+                            <canvas id="codex-chart-canvas" style="width: 100%; height: 350px; background: rgba(0,0,0,0.4); border: 1px solid var(--border-glass); border-radius: 8px; cursor: crosshair;"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Simplified Analytics Breakdown Card -->
+                    <div class="card" style="padding: 20px;">
+                        <h3 style="margin-top:0; font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent-glow); margin-bottom: 10px;">🛡️ QUANTITATIVE LOGIC & BACK-END EXPLANATION</h3>
+                        <p id="codex-explanation" style="font-size: 0.85rem; color: var(--text-main); line-height: 1.6; margin: 0;"></p>
+                    </div>
+                </div>
+
+                <!-- Infra (Full Map Local View) -->
+                <div id="infra-view" class="local-screen">
+                    <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px;">
+                        <h2>Institutional Infrastructure Map</h2>
+                        <span class="badge" style="background: rgba(0, 255, 204, 0.1); color: var(--accent-glow); font-family: var(--font-mono);">7 LAYERS · SHARED STACK</span>
+                    </div>
+                    <p class="subtitle">Complete multi-chain sovereign stack spanning qualified custody, cash & gold, access protocols, cross-chain, chains, code repositories, and white-label SKUs.</p>
+
+                    <!-- Shared Stack Sync Bar -->
+                    <div class="stack-sync-bar">
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <span style="color: var(--accent-glow);">⚡ SHARED STACK STATE:</span>
+                            <span id="infra-stack-summary" style="color: var(--text-main);">Express: HOLD · CCT: HOLD (Awaiting Key & Daemon)</span>
+                        </div>
+                        <div class="stack-sync-toggles">
+                            <label class="toggle-item">
+                                <input type="checkbox" id="infra-key-toggle" onchange="toggleSharedKey(this.checked)">
+                                <span>Key on Record (MPC/API)</span>
+                            </label>
+                            <label class="toggle-item">
+                                <input type="checkbox" id="infra-daemon-toggle" onchange="toggleSharedDaemon(this.checked)">
+                                <span>Daemon Active</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="data-table-wrap">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th style="width: 14%;">Layer</th>
+                                    <th style="width: 32%;">What's named</th>
+                                    <th style="width: 18%;">Chip</th>
+                                    <th style="width: 36%;">Operational Role & Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong style="color: #fff;">Custody</strong></td>
+                                    <td>BitGo Express, Bank & Trust</td>
+                                    <td><span id="chip-custody" class="chip chip-hold">HOLD / RAIL</span></td>
+                                    <td style="font-size: 0.76rem; color: var(--text-dim);"><span id="desc-custody">BitGo Express: HOLD (requires key + daemon) · Bank & Trust: RAIL (OCC-chartered qualified custodian)</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong style="color: #fff;">Cash / gold</strong></td>
+                                    <td>Paxos, itBit</td>
+                                    <td><span class="chip chip-rail">RAIL</span></td>
+                                    <td style="font-size: 0.76rem; color: var(--text-dim);">Institutional USD & allocated physical gold (PAXG) redemption + itBit high-throughput execution</td>
+                                </tr>
+                                <tr>
+                                    <td><strong style="color: #fff;">Access</strong></td>
+                                    <td>x402, mint, TROPTIONS</td>
+                                    <td><span class="chip chip-rail">RAIL</span></td>
+                                    <td style="font-size: 0.76rem; color: var(--text-dim);">Port 4020 x402 credit gateway relay, sovereign TROPTIONS mint, 78 genesis suffix roots</td>
+                                </tr>
+                                <tr>
+                                    <td><strong style="color: #fff;">Cross-chain</strong></td>
+                                    <td>CCT / CCIP (not LayerZero)</td>
+                                    <td><span id="chip-crosschain" class="chip chip-hold">HOLD</span></td>
+                                    <td style="font-size: 0.76rem; color: var(--text-dim);"><span id="desc-crosschain">Native BurnMint CCT & Chainlink CCIP · HOLD until key and daemon exist (LayerZero explicitly excluded)</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong style="color: #fff;">Chains</strong></td>
+                                    <td>L1 <code>7331</code>, Apostle <code>7332`, Solana, Sepolia, XRPL</td>
+                                    <td><span class="chip chip-rail">HOLD / RAIL</span></td>
+                                    <td style="font-size: 0.76rem; color: var(--text-dim);">Sovereign L1 7331 (HOLD), Apostle ATP 7332 (RAIL), Solana Devnet (RAIL), Sepolia EVM (RAIL), XRPL Ledger (RAIL)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong style="color: #fff;">Code</strong></td>
+                                    <td>smart-contract-builder, BD-New, whitelabel, <a href="https://github.com/FTHTrading/BDX" target="_blank" style="color: var(--accent-glow); text-decoration: underline;">BDX</a></td>
+                                    <td><span class="chip chip-dash">—</span></td>
+                                    <td style="font-size: 0.76rem; color: var(--text-dim);">Core dual-rail compliance engine, possession artifacts, white-label packages, and BDX repository</td>
+                                </tr>
+                                <tr>
+                                    <td><strong style="color: #fff;">SKUs</strong></td>
+                                    <td>six white-label packages</td>
+                                    <td><span class="chip chip-eval">eval only</span></td>
+                                    <td style="font-size: 0.76rem; color: var(--text-dim);">Sovereign Turnkey, Broker-Dealer OS, Institutional Vault, Relic SPV, Syndicate, Athlete Trust (Evaluation Tier)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Quant (Blotter & Sizing Lines Local View) -->
+                <div id="quant-view" class="local-screen">
+                    <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px;">
+                        <h2>Quant Execution Blotter & Sizing Lines</h2>
+                        <span class="badge" style="background: rgba(189, 147, 249, 0.15); color: var(--accent-purple); font-family: var(--font-mono);">QUANT ENGINE · SHARED STACK</span>
+                    </div>
+                    <p class="subtitle">Live blotter routing across Paxos, BitGo Express, and CCT BurnMint rails, synchronized to portfolio collateral and liquidity sizing limits.</p>
+
+                    <!-- Shared Stack Sync Bar -->
+                    <div class="stack-sync-bar">
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <span style="color: var(--accent-glow);">⚡ SHARED STACK CONTROLS:</span>
+                            <span id="quant-stack-summary" style="color: var(--text-main);">Express: HOLD · CCT: HOLD (Express and CCT stay HOLD until a key and a daemon exist)</span>
+                        </div>
+                        <div class="stack-sync-toggles">
+                            <label class="toggle-item">
+                                <input type="checkbox" id="quant-key-toggle" onchange="toggleSharedKey(this.checked)">
+                                <span>Key on Record (MPC/API)</span>
+                            </label>
+                            <label class="toggle-item">
+                                <input type="checkbox" id="quant-daemon-toggle" onchange="toggleSharedDaemon(this.checked)">
+                                <span>Daemon Active</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Quant Blotter Table -->
+                    <h3 style="font-size: 0.9rem; font-family: var(--font-mono); color: var(--accent-glow); margin: 18px 0 8px 0; text-transform: uppercase;">
+                        📋 Institutional Blotter
+                    </h3>
+                    <div class="data-table-wrap">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Venue / Rail</th>
+                                    <th>Status Chip</th>
+                                    <th>Asset Scope</th>
+                                    <th>Latency</th>
+                                    <th>Daily Sizing Line</th>
+                                    <th>State & Route Notes</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div style="font-weight: 700; color: #fff;">Paxos</div>
+                                        <div style="font-size: 0.72rem; color: var(--text-dim); font-family: var(--font-mono);">itBit Institutional Gateway</div>
+                                    </td>
+                                    <td><span class="chip chip-rail">RAIL</span></td>
+                                    <td><span style="font-family: var(--font-mono); color: var(--accent-glow);">USD / PAXG</span></td>
+                                    <td style="font-family: var(--font-mono); color: var(--success);">&lt; 380ms</td>
+                                    <td style="font-family: var(--font-mono); font-weight: 600; color: #fff;">$500,000,000</td>
+                                    <td style="font-size: 0.76rem; color: var(--text-dim);">Live settlement rail · Instant fiat liquidity & allocated physical gold custody</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div style="font-weight: 700; color: #fff;">BitGo Express</div>
+                                        <div style="font-size: 0.72rem; color: var(--text-dim); font-family: var(--font-mono);">Local Key Signing Relay</div>
+                                    </td>
+                                    <td><span id="quant-chip-express" class="chip chip-hold">HOLD</span></td>
+                                    <td><span style="font-family: var(--font-mono); color: var(--accent-purple);">EVM / XRPL / SOL</span></td>
+                                    <td style="font-family: var(--font-mono); color: var(--text-dim);"><span id="quant-latency-express">Offline</span></td>
+                                    <td style="font-family: var(--font-mono); font-weight: 600; color: #fff;">$2,500,000,000</td>
+                                    <td style="font-size: 0.76rem; color: var(--text-dim);"><span id="quant-desc-express">HOLD — Stays HOLD until a key and a daemon exist</span></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div style="font-weight: 700; color: #fff;">CCT BurnMint</div>
+                                        <div style="font-size: 0.72rem; color: var(--text-dim); font-family: var(--font-mono);">CCIP Native Relayer</div>
+                                    </td>
+                                    <td><span id="quant-chip-cct" class="chip chip-hold">HOLD</span></td>
+                                    <td><span style="font-family: var(--font-mono); color: var(--accent-pink);">Cross-Chain Liquidity</span></td>
+                                    <td style="font-family: var(--font-mono); color: var(--text-dim);"><span id="quant-latency-cct">Offline</span></td>
+                                    <td style="font-family: var(--font-mono); font-weight: 600; color: #fff;">$1,200,000,000</td>
+                                    <td style="font-size: 0.76rem; color: var(--text-dim);"><span id="quant-desc-cct">HOLD — CCT / CCIP (not LayerZero) · Stays HOLD until key and daemon exist</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Quantitative Sizing Lines Grid -->
+                    <h3 style="font-size: 0.9rem; font-family: var(--font-mono); color: var(--accent-glow); margin: 24px 0 8px 0; text-transform: uppercase;">
+                        📐 Institutional Sizing Lines (Portfolio Calibration)
+                    </h3>
+                    <div class="sizing-grid">
+                        <div class="sizing-card">
+                            <div class="label">Portfolio Gross AUC</div>
+                            <div class="val" style="color: var(--accent-glow);">$4,820,000,000</div>
+                            <div class="sub">155 verified on-chain assets across 5 sovereign rails</div>
+                        </div>
+                        <div class="sizing-card">
+                            <div class="label">Eligible Collateral Pool</div>
+                            <div class="val" style="color: #fff;">$4,250,000,000</div>
+                            <div class="sub">After asset quality filters (Haircut: 15.0% - 35.0%)</div>
+                        </div>
+                        <div class="sizing-card">
+                            <div class="label">Max Borrowing Capacity (65% LTV)</div>
+                            <div class="val" style="color: var(--accent-purple);">$3,133,000,000</div>
+                            <div class="sub">Senior secured tranche credit limit</div>
+                        </div>
+                        <div class="sizing-card">
+                            <div class="label">Liquidity Reserve Buffer (10%)</div>
+                            <div class="val" style="color: var(--success);">$482,000,000</div>
+                            <div class="sub">Mandatory liquid capital preservation floor</div>
+                        </div>
+                        <div class="sizing-card">
+                            <div class="label">Daily Rebalancing Draw Capacity</div>
+                            <div class="val" style="color: #fff;">$125,000,000</div>
+                            <div class="sub">Maximum intraday atomic settlement velocity</div>
+                        </div>
+                        <div class="sizing-card">
+                            <div class="label">Single Counterparty Cap</div>
+                            <div class="val" style="color: #ffb86c;">15.0% ($723M)</div>
+                            <div class="sub">Concentration limit strictly enforced</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ops (Possession Gate Local View) -->
+                <div id="ops-view" class="local-screen">
+                    <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px;">
+                        <h2>Ops — Broker-Dealer Possession Evidence Engine</h2>
+                        <span class="badge" style="background: rgba(255, 85, 85, 0.15); color: var(--error); font-family: var(--font-mono);">RULE 15c3-3(b)(1) GATE</span>
+                    </div>
+                    <p class="subtitle">Physical possession determinations under SEC Division of Trading & Markets Statement (Dec 17, 2025). The refusal is the product — unexamined assertions are strictly withheld.</p>
+
+                    <!-- Active Gate Status Callout Banner -->
+                    <div id="ops-gate-banner" style="padding: 16px 20px; border-radius: 8px; border: 1px solid rgba(255, 85, 85, 0.4); background: rgba(255, 85, 85, 0.08); margin-bottom: 20px;">
+                        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                <span style="font-size: 1.3rem;">🚫</span>
+                                <div>
+                                    <div id="ops-status-title" style="font-family: var(--font-mono); font-size: 0.95rem; font-weight: 700; color: var(--error); letter-spacing: 0.5px;">
+                                        POSSESSION STATUS: REFUSED
+                                    </div>
+                                    <div id="ops-status-desc" style="font-size: 0.8rem; color: var(--text-dim); margin-top: 2px;">
+                                        The gate REFUSES possession with all boxes unchecked. Zero affirmative determinations on record.
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="display: flex; gap: 8px;">
+                                <button onclick="resetOpsBoxes()" style="background: rgba(255, 85, 85, 0.2); border: 1px solid rgba(255, 85, 85, 0.5); color: #ff5555; padding: 6px 12px; border-radius: 6px; font-family: var(--font-mono); font-size: 0.72rem; font-weight: 700; cursor: pointer;">
+                                    RESET (REFUSE ALL)
+                                </button>
+                                <button onclick="checkAllOpsBoxes()" style="background: rgba(80, 250, 123, 0.15); border: 1px solid rgba(80, 250, 123, 0.4); color: #50fa7b; padding: 6px 12px; border-radius: 6px; font-family: var(--font-mono); font-size: 0.72rem; font-weight: 700; cursor: pointer;">
+                                    TEST SATISFIED
+                                </button>
+                            </div>
+                        </div>
+                        <div style="margin-top: 10px; padding-top: 10px; border-top: 1px dashed rgba(255, 85, 85, 0.25); font-size: 0.74rem; color: var(--text-dim); font-family: var(--font-mono);">
+                            🛡️ <strong>Non-Custodial Mandate:</strong> UnyKorn LLC operates as a non-custodial software arranger and technology administrator. Physical possession of customer assets is refused. Qualified custody is assigned exclusively to OCC-chartered trust banks (BitGo Bank & Trust).
+                        </div>
+                    </div>
+
+                    <!-- Attestation Checklist -->
+                    <h3 style="font-size: 0.88rem; font-family: var(--font-mono); color: var(--accent-glow); margin-bottom: 8px; text-transform: uppercase;">
+                        Five-Condition Possession Determinations
+                    </h3>
+                    <div class="ops-check-list">
+                        <label class="ops-check-item">
+                            <input type="checkbox" id="ops-cond-1" onchange="handleOpsCheckChange()">
+                            <div class="ops-check-content">
+                                <div class="ops-check-title">
+                                    <span>Condition 1: Cryptographic Proof of Control (DLT Transfer Ability)</span>
+                                    <span class="chip chip-dash" id="chip-c1">UNCHECKED</span>
+                                </div>
+                                <div class="ops-check-desc">Signs a cryptographic random challenge, verified against asserted custody address within 24 hours. Never builds or leaks serialised transaction.</div>
+                            </div>
+                        </label>
+
+                        <label class="ops-check-item">
+                            <input type="checkbox" id="ops-cond-2" onchange="handleOpsCheckChange()">
+                            <div class="ops-check-content">
+                                <div class="ops-check-title">
+                                    <span>Condition 2: Approved Written Policies Protecting Private Key Access</span>
+                                    <span class="chip chip-dash" id="chip-c2">UNCHECKED</span>
+                                </div>
+                                <div class="ops-check-desc">Documented policy approved by CCO, hash-committed to tamper-evident receipt chain (2-of-3 MPC / FIPS 140-2 Level 3 HSM).</div>
+                            </div>
+                        </label>
+
+                        <label class="ops-check-item">
+                            <input type="checkbox" id="ops-cond-3" onchange="handleOpsCheckChange()">
+                            <div class="ops-check-content">
+                                <div class="ops-check-title">
+                                    <span>Condition 3: Documented DLT Security & Operational Integrity Assessment</span>
+                                    <span class="chip chip-dash" id="chip-c3">UNCHECKED</span>
+                                </div>
+                                <div class="ops-check-desc">Current assessment affirming both security integrity and operational continuity of the underlying chain within 90-day staleness horizon.</div>
+                            </div>
+                        </label>
+
+                        <label class="ops-check-item">
+                            <input type="checkbox" id="ops-cond-4" onchange="handleOpsCheckChange()">
+                            <div class="ops-check-content">
+                                <div class="ops-check-title">
+                                    <span>Condition 4: Comprehensive Contingency Procedures (5 Required Events)</span>
+                                    <span class="chip chip-dash" id="chip-c4">UNCHECKED</span>
+                                </div>
+                                <div class="ops-check-desc">Procedures covering hard fork, 51% attack/reorganization, airdrop entitlement, legal asset seizure, and bankruptcy trustee custody access.</div>
+                            </div>
+                        </label>
+
+                        <label class="ops-check-item">
+                            <input type="checkbox" id="ops-cond-5" onchange="handleOpsCheckChange()">
+                            <div class="ops-check-content">
+                                <div class="ops-check-title">
+                                    <span>Condition 5: Material Security/Operational Concern Kill Switch</span>
+                                    <span class="chip chip-dash" id="chip-c5">UNCHECKED</span>
+                                </div>
+                                <div class="ops-check-desc">Zero open material concerns. Any open reorg beyond finality depth, validator compromise, or protocol vulnerability voids the assertion immediately.</div>
+                            </div>
+                        </label>
+
+                        <label class="ops-check-item">
+                            <input type="checkbox" id="ops-cond-custody" onchange="handleOpsCheckChange()">
+                            <div class="ops-check-content">
+                                <div class="ops-check-title">
+                                    <span>Rule 15c3-3(c) Qualified Custodian Affirmation (Non-Custodial Safe Harbor)</span>
+                                    <span class="chip chip-dash" id="chip-ccustody">UNCHECKED</span>
+                                </div>
+                                <div class="ops-check-desc">Affirms that UnyKorn LLC does not take possession of customer funds or physical collateral; custody is routed to qualified custodian BitGo Bank & Trust.</div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Footer spacer / alignment -->
+                <div style="height: 40px;"></div>
+
+            </div>
+        </div>
+
+        <!-- INTEL & CHAT PANEL -->
+        <div class="intel-pane">
+            <div class="viewport-header" style="border-left: none;">
+                <span style="font-weight: 600; letter-spacing: 0.5px; font-size: 0.85rem;">🧠 Intel Memory Context (653 Vectors)</span>
+            </div>
+            
+            <div class="chat-output" id="chat-stream">
+                <div class="message system">
+                    [ Anti-Gravity State Active ]<br>
+                    Compute Relay pointing to OpenRouter API. Vector graph initialized.
+                </div>
+            </div>
+
+            <div id="voice-status-bar" style="display: flex; align-items: center; justify-content: space-between; padding: 6px 12px; border-top: 1px solid var(--border-glass); background: rgba(0,0,0,0.2); font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-dim);">
+                <div style="display: flex; align-items: center; gap: 6px;">
+                    <span id="voice-dot" style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--text-dim); transition: all 0.3s;"></span>
+                    <span id="voice-text">Voice Mode: Inactive</span>
+                </div>
+                <button onclick="toggleVoiceMode()" id="voice-toggle-btn" style="background: none; border: 1px solid var(--border-glass); border-radius: 4px; color: var(--text-light); padding: 2px 6px; font-size: 0.65rem; cursor: pointer; font-family: var(--font-mono); transition: all 0.2s;">Enable Voice Mode</button>
+            </div>
+            
+            <div class="chat-input-container">
+                <div class="input-wrapper">
+                    <input type="text" class="cockpit-input" id="cmd-input" placeholder="Consult context or issue commands..." onkeydown="handleKeyPress(event)">
+                    <button class="send-btn" onclick="sendMessage()">➔</button>
+                </div>
+            </div>
+    <script>
+        // Track the stack count dynamically
+        let activeLayers = 2;
+        const totalLayers = 3;
+        let cockpitState = null;
+
+        function updateStackBadge() {
+            document.getElementById('stack-count').innerText = `${activeLayers}/${totalLayers}`;
+        }
+
+        function toggleCompute(type, enabled) {
+            const nimPill = document.getElementById('nim-pill');
+            const openrouterPill = document.getElementById('openrouter-pill');
+            const stream = document.getElementById('chat-stream');
+
+            if (type === 'nim') {
+                if (enabled) {
+                    nimPill.className = "status-pill active";
+                    nimPill.innerHTML = '<span class="indicator"></span>NIM: ON';
+                    activeLayers++;
+                    stream.innerHTML += `<div class="message system">[System]: Local NVIDIA NIM enabled. Computes will prioritises local GPU hardware.</div>`;
+                } else {
+                    nimPill.className = "status-pill danger";
+                    nimPill.innerHTML = '<span class="indicator"></span>NIM: OFF';
+                    activeLayers--;
+                    stream.innerHTML += `<div class="message system">[System]: Local NVIDIA NIM disabled. Computes fall back to OpenRouter.</div>`;
+                }
+            } else if (type === 'openrouter') {
+                if (enabled) {
+                    openrouterPill.className = "status-pill active";
+                    openrouterPill.innerHTML = '<span class="indicator"></span>OpenRouter: ON';
+                    activeLayers++;
+                    stream.innerHTML += `<div class="message system">[System]: OpenRouter compute fallback enabled.</div>`;
+                } else {
+                    openrouterPill.className = "status-pill danger";
+                    openrouterPill.innerHTML = '<span class="indicator"></span>OpenRouter: OFF';
+                    activeLayers--;
+                    stream.innerHTML += `<div class="message system">[System]: OpenRouter compute fallback disabled. Remote completions will fail unless NIM is active.</div>`;
+                }
+            }
+            updateStackBadge();
+            stream.scrollTop = stream.scrollHeight;
+        }
+
+        // Shared Stack State across Quant and Infra
+        const sharedStack = {
+            hasKey: false,
+            hasDaemon: false
+        };
+
+        function toggleSharedKey(enabled) {
+            sharedStack.hasKey = !!enabled;
+            syncSharedStack();
+        }
+
+        function toggleSharedDaemon(enabled) {
+            sharedStack.hasDaemon = !!enabled;
+            syncSharedStack();
+        }
+
+        function syncSharedStack() {
+            const hasKey = sharedStack.hasKey;
+            const hasDaemon = sharedStack.hasDaemon;
+            const bothActive = hasKey && hasDaemon;
+
+            // Sync inputs across both Infra and Quant panels
+            ['infra-key-toggle', 'quant-key-toggle'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.checked = hasKey;
+            });
+            ['infra-daemon-toggle', 'quant-daemon-toggle'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.checked = hasDaemon;
+            });
+
+            // Status message
+            const statusSummary = bothActive
+                ? "Express: RAIL · CCT: RAIL (Key provisioned & Sync Daemon active)"
+                : (hasKey && !hasDaemon)
+                ? "Express: HOLD · CCT: HOLD (Key present, but Daemon offline)"
+                : (!hasKey && hasDaemon)
+                ? "Express: HOLD · CCT: HOLD (Daemon running, but Key missing)"
+                : "Express: HOLD · CCT: HOLD (Express and CCT stay HOLD until a key and a daemon exist)";
+
+            const infraSum = document.getElementById('infra-stack-summary');
+            if (infraSum) infraSum.innerText = statusSummary;
+            const quantSum = document.getElementById('quant-stack-summary');
+            if (quantSum) quantSum.innerText = statusSummary;
+
+            // Update Infra Map Chips & Descriptions
+            const chipCustody = document.getElementById('chip-custody');
+            const descCustody = document.getElementById('desc-custody');
+            if (chipCustody) {
+                chipCustody.className = bothActive ? "chip chip-rail" : "chip chip-hold";
+                chipCustody.innerText = bothActive ? "RAIL / RAIL" : "HOLD / RAIL";
+            }
+            if (descCustody) {
+                descCustody.innerText = bothActive
+                    ? "BitGo Express: RAIL (Key verified & Daemon connected) · Bank & Trust: RAIL (OCC-chartered qualified custodian)"
+                    : "BitGo Express: HOLD (requires key + daemon) · Bank & Trust: RAIL (OCC-chartered qualified custodian)";
+            }
+
+            const chipCrosschain = document.getElementById('chip-crosschain');
+            const descCrosschain = document.getElementById('desc-crosschain');
+            if (chipCrosschain) {
+                chipCrosschain.className = bothActive ? "chip chip-rail" : "chip chip-hold";
+                chipCrosschain.innerText = bothActive ? "RAIL" : "HOLD";
+            }
+            if (descCrosschain) {
+                descCrosschain.innerText = bothActive
+                    ? "Native BurnMint CCT & Chainlink CCIP · RAIL (Active relayer online; LayerZero excluded)"
+                    : "Native BurnMint CCT & Chainlink CCIP · HOLD until key and daemon exist (LayerZero explicitly excluded)";
+            }
+
+            // Update Quant Blotter Chips & Descriptions
+            const quantChipExpress = document.getElementById('quant-chip-express');
+            const quantLatencyExpress = document.getElementById('quant-latency-express');
+            const quantDescExpress = document.getElementById('quant-desc-express');
+            if (quantChipExpress) {
+                quantChipExpress.className = bothActive ? "chip chip-rail" : "chip chip-hold";
+                quantChipExpress.innerText = bothActive ? "RAIL" : "HOLD";
+            }
+            if (quantLatencyExpress) {
+                quantLatencyExpress.innerText = bothActive ? "< 420ms" : "Offline";
+                quantLatencyExpress.style.color = bothActive ? "var(--success)" : "var(--text-dim)";
+            }
+            if (quantDescExpress) {
+                quantDescExpress.innerText = bothActive
+                    ? "RAIL — Key provisioned & background daemon actively signing"
+                    : "HOLD — Stays HOLD until a key and a daemon exist";
+            }
+
+            const quantChipCct = document.getElementById('quant-chip-cct');
+            const quantLatencyCct = document.getElementById('quant-latency-cct');
+            const quantDescCct = document.getElementById('quant-desc-cct');
+            if (quantChipCct) {
+                quantChipCct.className = bothActive ? "chip chip-rail" : "chip chip-hold";
+                quantChipCct.innerText = bothActive ? "RAIL" : "HOLD";
+            }
+            if (quantLatencyCct) {
+                quantLatencyCct.innerText = bothActive ? "< 850ms" : "Offline";
+                quantLatencyCct.style.color = bothActive ? "var(--success)" : "var(--text-dim)";
+            }
+            if (quantDescCct) {
+                quantDescCct.innerText = bothActive
+                    ? "RAIL — CCT / CCIP (not LayerZero) · Relay daemon active"
+                    : "HOLD — CCT / CCIP (not LayerZero) · Stays HOLD until key and daemon exist";
+            }
+        }
+
+        // Ops Possession Determinations Logic
+        function handleOpsCheckChange() {
+            evaluateOpsPossession();
+        }
+
+        function resetOpsBoxes() {
+            for (let i = 1; i <= 5; i++) {
+                const box = document.getElementById(`ops-cond-${i}`);
+                if (box) box.checked = false;
+            }
+            const custodyBox = document.getElementById('ops-cond-custody');
+            if (custodyBox) custodyBox.checked = false;
+            evaluateOpsPossession();
+        }
+
+        function checkAllOpsBoxes() {
+            for (let i = 1; i <= 5; i++) {
+                const box = document.getElementById(`ops-cond-${i}`);
+                if (box) box.checked = true;
+            }
+            const custodyBox = document.getElementById('ops-cond-custody');
+            if (custodyBox) custodyBox.checked = true;
+            evaluateOpsPossession();
+        }
+
+        function evaluateOpsPossession() {
+            const c1 = !!document.getElementById('ops-cond-1')?.checked;
+            const c2 = !!document.getElementById('ops-cond-2')?.checked;
+            const c3 = !!document.getElementById('ops-cond-3')?.checked;
+            const c4 = !!document.getElementById('ops-cond-4')?.checked;
+            const c5 = !!document.getElementById('ops-cond-5')?.checked;
+            const custody = !!document.getElementById('ops-cond-custody')?.checked;
+
+            const allUnchecked = !c1 && !c2 && !c3 && !c4 && !c5 && !custody;
+            const allSatisfied = c1 && c2 && c3 && c4 && c5 && custody;
+
+            // Update individual condition chips
+            const updateChip = (chipId, satisfied) => {
+                const el = document.getElementById(chipId);
+                if (!el) return;
+                if (satisfied) {
+                    el.className = "chip chip-rail";
+                    el.innerText = "SATISFIED";
+                } else {
+                    el.className = "chip chip-dash";
+                    el.innerText = "UNCHECKED";
+                }
+            };
+
+            updateChip('chip-c1', c1);
+            updateChip('chip-c2', c2);
+            updateChip('chip-c3', c3);
+            updateChip('chip-c4', c4);
+            updateChip('chip-c5', c5);
+            updateChip('chip-ccustody', custody);
+
+            const banner = document.getElementById('ops-gate-banner');
+            const title = document.getElementById('ops-status-title');
+            const desc = document.getElementById('ops-status-desc');
+            const navBadge = document.getElementById('nav-ops-badge');
+
+            if (allSatisfied) {
+                if (banner) {
+                    banner.style.border = "1px solid rgba(80, 250, 123, 0.4)";
+                    banner.style.background = "rgba(80, 250, 123, 0.08)";
+                }
+                if (title) {
+                    title.innerText = "POSSESSION STATUS: ASSERTED (All 5 TM conditions satisfied + Qualified Custody verified)";
+                    title.style.color = "var(--success)";
+                }
+                if (desc) {
+                    desc.innerText = "Affirmative determination on record. Control proof valid (24h), written policy committed, integrity affirmed, contingencies full, zero material concerns.";
+                }
+                if (navBadge) {
+                    navBadge.innerText = "Asserted";
+                    navBadge.style.background = "rgba(80, 250, 123, 0.15)";
+                    navBadge.style.color = "var(--success)";
+                }
+            } else {
+                if (banner) {
+                    banner.style.border = "1px solid rgba(255, 85, 85, 0.4)";
+                    banner.style.background = "rgba(255, 85, 85, 0.08)";
+                }
+                if (title) {
+                    title.innerText = "POSSESSION STATUS: REFUSED";
+                    title.style.color = "var(--error)";
+                }
+                if (desc) {
+                    desc.innerText = allUnchecked
+                        ? "Ops still refuses possession with all boxes unchecked. Zero affirmative determinations on record."
+                        : "The gate REFUSES possession. Prerequisite condition(s) unmet.";
+                }
+                if (navBadge) {
+                    navBadge.innerText = "Refuses";
+                    navBadge.style.background = "rgba(255, 85, 85, 0.15)";
+                    navBadge.style.color = "var(--error)";
+                }
+            }
+        }
+
+        function switchView(viewId, title, isIframe, iframeUrl) {
+            document.getElementById('viewport-title').innerText = title;
+            
+            // Toggle active tabs in sidebar
+            document.querySelectorAll('.sidebar .nav-item').forEach(el => {
+                el.classList.remove('active');
+            });
+
+            if (window.event && window.event.currentTarget && window.event.currentTarget.classList) {
+                window.event.currentTarget.classList.add('active');
+            } else {
+                const targetNav = document.getElementById('nav-' + viewId.replace('-view', ''));
+                if (targetNav) targetNav.classList.add('active');
+            }
+
+            const frame = document.getElementById('cockpit-frame');
+            
+            // Hide all views
+            frame.classList.remove('active');
+            document.querySelectorAll('.local-screen').forEach(el => {
+                el.classList.remove('active');
+            });
+
+            if (isIframe) {
+                // Platform Hub default; Finn and others pass explicit URL
+                const dest = iframeUrl
+                    || (viewId === 'platform-hub' ? 'https://platform.unykorn.org/' : frame.src);
+                if (dest && frame.src !== dest) frame.src = dest;
+                frame.classList.add('active');
+            } else {
+                const targetView = document.getElementById(viewId);
+                if (targetView) {
+                    targetView.classList.add('active');
+                }
+            }
+
+            if (viewId === 'infra-view' || viewId === 'quant-view') {
+                syncSharedStack();
+            } else if (viewId === 'ops-view') {
+                evaluateOpsPossession();
+            } else if (viewId === 'legal-ops-view') {
+                fetchStagedNotices();
+            } else if (viewId === 'predictive-codex') {
+                fetchPredictiveCodex();
+            }
+
+            const stream = document.getElementById('chat-stream');
+            if (stream) {
+                stream.innerHTML += `<div class="message system">[System]: Loaded ${title} interface.</div>`;
+                stream.scrollTop = stream.scrollHeight;
+            }
+        }
+
+        function handleKeyPress(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        async function sendMessage() {
+            const input = document.getElementById('cmd-input');
+            const prompt = input.value.trim();
+            if (!prompt) return;
+
+            // Clear input
+            input.value = '';
+
+            const stream = document.getElementById('chat-stream');
+            
+            // Append User Message
+            const timestamp = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+            stream.innerHTML += `
+                <div class="message user">
+                    <div class="message-meta">${timestamp} - User</div>
+                    <div>${escapeHtml(prompt)}</div>
+                </div>
+            `;
+            stream.scrollTop = stream.scrollHeight;
+
+            // Append Loading Indicator
+            const loaderId = 'loader_' + Math.random().toString(36).substr(2, 9);
+            stream.innerHTML += `
+                <div class="message assistant" id="${loaderId}">
+                    <div class="message-meta">Thinking...</div>
+                    <div class="typing-indicator">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            `;
+            stream.scrollTop = stream.scrollHeight;
+
+            try {
+                // Post to Express backend
+                const response = await fetch('/api/cockpit/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        prompt: prompt,
+                        vectorContext: new Array(653) // Mock vectors context length
+                    })
+                });
+
+                const data = await response.json();
+                
+                // Remove loader
+                const loaderEl = document.getElementById(loaderId);
+                if (loaderEl) loaderEl.remove();
+
+                if (data.success) {
+                    stream.innerHTML += `
+                        <div class="message assistant">
+                            <div class="message-meta">${timestamp} - Core intelligence</div>
+                            <div>${formatMarkdown(data.reply)}</div>
+                        </div>
+                    `;
+                    // Speak the response if voice mode is enabled
+                    if (voiceActive) {
+                        speak(data.reply);
+                    }
+                } else {
+                    const errMsg = data.error || 'Unknown server error.';
+                    stream.innerHTML += `
+                        <div class="message assistant" style="border-color: rgba(255, 85, 85, 0.2); background: rgba(255, 85, 85, 0.02);">
+                            <div class="message-meta" style="color: var(--error);">${timestamp} - System Error</div>
+                            <div style="color: var(--error);">Error: ${escapeHtml(errMsg)}</div>
+                        </div>
+                    `;
+                    if (voiceActive) {
+                        speak(`System error encountered: ${errMsg}`);
+                    }
+                }
+            } catch (err) {
+                const loaderEl = document.getElementById(loaderId);
+                if (loaderEl) loaderEl.remove();
+
+                stream.innerHTML += `
+                    <div class="message assistant" style="border-color: rgba(255, 85, 85, 0.2); background: rgba(255, 85, 85, 0.02);">
+                        <div class="message-meta" style="color: var(--error);">${timestamp} - Connection Error</div>
+                        <div style="color: var(--error);">Failed to connect to gateway server. Verify node app is running.</div>
+                    </div>
+                `;
+                if (voiceActive) {
+                    speak("Connection error. Failed to contact the gateway server.");
+                }
+            }
+
+            stream.scrollTop = stream.scrollHeight;
+        }
+
+        // Speech STT / TTS state variables
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        let recognition = null;
+        let voiceActive = false;
+        let isSpeaking = false;
+
+        function initSpeech() {
+            if (SpeechRecognition) {
+                recognition = new SpeechRecognition();
+                recognition.continuous = false;
+                recognition.interimResults = false;
+                recognition.lang = 'en-US';
+
+                recognition.onstart = () => {
+                    updateVoiceIndicator('listening');
+                };
+
+                recognition.onresult = (event) => {
+                    const text = event.results[0][0].transcript;
+                    document.getElementById('cmd-input').value = text;
+                    sendMessage();
+                };
+
+                recognition.onerror = (e) => {
+                    console.error("Speech recognition error:", e);
+                    updateVoiceIndicator('idle');
+                };
+
+                recognition.onend = () => {
+                    if (voiceActive && !isSpeaking) {
+                        setTimeout(() => {
+                            if (voiceActive && !isSpeaking) {
+                                try { recognition.start(); } catch (err) {}
+                            }
+                        }, 400);
+                    } else if (!voiceActive) {
+                        updateVoiceIndicator('idle');
+                    }
+                };
+            }
+        }
+
+        function toggleVoiceMode() {
+            const btn = document.getElementById('voice-toggle-btn');
+            if (!voiceActive) {
+                voiceActive = true;
+                btn.innerText = "Disable Voice Mode";
+                btn.style.borderColor = "var(--accent-glow)";
+                btn.style.color = "var(--accent-glow)";
+                if (!recognition) initSpeech();
+                speak("Voice interface initialized. I am ready to converse.");
+            } else {
+                voiceActive = false;
+                btn.innerText = "Enable Voice Mode";
+                btn.style.borderColor = "var(--border-glass)";
+                btn.style.color = "var(--text-light)";
+                if (recognition) {
+                    try { recognition.stop(); } catch (err) {}
+                }
+                if (window.speechSynthesis) {
+                    window.speechSynthesis.cancel();
+                }
+                updateVoiceIndicator('idle');
+            }
+        }
+
+        function updateVoiceIndicator(state) {
+            const dot = document.getElementById('voice-dot');
+            const txt = document.getElementById('voice-text');
+            if (!dot || !txt) return;
+
+            if (state === 'listening') {
+                dot.style.background = "var(--accent-glow)";
+                dot.style.boxShadow = "0 0 10px var(--accent-glow)";
+                txt.innerText = "Voice Mode: Listening...";
+            } else if (state === 'speaking') {
+                dot.style.background = "var(--accent-purple)";
+                dot.style.boxShadow = "0 0 10px var(--accent-purple)";
+                txt.innerText = "Voice Mode: Speaking...";
+            } else {
+                dot.style.background = "var(--text-dim)";
+                dot.style.boxShadow = "none";
+                txt.innerText = voiceActive ? "Voice Mode: Standby" : "Voice Mode: Inactive";
+            }
+        }
+
+        function speak(text) {
+            if (!window.speechSynthesis) return;
+
+            isSpeaking = true;
+            if (recognition) {
+                try { recognition.stop(); } catch (e) {}
+            }
+            window.speechSynthesis.cancel();
+
+            // Clean text for reading
+            const cleanText = text
+                .replace(/\*\*\[Agent Handled:.*?\]\*\*/gi, '')
+                .replace(/\*\(.*?\)\*/gi, '')
+                .replace(/\*\*/g, '')
+                .replace(/`/g, '')
+                .trim();
+
+            const utterance = new SpeechSynthesisUtterance(cleanText);
+            const voices = window.speechSynthesis.getVoices();
+            // Try to find a premium English voice
+            const voice = voices.find(v => v.lang.startsWith('en') && (v.name.includes('Google') || v.name.includes('Natural') || v.name.includes('Zira') || v.name.includes('David')));
+            if (voice) utterance.voice = voice;
+            
+            utterance.rate = 1.05;
+
+            utterance.onstart = () => {
+                updateVoiceIndicator('speaking');
+            };
+
+            utterance.onend = () => {
+                isSpeaking = false;
+                updateVoiceIndicator('idle');
+                if (voiceActive && recognition) {
+                    setTimeout(() => {
+                        if (voiceActive && !isSpeaking) {
+                            try { recognition.start(); } catch (err) {}
+                        }
+                    }, 400);
+                }
+            };
+
+            utterance.onerror = () => {
+                isSpeaking = false;
+                updateVoiceIndicator('idle');
+            };
+
+            window.speechSynthesis.speak(utterance);
+        }
+
+        async function fetchStatus() {
+            try {
+                const response = await fetch('/api/cockpit/status');
+                const data = await response.json();
+                if (data.success) {
+                    cockpitState = data.state;
+                    updateUI(data.extensionsCount);
+                }
+            } catch (err) {
+                console.error("Failed to fetch cockpit status:", err);
+            }
+
+            const legalView = document.getElementById('legal-ops-view');
+            if (legalView && legalView.classList.contains('active')) {
+                fetchStagedNotices();
+            }
+        }
+
+        function updateUI(extensionsCount) {
+            if (!cockpitState) return;
+
+            // 1. Update Intel Memory Context title (653 + extensionsCount)
+            const intelHeader = document.querySelector('.intel-pane .viewport-header span');
+            if (intelHeader) {
+                const totalVectors = cockpitState.system_telemetry.total_memory_vectors + extensionsCount;
+                intelHeader.innerText = `🧠 Intel Memory Context (${totalVectors} Vectors)`;
+            }
+
+            // 2. Update platform nav items badges/status if we want
+            // Update Sol Verify card
+            const solVerifyCard = document.querySelector('#sol-verify .card');
+            const solStatus = cockpitState.platforms["Sol Verify"]?.status;
+            if (solVerifyCard) {
+                const indicator = solVerifyCard.querySelector('.status-indicator');
+                if (indicator) {
+                    if (solStatus === "VERIFIED_ACTIVE") {
+                        indicator.style.color = "var(--success)";
+                        indicator.innerText = "● VERIFIED ACTIVE (SPL Mint Checked)";
+                    } else {
+                        indicator.style.color = "var(--text-dim)";
+                        indicator.innerText = `● ${solStatus || 'INITIALIZED'}`;
+                    }
+                }
+            }
+
+            // Update XRPL Loans card
+            const xrplLoansStatus = cockpitState.platforms["XRPL Loans"]?.status;
+            const xrplCard = document.querySelector('#xrpl-loans .card');
+            if (xrplCard) {
+                const detailSpan = xrplCard.querySelector('span');
+                if (detailSpan) {
+                    if (xrplLoansStatus === "MIDDLEWARE_PATCHED") {
+                        detailSpan.style.color = "var(--success)";
+                        detailSpan.innerText = "LTV: 45% // MIDDLEWARE: PATCHED";
+                    } else {
+                        detailSpan.style.color = "var(--text-dim)";
+                        detailSpan.innerText = `Status: ${xrplLoansStatus || 'INITIALIZED'}`;
+                    }
+                }
+            }
+
+            // 3. Render Kanban Board
+            renderKanban();
+        }
+
+        function renderKanban() {
+            const container = document.getElementById('kanban-board-container');
+            if (!container) return;
+
+            const pending = cockpitState.kanban_queue.pending_queue || [];
+            const activeLock = cockpitState.kanban_queue.current_execution_lock;
+            const completedCount = cockpitState.kanban_queue.completed_cards || 0;
+
+            let backlogHtml = '';
+            pending.forEach(task => {
+                backlogHtml += `
+                    <div class="kanban-card">
+                        ${task.label}
+                        <div class="tag" style="background: rgba(0, 255, 204, 0.15); color: var(--accent-glow)">${task.lane}</div>
+                    </div>
+                `;
+            });
+            if (pending.length === 0) {
+                backlogHtml = '<div style="color: var(--text-dim); font-size: 0.78rem; text-align: center; margin-top: 20px;">Queue empty</div>';
+            }
+
+            let inProgressHtml = '';
+            if (activeLock) {
+                inProgressHtml = `
+                    <div class="kanban-card" style="border-color: var(--accent-glow);">
+                        Active Task: [${activeLock}]
+                        <div class="tag" style="background: rgba(189, 147, 249, 0.15); color: var(--accent-purple)">Executing</div>
+                    </div>
+                `;
+            } else {
+                inProgressHtml = '<div style="color: var(--text-dim); font-size: 0.78rem; text-align: center; margin-top: 20px;">No active task</div>';
+            }
+
+            // Generate completed mock tasks based on completedCount
+            let completedHtml = '';
+            for (let i = 0; i < completedCount; i++) {
+                completedHtml += `
+                    <div class="kanban-card" style="opacity: 0.7;">
+                        Platform optimization task #${i + 1}
+                        <div class="tag" style="background: rgba(80, 250, 123, 0.15); color: var(--success)">Success</div>
+                    </div>
+                `;
+            }
+            if (completedCount === 0) {
+                completedHtml = '<div style="color: var(--text-dim); font-size: 0.78rem; text-align: center; margin-top: 20px;">Zero tasks done</div>';
+            }
+
+            container.innerHTML = `
+                <div class="kanban-col">
+                    <div class="kanban-title">Backlog (${pending.length})</div>
+                    ${backlogHtml}
+                </div>
+                <div class="kanban-col">
+                    <div class="kanban-title">In Progress</div>
+                    ${inProgressHtml}
+                </div>
+                <div class="kanban-col">
+                    <div class="kanban-title">Completed (${completedCount})</div>
+                    ${completedHtml}
+                </div>
+            `;
+
+            // Disable run button if queue is empty
+            const runBtn = document.getElementById('run-task-btn');
+            if (runBtn) {
+                if (pending.length === 0) {
+                    runBtn.innerText = "🏁 QUEUE EMPTY";
+                    runBtn.disabled = true;
+                    runBtn.style.opacity = "0.5";
+                    runBtn.style.cursor = "not-allowed";
+                    runBtn.style.boxShadow = "none";
+                } else {
+                    runBtn.innerText = "▶ RUN NEXT TASK";
+                    runBtn.disabled = false;
+                    runBtn.style.opacity = "1";
+                    runBtn.style.cursor = "pointer";
+                    runBtn.style.boxShadow = "0 0 15px rgba(0, 255, 204, 0.3)";
+                }
+            }
+        }
+
+        async function runNextTask() {
+            const stream = document.getElementById('chat-stream');
+            const runBtn = document.getElementById('run-task-btn');
+            if (runBtn) {
+                runBtn.innerText = "⏳ EXECUTING...";
+                runBtn.disabled = true;
+            }
+
+            stream.innerHTML += `<div class="message system">[System]: Initiating queue task execution natively...</div>`;
+            stream.scrollTop = stream.scrollHeight;
+
+            try {
+                const response = await fetch('/api/cockpit/run-task', { method: 'POST' });
+                const data = await response.json();
+                if (data.success) {
+                    stream.innerHTML += `<div class="message system" style="border-color: rgba(80, 250, 123, 0.2); background: rgba(80, 250, 123, 0.02); color: var(--success);">[Success]: ${data.message}</div>`;
+                    cockpitState = data.state;
+                    fetchStatus(); // Refresh everything
+                } else {
+                    stream.innerHTML += `<div class="message system" style="border-color: rgba(255, 85, 85, 0.2); background: rgba(255, 85, 85, 0.02); color: var(--error);">[Error]: ${data.error}</div>`;
+                }
+            } catch (err) {
+                stream.innerHTML += `<div class="message system" style="border-color: rgba(255, 85, 85, 0.2); background: rgba(255, 85, 85, 0.02); color: var(--error);">[Connection Error]: Failed to trigger task execution.</div>`;
+            }
+            stream.scrollTop = stream.scrollHeight;
+        }
+
+        function escapeHtml(text) {
+            return text
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
+        function formatMarkdown(text) {
+            return escapeHtml(text)
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                .replace(/`/g, '<code style="background: rgba(255,255,255,0.08); padding: 2px 4px; border-radius: 4px; font-family: var(--font-mono); font-size: 0.8rem;">$1</code>')
+                .replace(/\n/g, '<br>');
+        }
+
+        // Tick timer countdown
+        let syncTimer = 50; // 5.0 seconds in deciseconds
+        function tickSyncTimer() {
+            if (syncTimer <= 0) {
+                fetchStatus();
+                syncTimer = 50;
+            } else {
+                syncTimer--;
+            }
+            const countdownEl = document.getElementById('timer-countdown');
+            if (countdownEl) {
+                countdownEl.innerText = (syncTimer / 10).toFixed(1);
+            }
+        }
+
+        let codexDataCache = null;
+
+        async function fetchPredictiveCodex() {
+            try {
+                const response = await fetch('/api/predictive/metrics');
+                const data = await response.json();
+                if (data.success) {
+                    codexDataCache = data;
+                    
+                    // Render KPI text fields
+                    document.getElementById('codex-signal').innerText = `${data.action} / ${data.signal}`;
+                    document.getElementById('codex-mvrv').innerText = `1.14 (Proximity Zone)`;
+                    document.getElementById('codex-puell').innerText = `0.72 (Miner Stress)`;
+                    document.getElementById('codex-progress').innerText = `${data.daysElapsedInBear} Days (${data.bearProgressPercent}%, ${data.daysUntilBottom} left)`;
+                    document.getElementById('codex-explanation').innerText = data.why;
+                    
+                    // Initialize the canvas and event listeners
+                    initCodexChartCanvas();
+                }
+            } catch (err) {
+                console.error("Failed to load predictive codex data:", err);
+            }
+        }
+
+        function initCodexChartCanvas() {
+            const canvas = document.getElementById('codex-chart-canvas');
+            if (!canvas) return;
+            
+            // Set internal resolution based on CSS size for high DPI screens
+            const rect = canvas.getBoundingClientRect();
+            canvas.width = rect.width * window.devicePixelRatio;
+            canvas.height = rect.height * window.devicePixelRatio;
+            
+            // Bind mouse listeners for hover crosshairs
+            canvas.onmousemove = (event) => {
+                const rect = canvas.getBoundingClientRect();
+                const mouseX = (event.clientX - rect.left) * window.devicePixelRatio;
+                const mouseY = (event.clientY - rect.top) * window.devicePixelRatio;
+                
+                renderCodexChart(canvas, mouseX, mouseY);
+            };
+            
+            canvas.onmouseleave = () => {
+                renderCodexChart(canvas, null, null);
+            };
+
+            renderCodexChart(canvas, null, null);
+        }
+
+        function renderCodexChart(canvas, mouseX, mouseY) {
+            if (!codexDataCache || !codexDataCache.dataPoints) return;
+            
+            const ctx = canvas.getContext('2d');
+            const points = codexDataCache.dataPoints;
+            const w = canvas.width;
+            const h = canvas.height;
+            
+            ctx.clearRect(0, 0, w, h);
+            
+            const padding = 50 * window.devicePixelRatio;
+            const graphW = w - 2 * padding;
+            const graphH = h - 2 * padding;
+            
+            // Determine log min and max prices
+            const logMin = Math.log10(100);
+            const logMax = Math.log10(500000);
+            
+            function getX(index) {
+                return padding + (index / (points.length - 1)) * graphW;
+            }
+            
+            function getY(price) {
+                const logPrice = Math.log10(price);
+                const percent = (logPrice - logMin) / (logMax - logMin);
+                return padding + graphH * (1 - percent);
+            }
+            
+            // Draw backgrounds (Pump vs Dump zones)
+            let currentPhase = null;
+            let phaseStartIdx = 0;
+            
+            for (let i = 0; i < points.length; i++) {
+                if (points[i].phase !== currentPhase || i === points.length - 1) {
+                    if (currentPhase) {
+                        ctx.fillStyle = currentPhase === 'PUMP' ? 'rgba(0, 255, 204, 0.02)' : 'rgba(255, 85, 85, 0.02)';
+                        const xStart = getX(phaseStartIdx);
+                        const xEnd = getX(i);
+                        ctx.fillRect(xStart, padding, xEnd - xStart, graphH);
+                    }
+                    currentPhase = points[i].phase;
+                    phaseStartIdx = i;
+                }
+            }
+            
+            // Draw grid lines
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.04)';
+            ctx.lineWidth = 1 * window.devicePixelRatio;
+            
+            // Horizontal price levels
+            const levels = [1000, 10000, 100000];
+            levels.forEach(lvl => {
+                const yVal = getY(lvl);
+                ctx.beginPath();
+                ctx.moveTo(padding, yVal);
+                ctx.lineTo(w - padding, yVal);
+                ctx.stroke();
+                
+                // Label Y Axis
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
+                ctx.font = `${9 * window.devicePixelRatio}px monospace`;
+                ctx.fillText(`$${lvl.toLocaleString()}`, padding - 45 * window.devicePixelRatio, yVal + 3 * window.devicePixelRatio);
+            });
+            
+            // Draw X Axis date labels (approx every 2 years)
+            ctx.beginPath();
+            ctx.moveTo(padding, h - padding);
+            ctx.lineTo(w - padding, h - padding);
+            ctx.stroke();
+            
+            for (let i = 0; i < points.length; i += 24) {
+                const xVal = getX(i);
+                ctx.beginPath();
+                ctx.moveTo(xVal, h - padding);
+                ctx.lineTo(xVal, h - padding + 5 * window.devicePixelRatio);
+                ctx.stroke();
+                
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
+                ctx.font = `${9 * window.devicePixelRatio}px monospace`;
+                ctx.fillText(points[i].date.substring(0, 4), xVal - 12 * window.devicePixelRatio, h - padding + 18 * window.devicePixelRatio);
+            }
+            
+            // Draw price line path
+            ctx.lineWidth = 2 * window.devicePixelRatio;
+            
+            // Split line into past (solid mint) and future (dashed purple)
+            const today = new Date(codexDataCache.currentDate);
+            
+            ctx.beginPath();
+            let futureStarted = false;
+            
+            for (let i = 0; i < points.length; i++) {
+                const ptDate = new Date(points[i].date);
+                const xVal = getX(i);
+                const yVal = getY(points[i].price);
+                
+                if (ptDate > today && !futureStarted) {
+                    // Close the past line path and stroke it
+                    ctx.lineTo(xVal, yVal);
+                    ctx.strokeStyle = '#00ffcc';
+                    ctx.shadowBlur = 10;
+                    ctx.shadowColor = 'rgba(0, 255, 204, 0.4)';
+                    ctx.stroke();
+                    ctx.shadowBlur = 0; // Reset shadow
+                    
+                    // Start the future dashed line path
+                    ctx.beginPath();
+                    ctx.moveTo(xVal, yVal);
+                    ctx.setLineDash([4 * window.devicePixelRatio, 4 * window.devicePixelRatio]);
+                    ctx.strokeStyle = '#bd93f9';
+                    futureStarted = true;
+                } else if (i === 0) {
+                    ctx.moveTo(xVal, yVal);
+                } else {
+                    ctx.lineTo(xVal, yVal);
+                }
+            }
+            
+            ctx.stroke();
+            ctx.setLineDash([]); // Reset dash
+            
+            // Draw Vertical Current Time Marker Line
+            let currentX = padding;
+            for (let i = 0; i < points.length; i++) {
+                if (new Date(points[i].date) >= today) {
+                    currentX = getX(i);
+                    break;
+                }
+            }
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.15)';
+            ctx.beginPath();
+            ctx.moveTo(currentX, padding);
+            ctx.lineTo(currentX, h - padding);
+            ctx.stroke();
+            
+            // Add label for today
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
+            ctx.font = `${9 * window.devicePixelRatio}px monospace`;
+            ctx.fillText("TODAY", currentX - 15 * window.devicePixelRatio, padding - 8 * window.devicePixelRatio);
+            
+            // Draw Hover interactive tracking crosshair and tooltip
+            if (mouseX !== null && mouseX >= padding && mouseX <= w - padding) {
+                // Map mouseX to the closest index in data points array
+                const percent = (mouseX - padding) / graphW;
+                const idx = Math.max(0, Math.min(points.length - 1, Math.round(percent * (points.length - 1))));
+                const targetPoint = points[idx];
+                
+                const trgX = getX(idx);
+                const trgY = getY(targetPoint.price);
+                
+                // Draw vertical line at index
+                ctx.strokeStyle = 'rgba(0, 255, 204, 0.3)';
+                ctx.beginPath();
+                ctx.moveTo(trgX, padding);
+                ctx.lineTo(trgX, h - padding);
+                ctx.stroke();
+                
+                // Draw circle at target point
+                ctx.fillStyle = '#00ffcc';
+                ctx.beginPath();
+                ctx.arc(trgX, trgY, 6 * window.devicePixelRatio, 0, Math.PI * 2);
+                ctx.fill();
+                
+                // Draw tooltip box
+                const tipW = 180 * window.devicePixelRatio;
+                const tipH = 95 * window.devicePixelRatio;
+                let tipX = trgX + 15 * window.devicePixelRatio;
+                let tipY = trgY - 40 * window.devicePixelRatio;
+                
+                // Keep tooltip on screen
+                if (tipX + tipW > w) tipX = trgX - tipW - 15 * window.devicePixelRatio;
+                if (tipY + tipH > h - padding) tipY = h - padding - tipH;
+                if (tipY < padding) tipY = padding;
+                
+                ctx.fillStyle = 'rgba(10, 14, 23, 0.9)';
+                ctx.strokeStyle = 'rgba(255, 255, 255, 0.15)';
+                ctx.lineWidth = 1 * window.devicePixelRatio;
+                ctx.beginPath();
+                ctx.roundRect(tipX, tipY, tipW, tipH, 6 * window.devicePixelRatio);
+                ctx.fill();
+                ctx.stroke();
+                
+                ctx.fillStyle = '#fff';
+                ctx.font = `bold ${10 * window.devicePixelRatio}px monospace`;
+                ctx.fillText(`DATE: ${targetPoint.date}`, tipX + 12 * window.devicePixelRatio, tipY + 18 * window.devicePixelRatio);
+                
+                ctx.fillStyle = '#00ffcc';
+                ctx.fillText(`PRICE: $${targetPoint.price.toLocaleString()}`, tipX + 12 * window.devicePixelRatio, tipY + 34 * window.devicePixelRatio);
+                
+                ctx.fillStyle = targetPoint.phase === 'PUMP' ? '#50fa7b' : '#ff5555';
+                ctx.fillText(`PHASE: ${targetPoint.phase}`, tipX + 12 * window.devicePixelRatio, tipY + 50 * window.devicePixelRatio);
+                
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
+                ctx.font = `${9 * window.devicePixelRatio}px monospace`;
+                ctx.fillText(`PUELL: ${targetPoint.puell}`, tipX + 12 * window.devicePixelRatio, tipY + 66 * window.devicePixelRatio);
+                ctx.fillText(`MVRV: ${targetPoint.mvrv}`, tipX + 12 * window.devicePixelRatio, tipY + 80 * window.devicePixelRatio);
+            }
+        }
+
+        async function fetchStagedNotices() {
+            try {
+                const response = await fetch('/api/legal/staged');
+                const data = await response.json();
+                if (data.success) {
+                    renderStagedNotices(data.notices);
+                }
+            } catch (err) {
+                console.error("Failed to fetch staged notices:", err);
+            }
+        }
+
+        function renderStagedNotices(notices) {
+            const container = document.getElementById('staged-notices-container');
+            if (!container) return;
+
+            if (notices.length === 0) {
+                container.innerHTML = '<div style="color: var(--text-dim); font-size: 0.8rem; text-align: center; margin-top: 40px; font-family: var(--font-mono);">No active drafts staged.</div>';
+                return;
+            }
+
+            let html = '';
+            notices.forEach(notice => {
+                const isTransmitted = notice.approvalStatus === "RELEASED_TRANSMITTED";
+                const borderStyle = isTransmitted ? "border-color: rgba(80, 250, 123, 0.2);" : "border-color: rgba(189, 147, 249, 0.2);";
+                const badgeColor = isTransmitted ? "var(--success)" : "var(--accent-purple)";
+                const badgeBg = isTransmitted ? "rgba(80, 250, 123, 0.1)" : "rgba(189, 147, 249, 0.1)";
+                const statusLabel = isTransmitted ? "RELEASED & TRANSMITTED" : "AWAITING AUTHORIZATION";
+
+                html += `
+                    <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--border-glass); border-radius: 6px; padding: 12px; margin-bottom: 12px; ${borderStyle} transition: all 0.2s;">
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 8px;">
+                            <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-light); font-weight:bold;">${notice.documentId}</span>
+                            <span style="font-family: var(--font-mono); font-size: 0.62rem; padding: 2px 6px; border-radius: 3px; background: ${badgeBg}; color: ${badgeColor}; font-weight:600;">${statusLabel}</span>
+                        </div>
+                        <div style="font-size: 0.78rem; color: var(--text-light); margin-bottom: 5px;">Target: <strong>${notice.targetName}</strong> (${notice.to})</div>
+                        <div style="font-size: 0.7rem; color: var(--text-dim); font-family: var(--font-mono); margin-bottom: 10px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Violation: ${notice.violationDetail}</div>
+                        
+                        <div style="display:flex; gap: 8px; align-items:center;">
+                            <button onclick="previewNoticeBody('${notice.documentId}')" style="background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass); color: var(--text-light); padding: 5px 10px; border-radius: 4px; font-size: 0.65rem; font-family: var(--font-mono); cursor:pointer;">👁️ PREVIEW</button>
+                            ${!isTransmitted ? `
+                                <button onclick="releaseNotice('${notice.documentId}')" style="background: var(--success); border: none; color: #000; padding: 5px 10px; border-radius: 4px; font-size: 0.65rem; font-family: var(--font-mono); font-weight:700; cursor:pointer; box-shadow: 0 0 8px rgba(80, 250, 123, 0.3);">🚀 RELEASE TO SMTP</button>
+                            ` : `
+                                <span style="font-size: 0.65rem; color: var(--text-dim); font-family: var(--font-mono);">Transmitted: ${new Date(notice.transmittedAt).toLocaleTimeString()}</span>
+                            `}
+                        </div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+        }
+
+        async function stageNewNotice() {
+            const templateSelect = document.getElementById('legal-template-select');
+            const targetNameInput = document.getElementById('legal-target-name');
+            const targetEmailInput = document.getElementById('legal-target-email');
+            const violationDetailInput = document.getElementById('legal-violation-detail');
+
+            const templateKey = templateSelect.value;
+            const targetName = targetNameInput.value.trim();
+            const targetEmail = targetEmailInput.value.trim();
+            const violationDetail = violationDetailInput.value.trim();
+
+            if (!targetName || !targetEmail || !violationDetail) {
+                alert("Please fill out all compliance parameters to stage notice.");
+                return;
+            }
+
+            const stream = document.getElementById('chat-stream');
+            stream.innerHTML += `<div class="message system">[System]: Staging new notice for ${targetName} in vault...</div>`;
+            stream.scrollTop = stream.scrollHeight;
+
+            try {
+                const response = await fetch('/api/legal/stage', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ templateKey, targetName, violationDetail, targetEmail })
+                });
+                const data = await response.json();
+                if (data.success) {
+                    stream.innerHTML += `<div class="message system" style="border-color: rgba(80, 250, 123, 0.2); background: rgba(80, 250, 123, 0.02); color: var(--success);">[Success]: Notice staged as ${data.notice.documentId}.</div>`;
+                    
+                    // Clear inputs
+                    targetNameInput.value = '';
+                    targetEmailInput.value = '';
+                    violationDetailInput.value = '';
+
+                    fetchStagedNotices();
+                    if (voiceActive) {
+                        speak(`Success. Notice staged in physical legal vault as ${data.notice.documentId.replace(/_/g, ' ')}.`);
+                    }
+                } else {
+                    alert("Failed to stage notice: " + data.error);
+                }
+            } catch (err) {
+                console.error("Failed to stage notice:", err);
+                alert("Connection error staging notice.");
+            }
+            stream.scrollTop = stream.scrollHeight;
+        }
+
+        async function releaseNotice(documentId) {
+            if (!confirm(`Are you sure you want to authorize the release of ${documentId}? this will trigger immediate SMTP transmission.`)) {
+                return;
+            }
+
+            const stream = document.getElementById('chat-stream');
+            stream.innerHTML += `<div class="message system">[System]: Authorizing release check for ${documentId}...</div>`;
+            stream.scrollTop = stream.scrollHeight;
+
+            try {
+                const response = await fetch('/api/legal/transmit', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ documentId })
+                });
+                const data = await response.json();
+                if (data.success) {
+                    stream.innerHTML += `<div class="message system" style="border-color: rgba(80, 250, 123, 0.2); background: rgba(80, 250, 123, 0.02); color: var(--success);">[Success]: Released and sent. Status: ${data.notice.approvalStatus}.</div>`;
+                    fetchStagedNotices();
+                    if (voiceActive) {
+                        speak(`Notice released and transmitted successfully to ${data.notice.to}.`);
+                    }
+                } else {
+                    alert("Failed to transmit notice: " + data.error);
+                }
+            } catch (err) {
+                console.error("Failed to transmit notice:", err);
+                alert("Connection error releasing notice.");
+            }
+            stream.scrollTop = stream.scrollHeight;
+        }
+
+        function previewNoticeBody(documentId) {
+            fetch('/api/legal/staged')
+                .then(r => r.json())
+                .then(data => {
+                    if (data.success) {
+                        const notice = data.notices.find(n => n.documentId === documentId);
+                        if (notice) {
+                            const stream = document.getElementById('chat-stream');
+                            const timestamp = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+                            stream.innerHTML += `
+                                <div class="message assistant" style="border-color: rgba(0, 255, 204, 0.2); background: rgba(0, 255, 204, 0.01);">
+                                    <div class="message-meta">${timestamp} - Vault Preview [${documentId}]</div>
+                                    <pre style="white-space: pre-wrap; font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-light); background: rgba(0,0,0,0.3); padding: 10px; border-radius: 4px; border: 1px solid var(--border-glass); margin-top:5px;">${escapeHtml(notice.body)}</pre>
+                                </div>
+                            `;
+                            stream.scrollTop = stream.scrollHeight;
+                        }
+                    }
+                });
+        }
+
+        // Call on load
+        window.addEventListener('DOMContentLoaded', () => {
+            fetchStatus();
+            // Initialize shared stack and ops possession gate
+            syncSharedStack();
+            evaluateOpsPossession();
+
+            // Start the autonomous sync decisecond countdown timer
+            setInterval(tickSyncTimer, 100);
+            
+            // Populating voices list in browser
+            if (window.speechSynthesis) {
+                window.speechSynthesis.getVoices();
+            }
+            
+            // Initial fetch of staged notices
+            fetchStagedNotices();
+        });
+    </script>
+</body>
+</html>

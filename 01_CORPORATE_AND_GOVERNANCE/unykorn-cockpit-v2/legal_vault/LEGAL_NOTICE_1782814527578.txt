@@ -1,0 +1,11 @@
+ATTN: TestEntityCorp
+
+This firm represents Kevan Burns, CEO of Unykorn. It has come to our attention that your organization is executing unauthorized deployments involving our proprietary x402 payment middleware architecture and related assets.
+
+SPECIFIC VIOLATION: Unauthorized XRPL treasury port reuse
+
+You are hereby directed to IMMEDIATELY CEASE AND DESIST all unauthorized utilization, replication, or commercial execution of Unykorn intellectual property. Failure to comply within 72 business hours will result in immediate escalation to formal litigation seeking maximum statutory damages.
+
+Regards,
+UnyKorn Sovereign Legal Operations
+On behalf of Kevan Burns, Founder & CEO.

@@ -1,0 +1,43 @@
+{
+  "session_id": "unykorn_cockpit_v2_core",
+  "last_sync_timestamp": "2026-06-30T10:06:23Z",
+  "active_workspace": "C:\\Users\\Kevan\\.gemini\\antigravity-ide\\scratch\\unykorn-cockpit-v2",
+  "system_telemetry": {
+    "total_memory_vectors": 716,
+    "routing_mode": "HYBRID_RELATIONAL",
+    "x402_status": "SECURE_PEER_ROUTED",
+    "blockchain_security": "AES_256_SEEDED",
+    "autonomous_state": "ACTIVE_WATCHDOG_ON"
+  },
+  "platforms": {
+    "Platform Hub": {
+      "status": "LOCAL_NIM_CONNECTED",
+      "port": 7877
+    },
+    "Sol Verify": {
+      "status": "VERIFIED_ACTIVE",
+      "port": 7860
+    },
+    "BP Blueprint": {
+      "status": "STABLE",
+      "port": 9076
+    },
+    "XRPL Loans": {
+      "status": "MIDDLEWARE_PATCHED",
+      "port": 7332
+    },
+    "Finn": {
+      "status": "LIVE",
+      "port": 7701,
+      "url": "https://finn.unykorn.org/",
+      "local_url": "http://127.0.0.1:7701/",
+      "api": "http://127.0.0.1:7700/health"
+    }
+  },
+  "kanban_queue": {
+    "total_backlog_cards": 100,
+    "completed_cards": 15,
+    "current_execution_lock": null,
+    "pending_queue": []
+  }
+}

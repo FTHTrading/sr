@@ -1,0 +1,1080 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="UnyKorn Quant & Sovereign API Developer Portal — Interactive documentation, API testing console, and quant telemetry integration." />
+  <title>Developer Portal & API Docs — UnyKorn</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+  <style>
+    :root {
+      --bg-dark: #07090e;
+      --card-bg: rgba(13, 17, 28, 0.85);
+      --border-color: rgba(255, 255, 255, 0.1);
+      --accent-cyan: #00ffcc;
+      --accent-purple: #bd93f9;
+      --accent-pink: #ff79c6;
+      --accent-green: #50fa7b;
+      --accent-red: #ff5555;
+      --accent-amber: #f1fa8c;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: #f0f4f8;
+      font-family: 'Space Grotesk', sans-serif;
+      margin: 0;
+      padding: 0;
+      position: relative;
+      min-height: 100vh;
+    }
+
+    /* ─── SECURITY AUTH GATE OVERLAY ─── */
+    #security-gate {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: radial-gradient(circle at center, rgba(13, 17, 28, 0.96) 0%, rgba(7, 9, 14, 0.99) 100%);
+      backdrop-filter: blur(16px);
+      z-index: 99999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.4s ease, visibility 0.4s ease;
+    }
+
+    #security-gate.unlocked {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .auth-card {
+      background: rgba(18, 23, 37, 0.9);
+      border: 1px solid rgba(0, 255, 204, 0.3);
+      box-shadow: 0 0 50px rgba(0, 255, 204, 0.15), inset 0 0 20px rgba(0, 255, 204, 0.05);
+      border-radius: 16px;
+      padding: 40px;
+      width: 90%;
+      max-width: 440px;
+      text-align: center;
+      animation: gateFloat 4s ease-in-out infinite;
+    }
+
+    @keyframes gateFloat {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-6px); }
+    }
+
+    .auth-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      background: rgba(0, 255, 204, 0.1);
+      border: 1px solid var(--accent-cyan);
+      border-radius: 20px;
+      font-size: 11px;
+      font-family: var(--font-mono);
+      color: var(--accent-cyan);
+      letter-spacing: 1.5px;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+    }
+
+    .auth-card h2 {
+      font-size: 24px;
+      margin: 0 0 8px;
+      color: #fff;
+    }
+
+    .auth-card p {
+      font-size: 14px;
+      color: #8b9bb4;
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+
+    .pin-input-wrap {
+      position: relative;
+      margin-bottom: 18px;
+    }
+
+    .pin-input {
+      width: 100%;
+      padding: 14px 18px;
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 8px;
+      color: #fff;
+      font-family: var(--font-mono);
+      font-size: 18px;
+      letter-spacing: 6px;
+      text-align: center;
+      box-sizing: border-box;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .pin-input:focus {
+      border-color: var(--accent-cyan);
+      box-shadow: 0 0 15px rgba(0, 255, 204, 0.3);
+    }
+
+    .btn-unlock {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(135deg, var(--accent-cyan) 0%, #00b894 100%);
+      color: #050b14;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(0, 255, 204, 0.3);
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+
+    .btn-unlock:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 25px rgba(0, 255, 204, 0.45);
+    }
+
+    .auth-error {
+      margin-top: 14px;
+      font-size: 13px;
+      color: var(--accent-red);
+      font-family: var(--font-mono);
+      min-height: 20px;
+      display: none;
+    }
+
+    .shake {
+      animation: shake 0.4s cubic-bezier(.36,.07,.19,.97) both;
+    }
+
+    @keyframes shake {
+      10%, 90% { transform: translate3d(-2px, 0, 0); }
+      20%, 80% { transform: translate3d(4px, 0, 0); }
+      30%, 50%, 70% { transform: translate3d(-6px, 0, 0); }
+      40%, 60% { transform: translate3d(6px, 0, 0); }
+    }
+
+    /* ─── PORTAL MAIN LAYOUT ─── */
+    .portal-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 100px 24px 80px;
+    }
+
+    .portal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 32px;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .portal-title h1 {
+      font-size: 34px;
+      margin: 0 0 8px;
+      color: #fff;
+    }
+
+    .portal-title p {
+      color: #8b9bb4;
+      margin: 0;
+      font-size: 16px;
+    }
+
+    .portal-auth-bar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .badge-clearance {
+      background: rgba(80, 250, 123, 0.1);
+      border: 1px solid var(--accent-green);
+      color: var(--accent-green);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      padding: 6px 14px;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .badge-clearance::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent-green);
+      box-shadow: 0 0 8px var(--accent-green);
+    }
+
+    .btn-lock {
+      background: rgba(255, 85, 85, 0.1);
+      border: 1px solid rgba(255, 85, 85, 0.4);
+      color: var(--accent-red);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      padding: 6px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-lock:hover {
+      background: rgba(255, 85, 85, 0.25);
+    }
+
+    /* ─── TELEMETRY HUD STRIP ─── */
+    .hud-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .hud-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hud-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent-cyan), transparent);
+    }
+
+    .hud-label {
+      font-size: 12px;
+      color: #8b9bb4;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+      font-family: var(--font-mono);
+    }
+
+    .hud-value {
+      font-size: 26px;
+      font-weight: 700;
+      color: #fff;
+      font-family: var(--font-mono);
+    }
+
+    .hud-sub {
+      font-size: 12px;
+      color: var(--accent-cyan);
+      margin-top: 4px;
+      font-family: var(--font-mono);
+    }
+
+    /* ─── BASE URL CONFIG BAR ─── */
+    .config-strip {
+      background: rgba(13, 17, 28, 0.9);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 32px;
+      flex-wrap: wrap;
+    }
+
+    .config-strip label {
+      font-size: 13px;
+      font-family: var(--font-mono);
+      color: var(--accent-cyan);
+      white-space: nowrap;
+    }
+
+    .config-strip input {
+      flex: 1;
+      min-width: 260px;
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 6px;
+      padding: 8px 12px;
+      color: #fff;
+      font-family: var(--font-mono);
+      font-size: 13px;
+    }
+
+    .btn-ping {
+      background: rgba(0, 255, 204, 0.15);
+      border: 1px solid var(--accent-cyan);
+      color: var(--accent-cyan);
+      padding: 8px 16px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .ping-status {
+      font-size: 12px;
+      font-family: var(--font-mono);
+    }
+
+    /* ─── INTERACTIVE CONSOLE TABS ─── */
+    .console-section {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      margin-bottom: 40px;
+      overflow: hidden;
+    }
+
+    .tab-bar {
+      display: flex;
+      overflow-x: auto;
+      background: rgba(0, 0, 0, 0.3);
+      border-bottom: 1px solid var(--border-color);
+      padding: 4px 8px 0;
+      gap: 4px;
+    }
+
+    .tab-btn {
+      padding: 12px 18px;
+      background: transparent;
+      border: none;
+      color: #8b9bb4;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      cursor: pointer;
+      border-radius: 8px 8px 0 0;
+      border-bottom: 2px solid transparent;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+
+    .tab-btn:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .tab-btn.active {
+      color: var(--accent-cyan);
+      background: rgba(18, 23, 37, 0.9);
+      border-bottom: 2px solid var(--accent-cyan);
+    }
+
+    .tab-panel {
+      padding: 24px;
+      display: none;
+    }
+
+    .tab-panel.active {
+      display: block;
+    }
+
+    .endpoint-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .method-badge {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 6px;
+      text-transform: uppercase;
+    }
+
+    .method-get {
+      background: rgba(80, 250, 123, 0.15);
+      border: 1px solid var(--accent-green);
+      color: var(--accent-green);
+    }
+
+    .method-post {
+      background: rgba(0, 255, 204, 0.15);
+      border: 1px solid var(--accent-cyan);
+      color: var(--accent-cyan);
+    }
+
+    .endpoint-path {
+      font-family: var(--font-mono);
+      font-size: 16px;
+      color: #fff;
+      font-weight: 500;
+    }
+
+    .endpoint-desc {
+      color: #8b9bb4;
+      font-size: 14px;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .console-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    @media (max-width: 900px) {
+      .console-split {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .box-title {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #8b9bb4;
+      font-family: var(--font-mono);
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .code-box {
+      background: #05070c;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      padding: 16px;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: #e2e8f0;
+      overflow-x: auto;
+      max-height: 380px;
+      position: relative;
+    }
+
+    .code-box pre {
+      margin: 0;
+    }
+
+    .btn-action {
+      padding: 10px 18px;
+      background: var(--accent-cyan);
+      color: #050b14;
+      font-weight: 700;
+      border: none;
+      border-radius: 6px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 14px;
+      transition: all 0.2s;
+    }
+
+    .btn-action:hover {
+      box-shadow: 0 0 15px rgba(0, 255, 204, 0.4);
+    }
+
+    .btn-copy {
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #8b9bb4;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .btn-copy:hover {
+      color: #fff;
+      border-color: var(--accent-cyan);
+    }
+
+    /* ─── DOCS & ARCHITECTURE SECTION ─── */
+    .docs-section {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      padding: 32px;
+      margin-bottom: 40px;
+    }
+
+    .docs-section h3 {
+      font-size: 22px;
+      color: #fff;
+      margin: 0 0 16px;
+    }
+
+    .docs-section p, .docs-section li {
+      color: #8b9bb4;
+      line-height: 1.7;
+      font-size: 15px;
+    }
+
+    .specs-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 14px;
+    }
+
+    .specs-table th, .specs-table td {
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 12px 16px;
+      text-align: left;
+    }
+
+    .specs-table th {
+      background: rgba(0, 0, 0, 0.3);
+      color: var(--accent-cyan);
+      font-family: var(--font-mono);
+      font-size: 12px;
+    }
+
+    .specs-table td code {
+      background: rgba(0, 255, 204, 0.08);
+      color: var(--accent-cyan);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: var(--font-mono);
+    }
+  </style>
+</head>
+<body>
+  <!-- ─── SECURITY AUTH GATE (PASSWORD 12345) ─── -->
+  <div id="security-gate">
+    <div class="auth-card" id="auth-card">
+      <div class="auth-badge">SECURITY PROTOCOL // PASSCODE GATE</div>
+      <h2>UnyKorn Quant Portal</h2>
+      <p>Authorized access only. Enter the secure operator password to decrypt developer documentation and live quant telemetry.</p>
+      
+      <form id="auth-form" onsubmit="handleAuth(event)">
+        <div class="pin-input-wrap">
+          <input 
+            type="password" 
+            id="passcode-input" 
+            class="pin-input" 
+            placeholder="•••••" 
+            maxlength="16" 
+            autofocus 
+            autocomplete="current-password" 
+            required 
+          />
+        </div>
+        <button type="submit" class="btn-unlock" id="btn-unlock-submit">Authenticate & Enter</button>
+      </form>
+      <div id="auth-error" class="auth-error">ACCESS DENIED // INVALID AUTHORIZATION PASSCODE</div>
+    </div>
+  </div>
+
+  <!-- ─── MAIN SITE NAVIGATION ─── -->
+  <nav class="site-nav">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">Uny<span>Korn</span></a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="/services">Services</a></li>
+        <li><a href="/systems">Systems</a></li>
+        <li><a href="/systems/troptions">TROPTIONS</a></li>
+        <li><a href="/command-center">Command Center</a></li>
+        <li><a href="/developer" class="active" style="color:var(--accent-cyan);">Developer Docs</a></li>
+        <li><a href="/rwa-readiness">RWA Readiness</a></li>
+        <li><a href="/build-request">Build Request</a></li>
+      </ul>
+      <a href="/build-request" class="btn nav-cta">Request a Build</a>
+      <button id="nav-menu-btn" class="nav-menu-btn" aria-label="Menu">☰</button>
+    </div>
+  </nav>
+
+  <!-- ─── DEVELOPER PORTAL CONTENT ─── -->
+  <main class="portal-container">
+    <div class="portal-header">
+      <div class="portal-title">
+        <h1>Quant API & Developer Docs</h1>
+        <p>Production specifications, live execution endpoints, and quantitative telemetry.</p>
+      </div>
+      <div class="portal-auth-bar">
+        <span class="badge-clearance">CLEARANCE: GRANTED [12345]</span>
+        <button class="btn-lock" onclick="lockConsole()">Lock Console</button>
+      </div>
+    </div>
+
+    <!-- ─── LIVE QUANT HUD ─── -->
+    <div class="hud-grid">
+      <div class="hud-card">
+        <div class="hud-label">Macro Correlation</div>
+        <div class="hud-value" id="hud-pearson">0.8421</div>
+        <div class="hud-sub">Fed Liquidity vs BTC Log-Price</div>
+      </div>
+      <div class="hud-card">
+        <div class="hud-label">Order Book Imbalance (OBI)</div>
+        <div class="hud-value" id="hud-obi">-0.0482</div>
+        <div class="hud-sub">Binance L2 Depth Skew</div>
+      </div>
+      <div class="hud-card">
+        <div class="hud-label">Bear Cycle Progress</div>
+        <div class="hud-value" id="hud-progress">73%</div>
+        <div class="hud-sub">98 Days to Target Bottom</div>
+      </div>
+      <div class="hud-card">
+        <div class="hud-label">Signal Directive</div>
+        <div class="hud-value" id="hud-signal" style="color:var(--accent-green);">ACCUMULATE</div>
+        <div class="hud-sub">Action: SCALE-IN BUY</div>
+      </div>
+    </div>
+
+    <!-- ─── API BASE URL CONFIGURATION ─── -->
+    <div class="config-strip">
+      <label for="api-base-url">⚡ Active Quant Backend URL:</label>
+      <input type="text" id="api-base-url" value="http://localhost:7880" placeholder="http://localhost:7880 or production API URL" />
+      <button class="btn-ping" onclick="pingBackend()">Ping Endpoint</button>
+      <span class="ping-status" id="ping-status">Ready to connect</span>
+    </div>
+
+    <!-- ─── INTERACTIVE API CONSOLE ─── -->
+    <div class="console-section">
+      <div class="tab-bar">
+        <button class="tab-btn active" onclick="switchTab('predictive-metrics')">1. Predictive Metrics</button>
+        <button class="tab-btn" onclick="switchTab('confluence')">2. Confluence Engine</button>
+        <button class="tab-btn" onclick="switchTab('execution-trigger')">3. Execution Trigger (POST)</button>
+        <button class="tab-btn" onclick="switchTab('cockpit-status')">4. Cockpit Status</button>
+        <button class="tab-btn" onclick="switchTab('agent-chat')">5. Multi-Agent Dispatch</button>
+      </div>
+
+      <!-- TAB 1: PREDICTIVE METRICS -->
+      <div id="tab-predictive-metrics" class="tab-panel active">
+        <div class="endpoint-header">
+          <span class="method-badge method-get">GET</span>
+          <span class="endpoint-path">/api/predictive/metrics</span>
+        </div>
+        <p class="endpoint-desc">
+          Calculates live Pearson correlation against Federal Reserve Net Liquidity ($T), pulls Binance L2 order book depth for real-time bid/ask imbalance, and forecasts cycle contraction progress.
+        </p>
+
+        <div class="console-split">
+          <div>
+            <div class="box-title">
+              <span>Code Snippets</span>
+              <button class="btn-copy" onclick="copySnippet('code-metrics-curl')">Copy cURL</button>
+            </div>
+            <div class="code-box">
+<pre id="code-metrics-curl"># cURL
+curl -X GET "http://localhost:7880/api/predictive/metrics" \
+  -H "Accept: application/json"</pre>
+            </div>
+            <div class="box-title" style="margin-top:16px;">
+              <span>Python (requests)</span>
+              <button class="btn-copy" onclick="copySnippet('code-metrics-py')">Copy Python</button>
+            </div>
+            <div class="code-box">
+<pre id="code-metrics-py">import requests
+
+res = requests.get("http://localhost:7880/api/predictive/metrics")
+data = res.json()
+print("Pearson Correlation:", data.get("pearsonCorrelation"))
+print("OBI:", data.get("orderBookImbalance"))
+print("Signal:", data.get("signal"))</pre>
+            </div>
+            <button class="btn-action" onclick="runMetricsTest()">
+              ▶ Run Live Request
+            </button>
+          </div>
+
+          <div>
+            <div class="box-title">
+              <span>Response Output</span>
+              <span id="metrics-status" style="font-size:11px; color:#8b9bb4;">Awaiting Execution</span>
+            </div>
+            <div class="code-box" id="metrics-output">
+              <pre>{ /* Click 'Run Live Request' to fetch from localhost:7880 */ }</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 2: CONFLUENCE -->
+      <div id="tab-confluence" class="tab-panel">
+        <div class="endpoint-header">
+          <span class="method-badge method-get">GET</span>
+          <span class="endpoint-path">/api/predictive/confluence</span>
+        </div>
+        <p class="endpoint-desc">
+          Invokes the Python Sovereign Confluence Engine thread against <code>sovereign_metrics.db</code>, applying dynamic regime weights and yielding a 0-100 confluence confidence index.
+        </p>
+
+        <div class="console-split">
+          <div>
+            <div class="box-title">
+              <span>cURL Snippet</span>
+              <button class="btn-copy" onclick="copySnippet('code-confluence-curl')">Copy</button>
+            </div>
+            <div class="code-box">
+<pre id="code-confluence-curl">curl -X GET "http://localhost:7880/api/predictive/confluence"</pre>
+            </div>
+            <button class="btn-action" onclick="runConfluenceTest()">
+              ▶ Run Live Confluence Calculation
+            </button>
+          </div>
+          <div>
+            <div class="box-title">
+              <span>Confluence Response</span>
+              <span id="confluence-status" style="font-size:11px; color:#8b9bb4;">Awaiting Execution</span>
+            </div>
+            <div class="code-box" id="confluence-output">
+              <pre>{ /* Waiting for execution */ }</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 3: EXECUTION TRIGGER -->
+      <div id="tab-execution-trigger" class="tab-panel">
+        <div class="endpoint-header">
+          <span class="method-badge method-post">POST</span>
+          <span class="endpoint-path">/api/ops/execution-trigger</span>
+        </div>
+        <p class="endpoint-desc">
+          Dispatches programmatic execution directives to the institutional trading layer based on confirmed Sovereign Predictive Index (SPI) values and probability thresholds.
+        </p>
+
+        <div class="console-split">
+          <div>
+            <div class="box-title">Payload Body (JSON)</div>
+            <textarea id="trigger-payload" style="width:100%; height:180px; background:#05070c; border:1px solid rgba(255,255,255,0.15); border-radius:8px; color:#50fa7b; font-family:var(--font-mono); font-size:13px; padding:12px; box-sizing:border-box;">{
+  "action_directive": "SCALE_IN_LONG",
+  "telemetry": {
+    "sovereign_predictive_index": 88.4,
+    "historical_hit_rate_probability": 0.812
+  },
+  "timestamp_utc": "2026-09-02T20:45:00Z"
+}</textarea>
+            <button class="btn-action" onclick="runTriggerTest()">
+              ▶ Dispatch Operational Trigger
+            </button>
+          </div>
+          <div>
+            <div class="box-title">
+              <span>Execution Acknowledgment</span>
+              <span id="trigger-status" style="font-size:11px; color:#8b9bb4;">Awaiting Dispatch</span>
+            </div>
+            <div class="code-box" id="trigger-output">
+              <pre>{ /* Waiting for POST payload dispatch */ }</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 4: COCKPIT STATUS -->
+      <div id="tab-cockpit-status" class="tab-panel">
+        <div class="endpoint-header">
+          <span class="method-badge method-get">GET</span>
+          <span class="endpoint-path">/api/cockpit/status</span>
+        </div>
+        <p class="endpoint-desc">
+          Queries current cockpit state, active Kanban queue status, lane locks, and vector memory counts.
+        </p>
+        <button class="btn-action" onclick="runStatusTest()">
+          ▶ Fetch System Status
+        </button>
+        <div style="margin-top:16px;">
+          <div class="code-box" id="status-output">
+            <pre>{ /* Click above to inspect session state */ }</pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 5: MULTI-AGENT CHAT -->
+      <div id="tab-agent-chat" class="tab-panel">
+        <div class="endpoint-header">
+          <span class="method-badge method-post">POST</span>
+          <span class="endpoint-path">/api/cockpit/chat</span>
+        </div>
+        <p class="endpoint-desc">
+          Relays operational commands and queries to the multi-agent orchestration dispatcher (Gemini & OpenRouter).
+        </p>
+        <input type="text" id="agent-prompt" value="Provide current macroeconomic liquidity breakdown and OBI signal analysis." style="width:100%; padding:12px; background:#05070c; border:1px solid rgba(255,255,255,0.15); border-radius:8px; color:#fff; font-family:var(--font-mono); margin-bottom:12px; box-sizing:border-box;" />
+        <button class="btn-action" onclick="runAgentChatTest()">
+          ▶ Dispatch Prompt
+        </button>
+        <div style="margin-top:16px;">
+          <div class="code-box" id="agent-output">
+            <pre>{ /* Multi-agent response will render here */ }</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── DOCUMENTATION & ARCHITECTURE DETAILS ─── -->
+    <div class="docs-section">
+      <h3>Sovereign Quantitative Architecture</h3>
+      <p>
+        The UnyKorn Predictive Codex integrates macro-liquidity indicators, real-time central limit order book (CLOB) dynamics, and sovereign consensus rails into a deterministic operational signal.
+      </p>
+
+      <table class="specs-table">
+        <thead>
+          <tr>
+            <th>Module</th>
+            <th>Formula / Source</th>
+            <th>Target Metric</th>
+            <th>Role</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Federal Reserve Net Liquidity</strong></td>
+            <td><code>WALCL - TGA - RRP</code></td>
+            <td>Trillions USD (2015-2026)</td>
+            <td>Global fiat expansion baseline anchor</td>
+          </tr>
+          <tr>
+            <td><strong>Pearson Cycle Correlator</strong></td>
+            <td><code>r = Σ(x-x̄)(y-ȳ) / √(Σ(x-x̄)² Σ(y-ȳ)²)</code></td>
+            <td>r Score (0.80+)</td>
+            <td>Log-price macro regime classification</td>
+          </tr>
+          <tr>
+            <td><strong>Binance L2 Book Imbalance</strong></td>
+            <td><code>(ΣBids - ΣAsks) / (ΣBids + ΣAsks)</code></td>
+            <td>Top 100 Depth Levels</td>
+            <td>Immediate supply absorption / distribution skew</td>
+          </tr>
+          <tr>
+            <td><strong>Operational Execution Gate</strong></td>
+            <td><code>POST /api/ops/execution-trigger</code></td>
+            <td>SPI &gt; 80, Hit Rate &gt; 75%</td>
+            <td>Automated order routing to institutional desks</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Enterprise Custody & Rails</h3>
+      <p>
+        Integrations are built directly on qualified custody rails (BitGo qualified custody, Paxos / itBit API trading) and multi-chain settlement standards (Apostle Chain 7332, XRPL, Solana, Polygon 137).
+      </p>
+    </div>
+  </main>
+
+  <!-- ─── SCRIPT LOGIC ─── -->
+  <script>
+    // Security Gate Enforcement (Password: 12345)
+    const CORRECT_PIN = "12345";
+    const gateElem = document.getElementById("security-gate");
+    const passInput = document.getElementById("passcode-input");
+    const errorElem = document.getElementById("auth-error");
+    const authCard = document.getElementById("auth-card");
+
+    function checkExistingAuth() {
+      if (sessionStorage.getItem("unykorn_dev_auth") === "granted") {
+        gateElem.classList.add("unlocked");
+        pingBackend();
+        runMetricsTest();
+      }
+    }
+
+    function handleAuth(e) {
+      e.preventDefault();
+      const entered = passInput.value.trim();
+      if (entered === CORRECT_PIN) {
+        sessionStorage.setItem("unykorn_dev_auth", "granted");
+        errorElem.style.display = "none";
+        gateElem.classList.add("unlocked");
+        pingBackend();
+        runMetricsTest();
+      } else {
+        errorElem.style.display = "block";
+        authCard.classList.add("shake");
+        passInput.value = "";
+        setTimeout(() => authCard.classList.remove("shake"), 500);
+      }
+    }
+
+    function lockConsole() {
+      sessionStorage.removeItem("unykorn_dev_auth");
+      gateElem.classList.remove("unlocked");
+      passInput.value = "";
+      errorElem.style.display = "none";
+      passInput.focus();
+    }
+
+    // Tab Navigation
+    function switchTab(tabId) {
+      document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+      document.querySelectorAll(".tab-panel").forEach(p => p.classList.remove("active"));
+      
+      const targetPanel = document.getElementById("tab-" + tabId);
+      if (targetPanel) targetPanel.classList.add("active");
+      
+      event.target.classList.add("active");
+    }
+
+    // Copy helper
+    function copySnippet(elemId) {
+      const text = document.getElementById(elemId).innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        alert("Copied to clipboard!");
+      });
+    }
+
+    function getBaseUrl() {
+      return document.getElementById("api-base-url").value.replace(/\/$/, "");
+    }
+
+    // Ping Endpoint
+    async function pingBackend() {
+      const base = getBaseUrl();
+      const status = document.getElementById("ping-status");
+      status.innerText = "Pinging...";
+      status.style.color = "#f1fa8c";
+      try {
+        const res = await fetch(`${base}/api/predictive/metrics`, { method: "GET" });
+        if (res.ok) {
+          status.innerText = `● Connected (${base}) [200 OK]`;
+          status.style.color = "var(--accent-green)";
+        } else {
+          status.innerText = `● HTTP ${res.status}`;
+          status.style.color = "var(--accent-amber)";
+        }
+      } catch (err) {
+        status.innerText = "● Backend unreachable or CORS blocked";
+        status.style.color = "var(--accent-red)";
+      }
+    }
+
+    // Run Predictive Metrics Test
+    async function runMetricsTest() {
+      const base = getBaseUrl();
+      const out = document.getElementById("metrics-output");
+      const stat = document.getElementById("metrics-status");
+      stat.innerText = "Sending request...";
+      const t0 = performance.now();
+      try {
+        const res = await fetch(`${base}/api/predictive/metrics`);
+        const data = await res.json();
+        const latency = Math.round(performance.now() - t0);
+        stat.innerText = `HTTP ${res.status} (${latency}ms)`;
+        stat.style.color = "var(--accent-green)";
+        out.innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+        
+        // Update HUD cards
+        if (data.pearsonCorrelation !== undefined) {
+          document.getElementById("hud-pearson").innerText = data.pearsonCorrelation;
+        }
+        if (data.orderBookImbalance !== undefined) {
+          document.getElementById("hud-obi").innerText = data.orderBookImbalance;
+        }
+        if (data.bearProgressPercent !== undefined) {
+          document.getElementById("hud-progress").innerText = `${data.bearProgressPercent}%`;
+        }
+        if (data.signal) {
+          document.getElementById("hud-signal").innerText = data.signal.split(" ")[0];
+        }
+      } catch (err) {
+        stat.innerText = "Failed";
+        stat.style.color = "var(--accent-red)";
+        out.innerHTML = `<pre style="color:var(--accent-red);">${err.message}</pre>`;
+      }
+    }
+
+    // Run Confluence Test
+    async function runConfluenceTest() {
+      const base = getBaseUrl();
+      const out = document.getElementById("confluence-output");
+      const stat = document.getElementById("confluence-status");
+      stat.innerText = "Calculating...";
+      try {
+        const res = await fetch(`${base}/api/predictive/confluence`);
+        const data = await res.json();
+        stat.innerText = `HTTP ${res.status}`;
+        stat.style.color = "var(--accent-green)";
+        out.innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+      } catch (err) {
+        stat.innerText = "Failed";
+        stat.style.color = "var(--accent-red)";
+        out.innerHTML = `<pre style="color:var(--accent-red);">${err.message}</pre>`;
+      }
+    }
+
+    // Run Execution Trigger Test
+    async function runTriggerTest() {
+      const base = getBaseUrl();
+      const out = document.getElementById("trigger-output");
+      const stat = document.getElementById("trigger-status");
+      const payloadStr = document.getElementById("trigger-payload").value;
+      stat.innerText = "Dispatching...";
+      try {
+        const payload = JSON.parse(payloadStr);
+        const res = await fetch(`${base}/api/ops/execution-trigger`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+        stat.innerText = `HTTP ${res.status} [Enforced]`;
+        stat.style.color = "var(--accent-cyan)";
+        out.innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+      } catch (err) {
+        stat.innerText = "Failed";
+        stat.style.color = "var(--accent-red)";
+        out.innerHTML = `<pre style="color:var(--accent-red);">${err.message}</pre>`;
+      }
+    }
+
+    // Run Status Test
+    async function runStatusTest() {
+      const base = getBaseUrl();
+      const out = document.getElementById("status-output");
+      try {
+        const res = await fetch(`${base}/api/cockpit/status`);
+        const data = await res.json();
+        out.innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+      } catch (err) {
+        out.innerHTML = `<pre style="color:var(--accent-red);">${err.message}</pre>`;
+      }
+    }
+
+    // Run Agent Chat Test
+    async function runAgentChatTest() {
+      const base = getBaseUrl();
+      const out = document.getElementById("agent-output");
+      const prompt = document.getElementById("agent-prompt").value;
+      out.innerHTML = `<pre>Dispatching multi-agent orchestrator request...</pre>`;
+      try {
+        const res = await fetch(`${base}/api/cockpit/chat`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ prompt })
+        });
+        const data = await res.json();
+        out.innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+      } catch (err) {
+        out.innerHTML = `<pre style="color:var(--accent-red);">${err.message}</pre>`;
+      }
+    }
+
+    // Initialize check on load
+    window.addEventListener("DOMContentLoaded", checkExistingAuth);
+  </script>
+</body>
+</html>
